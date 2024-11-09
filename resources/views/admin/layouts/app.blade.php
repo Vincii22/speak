@@ -1,3 +1,4 @@
+<!-- admin/layouts/app.blade.php -->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -29,7 +30,7 @@
 
         <!-- Page Content -->
         <main>
-            @yield('content') <!-- Change from {{ $slot }} to @yield('content') -->
+            @yield('content') <!-- This will display the content injected from views -->
         </main>
     </div>
 </body>

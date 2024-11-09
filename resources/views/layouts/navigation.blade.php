@@ -15,8 +15,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                            <!-- User Content Link -->
+                            <x-nav-link :href="route('user.content.index')" :active="request()->routeIs('user.content.index')">
+                                {{ __('User Content') }}
+                            </x-nav-link>
                 </div>
             </div>
+
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
