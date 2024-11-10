@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/content/{category}/{level}/submit', [UserContentController::class, 'submitRecording'])->name('user.content.submitRecording');
 });
 
-
+Route::get('/content/{category}/{level}', [UserContentController::class, 'showLevel'])->name('user.content.level');
 
 // Admin Category CRUD
 Route::get('/admin/categories', [AdminController::class, 'indexCategories'])->name('admin.categories.index');

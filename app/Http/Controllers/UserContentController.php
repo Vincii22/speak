@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Level;
+use App\Models\Sound;
 use App\Models\UserProgress;
 use App\Models\AudioAttempt;
 use Illuminate\Http\Request;
@@ -18,16 +19,7 @@ class UserContentController extends Controller
         $userId = Auth::id();
 
         foreach ($categories as $category) {
-            // Always unlock the first category (SOUNDS)
-            if ($category->id == 1) {
-                $category->unlocked = true;
-            } else {
-                // For other categories, check if they are unlocked
-                $category->unlocked = $this->isCategoryUnlocked($userId, $category->id);
-            }
-
-            // Debug: Output the unlocked value to make sure it's a boolean
-            // dd($category->unlocked); // This will stop and output the value
+            $category->unlocked = ($category->id == 1) || $this->isCategoryUnlocked($userId, $category->id);
         }
 
         return view('user.content.index', compact('categories'));
@@ -62,18 +54,32 @@ class UserContentController extends Controller
 
 public function showCategory($categoryId)
 {
-    $category = Category::find($categoryId);
+    $userId = Auth::id();
+    $category = Category::with('levels')->find($categoryId);
 
-    // Ensure the category is unlocked before showing it
-    if (!$category->unlocked) {
+    // Check if the category is unlocked based on user progress
+    $isUnlocked = $this->isCategoryUnlocked($userId, $categoryId);
+
+    // Redirect if the category is locked
+    if (!$isUnlocked) {
         return redirect()->route('user.content.index')
                          ->with('error', 'You must complete previous categories to unlock this one.');
     }
 
-    // Normal category content
-    return view('user.content.category', compact('category'));
+    // Fetch user progress for each level in this category
+    $userProgress = UserProgress::where('user_id', $userId)
+                                ->where('category_id', $categoryId)
+                                ->get();
+
+    return view('user.content.category', compact('category', 'userProgress'));
 }
 
+public function showLevel($categoryId, $level)
+{
+    $category = Category::findOrFail($categoryId);
+    $sound = Sound::where('level_id', $level)->first();
+    return view('user.content.level', compact('category', 'level', 'sound'));
+}
     // Handle recording submission for a specific level
     public function submitRecording(Request $request, $categoryId, $level)
     {

@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="py-8 px-4 bg-gray-100">
-        <h1 class="text-3xl font-semibold text-center mb-8">User Content</h1>
+        <h1 class="text-3xl font-semibold text-center mb-8">LET'S PRACTICE</h1>
 
         <!-- Display Alert for Locked Categories (only show when category is locked) -->
         @if(session('error'))
