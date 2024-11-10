@@ -15,22 +15,19 @@
         <!-- Categories Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             @foreach($categories as $category)
-                <!-- Ensure that the link is only active if the category is unlocked -->
-                <a href="{{ $category->unlocked ? route('user.content.category', $category->id) : '#' }}"
-                   class="relative bg-blue-600 text-white p-6 rounded-lg shadow-lg transition duration-300 ease-in-out group block hover:bg-blue-700"
-                   onclick="return handleCategoryClick(event, {{ $category->unlocked ? 'true' : 'false' }})">
+            <a href="{{ $category->unlocked ? route('user.content.category', $category->id) : '#' }}"
+                class="relative bg-blue-600 text-white p-6 rounded-lg shadow-lg transition duration-300 ease-in-out group block hover:bg-blue-700"
+                onclick="return handleCategoryClick(event, {{ $category->unlocked ? 'true' : 'false' }})">
+                 <!-- Lock Icon for Locked Categories (Centered) -->
+                 @if(!$category->unlocked)
+                     <div class="absolute inset-0 flex items-center justify-center">
+                         <i class="fas fa-lock text-white text-6xl opacity-80"></i>
+                     </div>
+                 @endif
 
-                    <!-- Lock Icon for Locked Categories (Centered) -->
-                    @if(!$category->unlocked)
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-lock text-white text-6xl opacity-80"></i>
-                        </div>
-                    @endif
-
-                    <!-- Category Name -->
-                    <h2 class="text-2xl font-semibold text-center mb-4 relative z-10">{{ $category->name }}</h2>
-
-                </a>
+                 <!-- Category Name -->
+                 <h2 class="text-2xl font-semibold text-center mb-4 relative z-10">{{ $category->name }}</h2>
+             </a>
             @endforeach
         </div>
     </div>
@@ -38,12 +35,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
     <script>
-        // JavaScript to handle clicks on locked categories
-        function handleCategoryClick(event, isUnlocked) {
-            if (isUnlocked === 'false') {
-                event.preventDefault();  // Prevent the link from navigating
-                alert('You must complete previous categories to unlock this one.');
-            }
-        }
+function handleCategoryClick(event, isUnlocked) {
+    console.log("Category unlocked status:", isUnlocked); // Log category status
+    console.log("Type of isUnlocked:", typeof isUnlocked); // Check if it's a string
+
+    if (isUnlocked === 'false') {
+        console.log('Locked category clicked'); // Log locked click
+        event.preventDefault();  // Prevent navigation
+        alert('You must complete previous categories to unlock this one.');
+    } else if (isUnlocked === 'true') {
+        console.log('Category is unlocked, proceeding...'); // Log unlocked category
+    } else {
+        console.log('Unexpected value for isUnlocked:', isUnlocked);
+    }
+}
+
+
     </script>
 </x-app-layout>

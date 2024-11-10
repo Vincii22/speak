@@ -18,37 +18,43 @@ class UserContentController extends Controller
         $userId = Auth::id();
 
         foreach ($categories as $category) {
-            $category->unlocked = $this->isCategoryUnlocked($userId, $category->id);
+            // Always unlock the first category (SOUNDS)
+            if ($category->id == 1) {
+                $category->unlocked = true;
+            } else {
+                // For other categories, check if they are unlocked
+                $category->unlocked = $this->isCategoryUnlocked($userId, $category->id);
+            }
+
+            // Debug: Output the unlocked value to make sure it's a boolean
+            // dd($category->unlocked); // This will stop and output the value
         }
 
         return view('user.content.index', compact('categories'));
     }
-
     // Check if a category is unlocked
-   // In UserContentController.php
-
-private function isCategoryUnlocked($userId, $categoryId)
-{
-    // Always unlock the first category (SOUNDS)
-    if ($categoryId == 1) {
-        return true; // The first category is always unlocked
-    }
-
-    // Get all categories before the current one
-    $previousCategories = Category::where('id', '<', $categoryId)->get();
-
-    foreach ($previousCategories as $category) {
-        // Check if the user has completed the previous category
-        if (!UserProgress::where('user_id', $userId)
-                         ->where('category_id', $category->id)
-                         ->whereNotNull('completed_at')
-                         ->exists()) {
-            return false; // If any previous category is not completed, lock this category
+    private function isCategoryUnlocked($userId, $categoryId)
+    {
+        // Always unlock the first category (SOUNDS)
+        if ($categoryId == 1) {
+            return true; // The first category is always unlocked
         }
-    }
 
-    return true; // All previous categories must be completed to unlock this one
-}
+        // Get all categories before the current one
+        $previousCategories = Category::where('id', '<', $categoryId)->get();
+
+        foreach ($previousCategories as $category) {
+            // Check if the user has completed the previous category
+            if (!UserProgress::where('user_id', $userId)
+                             ->where('category_id', $category->id)
+                             ->whereNotNull('completed_at')
+                             ->exists()) {
+                return false; // If any previous category is not completed, lock this category
+            }
+        }
+
+        return true; // All previous categories must be completed to unlock this one
+    }
 
 
     // Show levels for a specific category
