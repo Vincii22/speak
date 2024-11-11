@@ -2,6 +2,14 @@
     <form method="POST" action="{{ route('register') }}">
         @csrf
 
+        <!-- Logo and Subtitle -->
+        <div class="flex flex-col justify-center items-center mb-5">
+            <img src="{{url('img/Screenshot 2024-11-11 134435.png')}}" alt="Logo" class="w-[60%] sm:w-[50%]">
+            <p class="text-sm sm:text-md text-gray-500 mt-2">
+                Enter your details to log in to your account:
+            </p>
+        </div>
+
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
