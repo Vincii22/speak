@@ -11,13 +11,14 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CSS -->
+    @vite('resources/css/app.css')
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
 
-        <header class="bg-white shadow py-4">
-            <div class="container mx-auto flex items-center justify-between px-4 md:px-0">
+        <header class="bg-white shadow py-4 fixed w-full">
+            <div class="container mx-auto flex items-center justify-between px-4 md:px-10 ">
 
                 <!-- Logo -->
                 <div class="flex items-center">
@@ -35,13 +36,13 @@
 
                 <!-- Navigation Links in the Center -->
                 <nav id="nav-links" class="hidden lg:flex lg:space-x-6 flex-col lg:flex-row mt-4 lg:mt-0 lg:space-y-0 space-y-2">
-                    <a href="#home" class="text-gray-600 hover:text-gray-800 transition">Home</a>
-                    <a href="#about" class="text-gray-600 hover:text-gray-800 transition">About</a>
-                    <a href="#services" class="text-gray-600 hover:text-gray-800 transition">Catalog</a>
-                    <a href="#portfolio" class="text-gray-600 hover:text-gray-800 transition">Courses</a>
-                    <a href="#contact" class="text-gray-600 hover:text-gray-800 transition">Schedule</a>
-                    <a href="#contact" class="text-gray-600 hover:text-gray-800 transition">Directory</a>
-                    <a href="#contact" class="text-gray-600 hover:text-gray-800 transition">Testimonials</a>
+                    <a href="#home" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
+                    <a href="#about" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
+                    <a href="#services" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
+                    <a href="#portfolio" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
+                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
+                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
+                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
                 </nav>
 
                 <!-- Auth Links on the Right -->
@@ -53,12 +54,12 @@
                                     Dashboard
                                 </a>
                             @else
-                                <a href="{{ route('login') }}" class="rounded-md px-4 py-2 text-gray-600 ring-1 ring-transparent transition hover:text-gray-800 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                <a href="{{ route('login') }}" class="rounded-[50px] px-4 py-2 border-4 border-[#694F8E] text-lg text-gray-600 ring-1 ring-transparent transition hover:text-gray-800 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                                     Log in
                                 </a>
 
                                 @if (Route::has('register'))
-                                    <a href="{{ route('register') }}" class="rounded-md px-4 py-2 text-gray-600 ring-1 ring-transparent transition hover:text-gray-800 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                    <a href="{{ route('register') }}" class="rounded-[50px] bg-[#694F8E] px-4 py-2 text-white border-4 border-[#694F8E] ring-1 ring-transparent transition hover:text-gray-800 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                                         Register
                                     </a>
                                 @endif
@@ -96,31 +97,39 @@
             </div>
         </header>
 
-        <section class="flex items-center justify-center h-[65vh] bg-gray-50 dark:bg-black text-center">
-            <div class="relative w-3/4 max-w-md p-8 bg-white dark:bg-gray-800 rounded-full border border-gray-300 dark:border-gray-700 text-black dark:text-white/80" style="border-radius: 10%;">
+        <section class="flex items-center justify-center min-h-screen bg-[#FFDED6] text-center">
+    <div class="relative max-w-[80%] md:max-w-[60%] py-8 bg-[#694F8E] rounded-[50px] border border-gray-300 dark:border-gray-700 text-white dark:text-white/80 mx-4">
+        <!-- Content -->
+        <div class="w-full px-8 md:px-16 mx-auto text-justify">
+            <h1 class="text-3xl md:text-4xl font-semibold mb-4 text-[#FFDED6]">
+                Empowering Clear Speech, One Step at a Time!
+            </h1>
+            <h3 class="text-xl md:text-3xl mb-6 leading-8 md:leading-10">
+                We specialize in helping adults with dysarthria communicate at
+                their best by offering convenient, effective, and affordable
+                speech therapy.
+            </h3>
 
-
-                <!-- Content -->
-                <div class="w-full mx-auto">
-                    <h1 class="text-xl md:text-2xl font-semibold mb-4">
-                        Empowering Clear Speech, One Step at a Time!
-                    </h1>
-                    <h3 class="text-sm md:text-base mb-6">
-                        We specialize in helping adults with dysarthria communicate at
-                        their best by offering convenient, effective, and affordable
-                        speech therapy.
-                    </h3>
-
-                    <!-- Learn More Button -->
-                    <a href="#learn-more" class="absolute bottom-4 right-4 inline-flex items-center px-4 py-2 bg-[#FF2D20] text-white rounded-full text-sm font-medium hover:bg-[#ff3d3d] focus:outline-none">
-                        Learn More
-                        <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M13 5l7 7-7 7M5 12h14" />
-                        </svg>
-                    </a>
-                </div>
+            <!-- Learn More Button -->
+            <div class="flex w-full justify-center md:justify-end mt-4">
+                <a href="#learn-more" class="bottom-4 right-4 inline-flex items-center px-4 py-2 italic text-white rounded-full text-lg md:text-2xl font-medium hover:text-[#FFDED6] hover:underline transition-all focus:outline-none">
+                    Learn More
+                    <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M13 5l7 7-7 7M5 12h14" />
+                    </svg>
+                </a>
             </div>
-        </section>
+
+            <!-- Join Here Button -->
+            <div class="flex justify-center items-center">
+                        <h1 class="absolute bottom-[-25px] bg-[#694F8E] w-[50%] text-center py-3 rounded-[50px] text-2xl">
+                        READY TO START? 
+                        <a href="" class="hover:text-[#FFDED6] hover:underline transition-all focus:outline-none">JOIN HERE.</a>
+                        </h1>
+                     </div>
+        </div>
+    </div>
+</section>
 
     </div>
 
