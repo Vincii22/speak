@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('user_progress', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->integer('level');
-            $table->timestamp('completed_at')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('level_id'); // Foreign key for Level
+            $table->timestamp('completed_at');
+            $table->unsignedBigInteger('audio_attempt_id'); // Foreign key for AudioAttempt
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
+            $table->foreign('audio_attempt_id')->references('id')->on('audio_attempts')->onDelete('cascade');
         });
     }
 

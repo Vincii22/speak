@@ -34,13 +34,15 @@
             </div>
 
             <!-- Submit Audio Recording -->
-            <form action="{{ route('user.content.submitRecording', ['category' => $category->id, 'level' => $level]) }}" method="POST" enctype="multipart/form-data" class="space-y-4 mt-6">
+            <form action="{{ route('user.content.submitRecording', ['category' => $category->id, 'level' => $level]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="audio" id="audioBlob">
+                <input type="file" name="audio" id="audioBlob" style="display: none;">
                 <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg transition duration-300 ease-in-out">
                     Submit Recording
                 </button>
             </form>
+
+
 
             <!-- Speech-to-Text Result -->
             <div id="speechResult" class="mt-4 text-gray-700"></div>
@@ -59,81 +61,98 @@
         let recordingTime = 0;
         let timerInterval;
 
-        // Ensure the event listener is correctly attached to the "Start Recording" button
-        document.getElementById('startRecordingBtn').addEventListener('click', function() {
-            console.log("Start recording button clicked!");
-            startRecording();
-        });
+      // Function to submit the audio as an MP3 file
+      function prepareAudioFile(audioBlob) {
+    // Convert the Blob to a File
+    const audioFile = new File([audioBlob], "recording.wav", { type: "audio/wav" });
 
-        // Ensure the event listener is correctly attached to the "Stop Recording" button
-        document.getElementById('stopRecordingBtn').addEventListener('click', function() {
-            console.log("Stop recording button clicked!");
-            stopRecording();
-        });
+    // Set the file in the form
+    const audioInput = document.getElementById('audioBlob');
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(audioFile);  // Add the file to the input
+    audioInput.files = dataTransfer.files;  // Assign the file to the input
+}
 
-        // Ensure the event listener is correctly attached to the "Replay" button
-        document.getElementById('replayBtn').addEventListener('click', function() {
-            console.log("Replay button clicked!");
-            replayRecording();
-        });
+// Ensure the event listener is correctly attached to the "Start Recording" button
+document.getElementById('startRecordingBtn').addEventListener('click', function() {
+    console.log("Start recording button clicked!");
+    startRecording();
+});
 
-        // Function to start recording
-        async function startRecording() {
-            console.log("Start recording triggered.");
+// Ensure the event listener is correctly attached to the "Stop Recording" button
+document.getElementById('stopRecordingBtn').addEventListener('click', function() {
+    console.log("Stop recording button clicked!");
+    stopRecording();
+});
 
-            // Check if getUserMedia is available in the browser
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-                alert("Your browser does not support audio recording.");
-                console.error("getUserMedia is not available.");
-                return;
-            }
+// Ensure the event listener is correctly attached to the "Replay" button
+document.getElementById('replayBtn').addEventListener('click', function() {
+    console.log("Replay button clicked!");
+    replayRecording();
+});
 
-            try {
-                // Request microphone access
-                console.log("Requesting microphone access...");
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                console.log("Microphone access granted.");
+// Function to start recording
+async function startRecording() {
+    console.log("Start recording triggered.");
 
-                if (!stream) {
-                    alert("No audio stream received.");
-                    console.error("No audio stream received.");
-                    return;
-                }
+    // Check if getUserMedia is available in the browser
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        alert("Your browser does not support audio recording.");
+        console.error("getUserMedia is not available.");
+        return;
+    }
 
-                mediaRecorder = new MediaRecorder(stream);
-                mediaRecorder.ondataavailable = function (event) {
-                    recordedAudio.push(event.data);
-                };
-                mediaRecorder.onstop = function () {
-                    const audioBlob = new Blob(recordedAudio, { type: 'audio/wav' });
-                    audioURL = URL.createObjectURL(audioBlob);
-                    document.getElementById('recordedAudio').src = audioURL;
-                    document.getElementById('audioPlayer').classList.remove('hidden');
-                    document.getElementById('audioBlob').value = audioBlob;
-                };
+    try {
+        // Request microphone access
+        console.log("Requesting microphone access...");
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        console.log("Microphone access granted.");
 
-                mediaRecorder.start();
-                console.log("Recording started.");
-
-                document.getElementById('startRecordingBtn').classList.add('hidden');
-                document.getElementById('stopRecordingBtn').classList.remove('hidden');
-
-                // Start the recording timer
-                timerInterval = setInterval(updateTimer, 1000);
-            } catch (err) {
-                alert("Error accessing microphone: " + err.message);
-                console.error("Microphone access error:", err);
-            }
+        if (!stream) {
+            alert("No audio stream received.");
+            console.error("No audio stream received.");
+            return;
         }
+
+        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder.ondataavailable = function (event) {
+            recordedAudio.push(event.data);
+        };
+        mediaRecorder.onstop = function () {
+            const audioBlob = new Blob(recordedAudio, { type: 'audio/wav' });
+            audioURL = URL.createObjectURL(audioBlob);
+            document.getElementById('recordedAudio').src = audioURL;
+            document.getElementById('audioPlayer').classList.remove('hidden');
+            prepareAudioFile(audioBlob);
+        };
+
+        mediaRecorder.start();
+        console.log("Recording started.");
+
+        document.getElementById('startRecordingBtn').classList.add('hidden');
+        document.getElementById('stopRecordingBtn').classList.remove('hidden');
+
+        // Start the recording timer
+        timerInterval = setInterval(updateTimer, 1000);
+    } catch (err) {
+        alert("Error accessing microphone: " + err.message);
+        console.error("Microphone access error:", err);
+    }
+}
+
 
         // Function to stop recording
         function stopRecording() {
-            console.log("Stop recording triggered.");
-            mediaRecorder.stop();
-            document.getElementById('startRecordingBtn').classList.remove('hidden');
-            document.getElementById('stopRecordingBtn').classList.add('hidden');
-            clearInterval(timerInterval);
-        }
+    console.log("Stop recording triggered.");
+    mediaRecorder.stop();
+    document.getElementById('startRecordingBtn').classList.remove('hidden');
+    document.getElementById('stopRecordingBtn').classList.add('hidden');
+    clearInterval(timerInterval);
+
+    // After recording is stopped, prepare the audio file for submission
+    const audioBlob = new Blob(recordedAudio, { type: 'audio/wav' });
+    prepareAudioFile(audioBlob);  // This will set the file to the hidden input
+}
 
         // Function to update the recording timer
         function updateTimer() {
