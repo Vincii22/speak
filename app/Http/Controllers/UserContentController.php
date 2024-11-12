@@ -9,7 +9,10 @@ use App\Models\UserProgress;
 use App\Models\AudioAttempt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use FFMpeg\FFMpeg;
+use FFMpeg\Format\Audio\Mp3;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 class UserContentController extends Controller
 {
     // Show all categories with their status (locked/unlocked)
@@ -81,26 +84,82 @@ public function showLevel($categoryId, $level)
     return view('user.content.level', compact('category', 'level', 'sound'));
 }
     // Handle recording submission for a specific level
+
     public function submitRecording(Request $request, $categoryId, $level)
-    {
-        $userId = Auth::id();
+{
+    dd($request->all());
+    $request->validate([
+        'audio' => 'required|file|mimes:wav,mp3,ogg', // Ensure this is valid
+    ]);
 
-        $audioPath = $request->file('audio')->store('audio_attempts', 'public');
+    try {
+        // Get the uploaded audio file
+        $audioFile = $request->file('audio');
 
-        // Store the audio attempt
-        AudioAttempt::create([
+        // Generate a unique filename for the mp3 file
+        $mp3Filename = uniqid() . '.mp3';
+
+        // Store the audio file temporarily (retain original format)
+        $audioPath = $audioFile->storeAs('temp_audio', $mp3Filename); // We store the file with a temporary mp3 name
+
+        // Convert the uploaded audio to mp3
+        $mp3FilePath = 'recordings/' . uniqid() . '.mp3'; // This will store the final mp3 file
+
+        // Create an instance of FFMpeg to convert the file
+        $ffmpeg = FFMpeg::create();
+        $audio = $ffmpeg->open(storage_path('app/' . $audioPath));
+        $audio->save(new Mp3(), storage_path('app/' . $mp3FilePath)); // Save it as mp3 format
+
+        // Delete the temporary file after conversion
+        Storage::delete($audioPath);
+
+        // Using Auth::user() for better compatibility
+        $user = Auth::user();
+        $userId = (int) $user->id;
+
+        // Save to AudioAttempt (save the final mp3 path)
+        $audioAttempt = AudioAttempt::create([
             'user_id' => $userId,
             'category_id' => $categoryId,
             'level' => $level,
-            'audio_file' => $audioPath
+            'audio_file' => $mp3FilePath, // Store path to mp3 file
         ]);
 
-        // Update user progress
-        UserProgress::updateOrCreate(
-            ['user_id' => $userId, 'category_id' => $categoryId, 'level' => $level],
-            ['completed_at' => now()]
-        );
+        // Save to UserProgress (if the level is completed)
+        $userProgress = UserProgress::where('user_id', $userId)
+            ->where('category_id', $categoryId)
+            ->where('level', $level)
+            ->first();
 
-        return back()->with('status', 'Recording submitted successfully!');
+        if ($userProgress) {
+            $userProgress->completed_at = now();
+            $userProgress->save();
+        } else {
+            $userProgress = UserProgress::create([
+                'user_id' => $userId,
+                'category_id' => $categoryId,
+                'level' => $level,
+                'completed_at' => now(),
+                'audio_file_path' => $mp3FilePath,
+            ]);
+        }
+
+        return redirect()->route('user.content.success')->with('status', 'Recording submitted successfully!');
+    } catch (\Exception $e) {
+        Log::error('Error during audio submission: ' . $e->getMessage());
+        return redirect()->route('user.content.error')->with('error', 'There was an error saving your recording. Please try again.');
     }
+}
+
+public function success()
+{
+    return view('user.content.success');
+}
+
+public function error()
+{
+    return view('user.content.error');
+}
+
+
 }

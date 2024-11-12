@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('audio_attempts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->integer('level');
-            $table->string('audio_file', 255);
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
+            $table->unsignedBigInteger('level_id'); // Foreign key for Level
+            $table->string('audio_file'); // Path to the MP3 file
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
         });
     }
 

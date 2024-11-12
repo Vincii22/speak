@@ -38,9 +38,17 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/content', [UserContentController::class, 'index'])->name('user.content.index');
     Route::get('/content/{category}', [UserContentController::class, 'showCategory'])->name('user.content.category');
-    Route::post('/content/{category}/{level}/submit', [UserContentController::class, 'submitRecording'])->name('user.content.submitRecording');
+    Route::post('/user/content/{category}/level/{level}/submit-recording', [UserContentController::class, 'submitRecording'])
+    ->name('user.content.submitRecording');
 });
 
+Route::get('/user/content/success', function () {
+    return view('user.content.success');
+})->name('user.content.success');
+
+Route::get('/user/content/error', function () {
+    return view('user.content.error');
+})->name('user.content.error');
 Route::get('/content/{category}/{level}', [UserContentController::class, 'showLevel'])->name('user.content.level');
 
 // Admin Category CRUD
