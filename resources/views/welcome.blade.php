@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <!-- Icons -->
+    <script src="https://kit.fontawesome.com/a1d595f7c6.js" crossorigin="anonymous"></script>
+
     <!-- Tailwind CSS -->
     @vite('resources/css/app.css')
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -34,11 +37,11 @@
                 </button>
 
                 <!-- Navigation Links in the Center -->
-                <nav id="nav-links" class="hidden lg:flex lg:space-x-6 flex-col lg:flex-row mt-4 lg:mt-0 lg:space-y-0 space-y-2">
-                    <a href="#home" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
+                <nav id="navlinks" class="hidden lg:flex lg:space-x-6 flex-col lg:flex-row mt-4 lg:mt-0 lg:space-y-0 space-y-2">
+                    <a href="#home" class="active text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
                     <a href="#about" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
-                    <a href="#services" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
-                    <a href="#portfolio" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
+                    <a href="#catalog" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
+                    <a href="#courses" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
                     <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
                     <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
                     <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
@@ -76,7 +79,7 @@
                     <a href="#home" class="block text-gray-600 hover:text-gray-800 transition">Home</a>
                     <a href="#about" class="block text-gray-600 hover:text-gray-800 transition">About</a>
                     <a href="#services" class="block text-gray-600 hover:text-gray-800 transition">Catalog</a>
-                    <a href="#portfolio" class="block text-gray-600 hover:text-gray-800 transition">Courses</a>
+                    <a href="#courses" class="block text-gray-600 hover:text-gray-800 transition">Courses</a>
                     <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Schedule</a>
                     <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Directory</a>
                     <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Testimonials</a>
@@ -98,7 +101,7 @@
 
         <!---------------------- Landing Section ---------------------->
 
-        <section class="flex items-center justify-center min-h-screen bg-[#FFDED6] text-center">
+        <section id="home" class="section flex items-center justify-center min-h-screen bg-[#FFDED6] text-center">
             <div class="relative max-w-[80%] md:max-w-[60%] py-8 bg-[#694F8E] rounded-[50px] border border-gray-300 dark:border-gray-700 text-white dark:text-white/80 mx-4">
                 <!-- Content -->
                 <div class="w-full px-8 md:px-16 mx-auto text-justify">
@@ -137,10 +140,14 @@
 
         <!---------------------- About ---------------------->
 
-        <section class=" min-h-[90vh] bg-white text-center">
-            <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2">
-                <h1 class="text-[#694F8E] text-[4rem] font-semibold">ABOUT</h1>
-                <img src="{{url ('img/pink-bg-logo.png')}}" alt="" class="w-[15%] h-[5%]">
+        <section id="about" class="section min-h-[90vh] bg-white text-center">
+            <div class="flex justify-center items-center relative">
+                <div class="bg-design bg-[#FFDED6] flex justify-center items-center w-1/2 gap-5 py-2">
+                    <div class="bg-left"></div>
+                    <h1 class="text-[#694F8E] text-[4rem] font-semibold">ABOUT</h1>
+                    <img src="{{url ('img/pink-bg-logo.png')}}" alt="" class="w-[28%]">
+                    <div class="bg-right"></div>
+                </div>
             </div>
             <div class="grid grid-cols-3 gap-10 px-[150px] pt-7 pb-5 relative">
                 <div class="bg-[#694F8E] min-h-[57vh] rounded-xl flex flex-col items-center px-5 gap-4">
@@ -218,7 +225,7 @@
 
         <!---------------------- Developers ---------------------->
 
-        <section class="min-h-[90vh] bg-white text-center">
+        <section id="" class="section min-h-[80vh] bg-white text-center">
             <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2">
                 <h1 class="text-[#694F8E] text-[4rem] font-semibold">DEVELOPERS OF</h1>
                 <img src="{{url ('img/pink-bg-logo.png')}}" alt="" class="w-[15%] h-[5%]">
@@ -258,14 +265,282 @@
                     </div>
                 </div>
             </div>
-
+            <div class="flex justify-end mr-[150px]">
+                <a href="" class="text-[#694F8E] italic flex items-center text-3xl font-semibold hover:underline transition-all">
+                    Contact Us
+                    <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M13 5l7 7-7 7M5 12h14" />
+                    </svg>
+                </a>
+            </div>
         </section>
 
         <!---------------------- End of Developers ---------------------->
 
 
+        <!---------------------- Catalog Section ---------------------->
+        
+        <section id="catalog" class="section min-h-[270vh] bg-white">'
+            <div class="px-[150px] sticky py-5  top-[60px] bg-[#FFDED6] z-[2]">
+                <h1 class="text-[#694F8E] text-[2.5rem] font-semibold ">Catalog</h1>
+            </div>
+
+
+            <!---------------------- Stories Section ---------------------->
+
+            <div class="">
+                <div class="px-[150px] sticky py-5 top-[60px] flex justify-end z-[2]">
+                    <h1 class="text-[#694F8E] text-[2.5rem] font-semibold px-3 rounded-2xl">Stories</h1>
+                </div>
+                <div class="flex gap-10 px-[100px] pt-10 pb-5 relative">
+                    <div class="h-[100%] w-[50%] p-5 items-center bg-[#fff] shadow-xl rounded-lg hover:bg-[#ffded627] transition-all">
+                        <img src="{{url ('img/blank.webp')}}" alt="" class="h-[35vh] w-[100%] mb-4">
+                        <a href="" class="text-lg text-black">
+                            <i class="fa-solid fa-globe"></i>
+                            Philippines
+                        </a>
+                        <h1 class="text-black text-xl font-semibold pt-7">
+                        ARTICLE HEADLINE; LOREM IPSUM DOLOR
+                        </h1>
+                        <h2 class="text-lg text-black">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sit accusamus natus amet reiciendis facere asperiores ea deleniti ratione debitis.
+                        </h2>
+                    </div>
+                    <div class="h-[100%] w-[50%] p-5 items-center bg-[#fff] shadow-xl rounded-lg hover:bg-[#ffded627] transition-all">
+                        <img src="{{url ('img/blank.webp')}}" alt="" class="h-[35vh] w-[100%] mb-4">
+                        <a href="" class="text-lg text-black">
+                            <i class="fa-solid fa-globe"></i>
+                            Philippines
+                        </a>
+                        <h1 class="text-black text-xl font-semibold pt-7">
+                        ARTICLE HEADLINE; LOREM IPSUM DOLOR
+                        </h1>
+                        <h2 class="text-lg text-black">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sit accusamus natus amet reiciendis facere asperiores ea deleniti ratione debitis.
+                        </h2>
+                    </div>
+                </div>
+            </div>
+
+        <!---------------------- End of Stories Section ---------------------->
+
+
+        <!---------------------- Article Section ---------------------->
+
+            <div class="">
+                <div class="px-[150px] sticky py-5 top-[60px] flex justify-end z-[2]">
+                    <h1 class="text-[#694F8E] text-[2.5rem] font-semibold px-3 rounded-2xl">Articles</h1>
+                </div>
+                <div class="flex gap-10 px-[100px] pt-10 pb-5 relative">
+                    <div class="h-[100%] w-[50%] p-5 items-center bg-[#fff] shadow-xl rounded-lg hover:bg-[#ffded627] transition-all">
+                        <img src="{{url ('img/blank.webp')}}" alt="" class="h-[35vh] w-[100%] mb-4">
+                        <a href="" class="text-lg text-black">
+                            <i class="fa-solid fa-globe"></i>
+                            Philippines
+                        </a>
+                        <h1 class="text-black text-xl font-semibold pt-7">
+                        ARTICLE HEADLINE; LOREM IPSUM DOLOR
+                        </h1>
+                        <h2 class="text-lg text-black">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sit accusamus natus amet reiciendis facere asperiores ea deleniti ratione debitis.
+                        </h2>
+                    </div>
+                    <div class="h-[100%] w-[50%] p-5 items-center bg-[#fff] shadow-xl rounded-lg hover:bg-[#ffded627] transition-all">
+                        <img src="{{url ('img/blank.webp')}}" alt="" class="h-[35vh] w-[100%] mb-4">
+                        <a href="" class="text-lg text-black">
+                            <i class="fa-solid fa-globe"></i>
+                            Philippines
+                        </a>
+                        <h1 class="text-black text-xl font-semibold pt-7">
+                        ARTICLE HEADLINE; LOREM IPSUM DOLOR
+                        </h1>
+                        <h2 class="text-lg text-black">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sit accusamus natus amet reiciendis facere asperiores ea deleniti ratione debitis.
+                        </h2>
+                    </div>
+                    <div class="h-[100%] w-[50%] p-5 items-center bg-[#fff] shadow-xl rounded-lg hover:bg-[#ffded627] transition-all">
+                        <img src="{{url ('img/blank.webp')}}" alt="" class="h-[35vh] w-[100%] mb-4">
+                        <a href="" class="text-lg text-black">
+                            <i class="fa-solid fa-globe"></i>
+                            Philippines
+                        </a>
+                        <h1 class="text-black text-xl font-semibold pt-7">
+                        ARTICLE HEADLINE; LOREM IPSUM DOLOR
+                        </h1>
+                        <h2 class="text-lg text-black">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sit accusamus natus amet reiciendis facere asperiores ea deleniti ratione debitis.
+                        </h2>
+                    </div>
+                </div>
+            </div>
+
+        <!---------------------- End of Article Section ---------------------->
+
+
+        <!---------------------- Content Creator Section ---------------------->
+
+            <div class="">
+                <div class="px-[150px] sticky py-5 top-[60px] flex justify-end z-[2]">
+                    <h1 class="text-[#694F8E] text-[2.5rem] font-semibold px-3 rounded-2xl">Content Creators</h1>
+                </div>
+                <div class="flex gap-10 px-[100px] pt-10 pb-5 relative justify-center">
+                    <div class="min-h-[20rem] w-[20rem] p-4">
+                        <div class="flex flex-col justify-center items-center relative">
+                            <div class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full flex items-center flex-col justify-center">
+                                <img src="{{url ('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
+                            </div>
+                            <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
+                                <img src="{{url ('img/yt.png')}}" class="w-[90px]">
+
+                            </a>
+                        </div>
+                        <div class="text-black">
+                            <h1 class=" text-lg font-semibold rounded-xl mt-10 text-center mb-3">
+                                TEACHERKAYE TALKS, SLP
+                            </h1>
+                            <h2 class="">
+                            Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)
+                            </h2>
+                            <h2 class="">
+                            - Performed evaluation and treatment planning of over 50 patients a month
+                            </h2>
+                            <h2 class="">
+                            - Provided direct and indirect speech therapy services to 350 students with communication disorders.
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="min-h-[20rem] w-[20rem] p-4">
+                        <div class="flex flex-col justify-center items-center relative">
+                            <div class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full flex items-center flex-col justify-center">
+                                <img src="{{url ('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
+                            </div>
+                            <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
+                                <img src="{{url ('img/yt.png')}}" class="w-[90px]">
+
+                            </a>
+                        </div>
+                        <div class="text-black">
+                            <h1 class=" text-lg font-semibold rounded-xl mt-10 text-center mb-3">
+                                TEACHERKAYE TALKS, SLP
+                            </h1>
+                            <h2 class="">
+                            Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)
+                            </h2>
+                            <h2 class="">
+                            - Performed evaluation and treatment planning of over 50 patients a month
+                            </h2>
+                            <h2 class="">
+                            - Provided direct and indirect speech therapy services to 350 students with communication disorders.
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="min-h-[20rem] w-[20rem] p-4">
+                        <div class="flex flex-col justify-center items-center relative">
+                            <div class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full flex items-center flex-col justify-center">
+                                <img src="{{url ('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
+                            </div>
+                            <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
+                                <img src="{{url ('img/yt.png')}}" class="w-[90px]">
+
+                            </a>
+                        </div>
+                        <div class="text-black">
+                            <h1 class=" text-lg font-semibold rounded-xl mt-10 text-center mb-3">
+                                TEACHERKAYE TALKS, SLP
+                            </h1>
+                            <h2 class="">
+                            Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)
+                            </h2>
+                            <h2 class="">
+                            - Performed evaluation and treatment planning of over 50 patients a month
+                            </h2>
+                            <h2 class="">
+                            - Provided direct and indirect speech therapy services to 350 students with communication disorders.
+                            </h2>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!---------------------- End of Content Creator Section ---------------------->
+
+
+        </section>
+
+
+        <!---------------------- End of Catalog Section ---------------------->
+
+        
+        <!---------------------- Courses Section ---------------------->
+
+        <section id="courses" class="section min-h-[190vh] bg-white">'
+            <div class="px-[150px] py-5">
+                <h1 class="text-[#694F8E] text-[2.5rem] font-semibold">Courses</h1>
+            </div>
+
+        </section>
+
+        <!---------------------- End of Courses Section ---------------------->
+
 
     </div>
+
+
+    <style>
+        nav a{
+            padding: 4px 15px;
+        }
+        nav a.active{
+            background-color: #FFBFE2;
+            border-radius: 50px;
+        }
+
+        .bg-design{
+            border-radius: 0 0 40px 40px ;
+            position: relative;
+        }
+        .bg-left {
+            background:#FFDED6;
+            height:80px;
+            width:100px;
+            position:absolute;
+            overflow:hidden;
+            left: -100px;
+            top: 0;
+        }
+        .bg-left:after {
+            position:absolute;
+            content:'';
+            display:block;
+            height:200%;
+            width:200%;
+            left:-100%;
+            background:white; 
+            border-radius:100%;
+        }
+        .bg-right {
+            background:#FFDED6;
+            height:80px;
+            width:100px;
+            position:absolute;
+            overflow:hidden;
+            right: -100px;
+            top: 0;
+        }
+        .bg-right:after {
+            position:absolute;
+            content:'';
+            display:block;
+            height:200%;
+            width:200%;
+            right:-100%;
+            background:white; 
+            border-radius:100%;
+        }
+
+    </style>
+
 
     <!-- JavaScript for toggling mobile menu -->
     <script>
@@ -273,5 +548,25 @@
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
     </script>
+    <script>
+    let sections = document.querySelectorAll('.section');
+    let navLinks = document.querySelectorAll('header nav a');
+
+    window.onscroll = () => {
+        sections.forEach(sec => { // Corrected: "foreach" to "forEach"
+            let top = window.scrollY;
+            let offset = sec.offsetTop - 150;
+            let height = sec.offsetHeight;
+            let id = sec.getAttribute('id');
+
+            if (top >= offset && top < offset + height) {
+                navLinks.forEach(links => {
+                    links.classList.remove('active');
+                    document.querySelector('header nav a[href*=' + id + ']').classList.add('active'); // Also fixed the query string
+                });
+            }
+        });
+    };
+</script>
 </body>
 </html>
