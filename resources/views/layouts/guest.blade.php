@@ -94,12 +94,12 @@
                 </div>
             </div>
         </header>
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 !bg-[#ffffff]">
-            <img src="{{url('img/cloud1.png')}}" alt="" class="absolute left-[5%] bottom-[30%] w-[10%]">
-            <img src="{{url('img/cloud2.png')}}" alt="" class="absolute left-[20%] top-[16%] w-[10%]">
-            <img src="{{url('img/cloud3.png')}}" alt="" class="absolute right-[27%] top-[15%] w-[8%]">
-            <img src="{{url('img/cloud2.png')}}" alt="" class="absolute right-[2%] w-[10%]">
-            <div class="w-full sm:max-w-sm mt-6 px-6 py-4 bg-white border-2 border-[#694F8E] shadow-xl relative overflow-hidden rounded-lg">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 !bg-[#ffffff] px-10">
+            <img src="{{url('img/cloud1.png')}}" alt="" class="absolute left-[5%] bottom-[30%] w-[10%] max-w-[80px] sm:max-w-[100px] md:max-w-[120px]">
+            <img src="{{url('img/cloud2.png')}}" alt="" class="absolute left-[20%] top-[16%] w-[10%] max-w-[80px] sm:max-w-[100px] md:max-w-[120px]">
+            <img src="{{url('img/cloud3.png')}}" alt="" class="absolute right-[27%] top-[15%] w-[8%] max-w-[60px] sm:max-w-[80px] md:max-w-[100px]">
+            <img src="{{url('img/cloud2.png')}}" alt="" class="absolute right-[2%] w-[10%] max-w-[80px] sm:max-w-[100px] md:max-w-[120px]">
+            <div class="w-full sm:max-w-sm  px-4 sm:px-6 py-6 bg-white border-2 border-[#694F8E] shadow-xl relative overflow-hidden rounded-lg mt-[100px]">
                 {{ $slot }}
             </div>
         </div>
