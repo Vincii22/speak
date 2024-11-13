@@ -45,7 +45,7 @@
 
             <!-- Create Account Link -->
             <div class="flex items-center justify-center mt-4">
-                <a href="" class="italic text-gray-400 text-sm hover:text-black">Create an account</a>
+                <a href="{{route ('register')}}" class="italic text-gray-400 text-sm hover:text-black">Create an account</a>
             </div>
         </form>
 </x-guest-layout>

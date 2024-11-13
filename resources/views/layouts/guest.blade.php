@@ -34,13 +34,13 @@
 
                 <!-- Navigation Links in the Center -->
                 <nav id="nav-links" class="hidden lg:flex lg:space-x-6 flex-col lg:flex-row mt-4 lg:mt-0 lg:space-y-0 space-y-2">
-                    <a href="#home" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
-                    <a href="#about" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
-                    <a href="#services" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
-                    <a href="#portfolio" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
-                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
-                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
-                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
                 </nav>
 
                 <!-- Auth Links on the Right -->
@@ -72,13 +72,13 @@
             <div id="mobile-menu" class="lg:hidden hidden flex flex-col mt-4 space-y-2">
                 <!-- Navigation Links for Mobile -->
                 <nav class="space-y-2">
-                    <a href="#home" class="block text-gray-600 hover:text-gray-800 transition">Home</a>
-                    <a href="#about" class="block text-gray-600 hover:text-gray-800 transition">About</a>
-                    <a href="#services" class="block text-gray-600 hover:text-gray-800 transition">Catalog</a>
-                    <a href="#portfolio" class="block text-gray-600 hover:text-gray-800 transition">Courses</a>
-                    <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Schedule</a>
-                    <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Directory</a>
-                    <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Testimonials</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Home</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">About</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Catalog</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Courses</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Schedule</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Directory</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Testimonials</a>
                 </nav>
 
                 <!-- Auth Links for Mobile -->
