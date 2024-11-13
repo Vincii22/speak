@@ -42,9 +42,9 @@
                     <a href="#about" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
                     <a href="#catalog" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
                     <a href="#courses" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
-                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
-                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
-                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
+                    <a href="{{route ('login')}}" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
+                    <a href="#directory" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
+                    <a href="#testimonials" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
                 </nav>
 
                 <!-- Auth Links on the Right -->
@@ -116,7 +116,7 @@
 
                     <!-- Learn More Button -->
                     <div class="flex w-full justify-center md:justify-end mt-4">
-                        <a href="#learn-more" class="bottom-4 right-4 inline-flex items-center px-4 py-2 italic text-white rounded-full text-lg md:text-2xl font-medium hover:text-[#FFDED6] hover:underline transition-all focus:outline-none">
+                        <a href="{{route ('login')}}" class="bottom-4 right-4 inline-flex items-center px-4 py-2 italic text-white rounded-full text-lg md:text-2xl font-medium hover:text-[#FFDED6] hover:underline transition-all focus:outline-none">
                             Learn More
                             <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M13 5l7 7-7 7M5 12h14" />
@@ -128,7 +128,7 @@
                     <div class="flex justify-center items-center">
                                 <h1 class="absolute bottom-[-25px] bg-[#694F8E] w-[50%] text-center py-3 rounded-[50px] text-2xl">
                                 READY TO START? 
-                                <a href="" class="hover:text-[#FFDED6] hover:underline transition-all focus:outline-none">JOIN HERE.</a>
+                                <a href="{{route ('login')}}" class="hover:text-[#FFDED6] hover:underline transition-all focus:outline-none">JOIN HERE.</a>
                                 </h1>
                             </div>
                 </div>
@@ -211,7 +211,7 @@
             </div>
 
             <div class="flex justify-end mr-[150px]">
-                <a href="" class="text-[#694F8E] italic flex items-center text-3xl font-semibold hover:underline transition-all">
+                <a href="#developers" class="text-[#694F8E] italic flex items-center text-3xl font-semibold hover:underline transition-all">
                     Developers
                     <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M13 5l7 7-7 7M5 12h14" />
@@ -225,7 +225,7 @@
 
         <!---------------------- Developers ---------------------->
 
-        <section id="" class="section min-h-[80vh] bg-white text-center">
+        <section id="developers" class="section min-h-[80vh] bg-white text-center">
             <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2">
                 <h1 class="text-[#694F8E] text-[4rem] font-semibold">DEVELOPERS OF</h1>
                 <img src="{{url ('img/pink-bg-logo.png')}}" alt="" class="w-[15%] h-[5%]">
@@ -474,14 +474,271 @@
         
         <!---------------------- Courses Section ---------------------->
 
-        <section id="courses" class="section min-h-[190vh] bg-white">'
-            <div class="px-[150px] py-5">
-                <h1 class="text-[#694F8E] text-[2.5rem] font-semibold">Courses</h1>
+        <section id="courses" class="section min-h-[90vh] bg-white">'
+            <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2">
+                <h1 class="text-[#694F8E] text-[4rem] font-semibold">Courses</h1>
             </div>
 
+            <div class="flex h-[35rem]">
+                <div class="bg-[#694F8E] py-5 w-[60%] flex flex-col items-center justify-center">
+                    <div class="bg-[#DEDBE3] text-right px-10 py-3 w-full">
+                        <h1 class="text-5xl text-[#694F8E] font-bold">
+                            DYSARTHRIA COUNSELING <br>FOR FAMILIES
+                        </h1>
+                    </div>
+                    <p class="text-3xl px-10 text-justify !leading-[2.5rem] font-semibold text-white pt-5">
+                        Holistic care for dysarthria involves more than just SPEAK. Cooperation from the patient’s family and environment is crucial, 
+                        and proper at-home care that supports their dysarthria journey is essential for demonstrating progress. There will be online courses 
+                        and seminars accessible for the families regarding these topics.
+                    </p>
+                    <a href="{{route ('login')}}" class="bg-[#b692c2] px-4 py-2 font-semibold mt-5 text-2xl text-white rounded-[50px]">
+                        COURSES AND WEBINARS
+                    </a>
+                </div>
+                <div class="h-[35rem] w-[700px]">
+                    <img src="{{url ('img/course-image.png')}}" alt="" class="w-[100%] h-[35rem]">
+                </div>
+            </div>
         </section>
 
         <!---------------------- End of Courses Section ---------------------->
+
+
+        <!---------------------- Directory Section ---------------------->
+
+        <section id="directory" class="section min-h-[90vh] bg-white ">
+            <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2">
+                <h1 class="text-[#694F8E] text-[4rem] font-semibold">Meet Our Speech-Language Pathologists!</h1>
+            </div>
+
+            <div class="grid grid-cols-3 gap-10 px-[100px] pb-5 relative">
+                <div class="h-[20rem] w-[30rem] flex flex-col justify-center items-center mt-[100px]">
+                    <div class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full relative flex justify-center">
+                        <img src="{{url ('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
+                        <h1 class="bg-[#A6A6A6] text-white text-center text-lg font-semibold rounded-xl absolute bottom-[-15px] px-3 w-full">
+                            CONTACT
+                        </h1>
+                    </div>
+                    <div class="text-black px-12">
+                        <h1 class=" text-lg font-semibold rounded-xl mt-10 text-center mb-3">
+                            JUANDELACRUZ, SLP
+                        </h1>
+                        <h1 class="text-justify">
+                            <span class="font-semibold">Credentials:</span> Speech-Language Pathologist
+                        </h1>
+                        <h2 class="text-justify">
+                            - Bulan Regional Health (2015 - 2016)
+                        </h2>
+                        <h2 class="text-justify">
+                            - Performed evaluation and treatment planning of over 50 patients a month.                        
+                        </h2>
+                        <h2 class="text-justify">
+                            - Provided direct and indirect speech therapy services to 350 students with communication disorders.
+                        </h2>
+                    </div>
+                </div>
+                <div class="h-[20rem] w-[30rem] flex flex-col justify-center items-center mt-[100px]">
+                    <div class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full relative flex justify-center">
+                        <img src="{{url ('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
+                        <h1 class="bg-[#A6A6A6] text-white text-center text-lg font-semibold rounded-xl absolute bottom-[-15px] px-3 w-full">
+                            CONTACT
+                        </h1>
+                    </div>
+                    <div class="text-black px-12">
+                        <h1 class=" text-lg font-semibold rounded-xl mt-10 text-center mb-3">
+                            JUANDELACRUZ, SLP
+                        </h1>
+                        <h1 class="text-justify">
+                            <span class="font-semibold">Credentials:</span> Speech-Language Pathologist
+                        </h1>
+                        <h2 class="text-justify">
+                            - Bulan Regional Health (2015 - 2016)
+                        </h2>
+                        <h2 class="text-justify">
+                            - Performed evaluation and treatment planning of over 50 patients a month.                        
+                        </h2>
+                        <h2 class="text-justify">
+                            - Provided direct and indirect speech therapy services to 350 students with communication disorders.
+                        </h2>
+                    </div>
+                </div>
+                <div class="h-[20rem] w-[30rem] flex flex-col justify-center items-center mt-[100px]">
+                    <div class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full relative flex justify-center">
+                        <img src="{{url ('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
+                        <h1 class="bg-[#A6A6A6] text-white text-center text-lg font-semibold rounded-xl absolute bottom-[-15px] px-3 w-full">
+                            CONTACT
+                        </h1>
+                    </div>
+                    <div class="text-black px-12">
+                        <h1 class=" text-lg font-semibold rounded-xl mt-10 text-center mb-3">
+                            JUANDELACRUZ, SLP
+                        </h1>
+                        <h1 class="text-justify">
+                            <span class="font-semibold">Credentials:</span> Speech-Language Pathologist
+                        </h1>
+                        <h2 class="text-justify">
+                            - Bulan Regional Health (2015 - 2016)
+                        </h2>
+                        <h2 class="text-justify">
+                            - Performed evaluation and treatment planning of over 50 patients a month.                        
+                        </h2>
+                        <h2 class="text-justify">
+                            - Provided direct and indirect speech therapy services to 350 students with communication disorders.
+                        </h2>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!---------------------- End of Directory Section ---------------------->
+
+
+         <!---------------------- Directory Section ---------------------->
+
+         <section id="testimonials" class="section min-h-[70vh] bg-[#fff7f5] ">
+            <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2">
+                <h1 class="text-[#694F8E] text-[4rem] font-semibold">TESTIMONIALS</h1>
+            </div>
+            <h2 class="text-3xl font-bold text-center text-[#694F8E] mt-12 italic">How was your experience in SPEAK? Let us know!</h2>
+            <!-- Carousel Container -->
+            <div class="carousel-container relative max-w-5xl mx-auto px-6 py-16">
+                <div id="carousel" class="carousel space-x-4">
+                    <div class="hover:bg-white transition-all bg-[#ffded62c] p-6 rounded-lg shadow-lg flex-shrink-0 w-full md:w-1/3">
+                        <p class="text-gray-600 italic mb-4">"Overall had a great experience as the website was very easy to use."</p>
+                        <div class="flex items-center space-x-4 mt-4">
+                            <img src="https://via.placeholder.com/48" alt="Jordan's photo" class="w-12 h-12 rounded-full">
+                            <div>
+                                <h4 class="text-gray-800 text-lg font-semibold">User001</h4>
+                                <h4 class="text-gray-800 text-[.8rem] font-semibold">October10, 2024</h4>
+                                <span class="text-gray-500 text-sm">
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                </span>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hover:bg-white transition-all bg-[#ffded62c] p-6 rounded-lg shadow-lg flex-shrink-0 w-full md:w-1/3">
+                        <p class="text-gray-600 italic mb-4">"Overall had a great experience as the website was very easy to use."</p>
+                        <div class="flex items-center space-x-4 mt-4">
+                            <img src="https://via.placeholder.com/48" alt="Jordan's photo" class="w-12 h-12 rounded-full">
+                            <div>
+                                <h4 class="text-gray-800 text-lg font-semibold">User001</h4>
+                                <h4 class="text-gray-800 text-[.8rem] font-semibold">October10, 2024</h4>
+                                <span class="text-gray-500 text-sm">
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                </span>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hover:bg-white transition-all bg-[#ffded62c] p-6 rounded-lg shadow-lg flex-shrink-0 w-full md:w-1/3">
+                        <p class="text-gray-600 italic mb-4">"Overall had a great experience as the website was very easy to use."</p>
+                        <div class="flex items-center space-x-4 mt-4">
+                            <img src="https://via.placeholder.com/48" alt="Jordan's photo" class="w-12 h-12 rounded-full">
+                            <div>
+                                <h4 class="text-gray-800 text-lg font-semibold">User001</h4>
+                                <h4 class="text-gray-800 text-[.8rem] font-semibold">October10, 2024</h4>
+                                <span class="text-gray-500 text-sm">
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                </span>                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hover:bg-white transition-all bg-[#ffded62c] p-6 rounded-lg shadow-lg flex-shrink-0 w-full md:w-1/3">
+                        <p class="text-gray-600 italic mb-4">"Overall had a great experience as the website was very easy to use."</p>
+                        <div class="flex items-center space-x-4 mt-4">
+                            <img src="https://via.placeholder.com/48" alt="Jordan's photo" class="w-12 h-12 rounded-full">
+                            <div>
+                                <h4 class="text-gray-800 text-lg font-semibold">User001</h4>
+                                <h4 class="text-gray-800 text-[.8rem] font-semibold">October10, 2024</h4>
+                                <span class="text-gray-500 text-sm">
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Controls -->
+                <button id="prev" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-[#694F8E] text-white p-2 px-4 rounded-[50%]">❮</button>
+                <button id="next" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-[#694F8E] text-white p-2 px-4 rounded-[50%]">❯</button>
+            </div>
+        </section>
+
+        <!---------------------- End of Directory Section ---------------------->
+
+
+        <!---------------------- Footer Section ---------------------->
+
+        <section id="contact" class="section min-h-[40vh] bg-[#FFBFE2] ">
+            <footer class="flex relative w-full">
+                <div class="w-[50%] p-10 ">
+                    <img src="{{url ('img/pink-bg-logo.png')}}" alt="" class="w-[90%] mt-10">
+                    <div class="flex gap-5 justify-center items-center mt-4">
+                        <a href="" class="text-3xl group transition-transform duration-300 ease-in-out">
+                            <i class="fa-brands fa-facebook text-[#694f8e] group-hover:-translate-y-2 transition-all"></i>
+                        </a>
+                        <a href="" class="text-3xl group transition-transform duration-300 ease-in-out">
+                            <i class="fa-brands fa-facebook text-[#694f8e] group-hover:-translate-y-2 transition-all"></i>
+                        </a>
+                        <a href="" class="text-3xl group transition-transform duration-300 ease-in-out">
+                            <i class="fa-brands fa-facebook text-[#694f8e] group-hover:-translate-y-2 transition-all"></i>
+                        </a>
+                        <a href="" class="text-3xl group transition-transform duration-300 ease-in-out">
+                            <i class="fa-brands fa-facebook text-[#694f8e] group-hover:-translate-y-2 transition-all"></i>
+                        </a>
+                        <a href="" class="text-3xl group transition-transform duration-300 ease-in-out">
+                            <i class="fa-brands fa-facebook text-[#694f8e] group-hover:-translate-y-2 transition-all"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="w-[50%] h-full">
+                    <h1 class="text-black text-center py-2 text-2xl font-semibold">
+                        Have any concerns or feedback about SPEAK? <br> Let us know—we're here to help!
+                    </h1>
+                    <div class=" p-5 m-5 rounded-2xl">
+                        <form action="">
+                            <div class="flex w-full gap-5">
+                                <div class="flex flex-col gap-2 w-[100%] text-black">
+                                    <label for="name" class="text-black">Name:</label>
+                                    <input type="text" name="name" class=" border-2 border-[#694F8E] bg-transparent rounded-full">
+                                </div>
+                                <div class="flex flex-col gap-2 w-[100%] text-black">
+                                    <label for="email" class="text-black">Email:</label>
+                                    <input type="text" name="email" class=" border-2 border-[#694F8E] bg-transparent rounded-full">
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2 w-[100%] text-black mt-3">
+                                <label for="message" class="text-black">Message:</label>
+                                <input type="text" name="text" class="border-2 border-[#694F8E] bg-transparent rounded-full">
+                            </div>
+                            <div class="flex justify-end mt-5">
+                            <button class="bg-[#FFDED6] px-10 py-2 rounded-xl text-[#694F8E]">Send</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </footer>
+        </section>
+        
+        <!---------------------- End of Footer Section ---------------------->
+
 
 
     </div>
@@ -489,6 +746,7 @@
 
     <style>
         nav a{
+            border-radius: 50px;
             padding: 4px 15px;
         }
         nav a.active{
@@ -538,35 +796,62 @@
             background:white; 
             border-radius:100%;
         }
-
+        .carousel-container {
+            overflow: hidden;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
     </style>
 
 
     <!-- JavaScript for toggling mobile menu -->
     <script>
+        // responsive nav js
         document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
+        document.getElementById('mobile-menu').classList.toggle('hidden');
         });
+
+        // active links js
+        let sections = document.querySelectorAll('.section');
+        let navLinks = document.querySelectorAll('header nav a');
+
+        window.onscroll = () => {
+            sections.forEach(sec => { // Corrected: "foreach" to "forEach"
+                let top = window.scrollY;
+                let offset = sec.offsetTop - 150;
+                let height = sec.offsetHeight;
+                let id = sec.getAttribute('id');
+
+                if (top >= offset && top < offset + height) {
+                    navLinks.forEach(links => {
+                        links.classList.remove('active');
+                        document.querySelector('header nav a[href*=' + id + ']').classList.add('active'); // Also fixed the query string
+                    });
+                }
+            });
+        };
+
+        // carousel JS
+        const carousel = document.getElementById('carousel');
+            const nextButton = document.getElementById('next');
+            const prevButton = document.getElementById('prev');
+
+            let currentIndex = 0;
+            const totalSlides = carousel.children.length;
+            const slideWidth = carousel.children[0].offsetWidth + 16; // Adjust for padding/margin between slides
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            });
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            });
     </script>
-    <script>
-    let sections = document.querySelectorAll('.section');
-    let navLinks = document.querySelectorAll('header nav a');
 
-    window.onscroll = () => {
-        sections.forEach(sec => { // Corrected: "foreach" to "forEach"
-            let top = window.scrollY;
-            let offset = sec.offsetTop - 150;
-            let height = sec.offsetHeight;
-            let id = sec.getAttribute('id');
-
-            if (top >= offset && top < offset + height) {
-                navLinks.forEach(links => {
-                    links.classList.remove('active');
-                    document.querySelector('header nav a[href*=' + id + ']').classList.add('active'); // Also fixed the query string
-                });
-            }
-        });
-    };
-</script>
 </body>
 </html>
