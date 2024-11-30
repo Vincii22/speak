@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Level;
 use App\Models\Sound;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -103,17 +104,59 @@ class AdminController extends Controller
 
     public function storeSound(Request $request, $levelId)
     {
-        $request->validate(['audio_file' => 'required|file|mimes:mp3,wav']);
-        $audioPath = $request->file('audio_file')->store('sounds', 'public');
+        $request->validate([
+            'audio_file' => 'nullable|file|mimes:mp3,wav',
+            'video_file' => 'nullable|file|mimes:mp4,avi,mov',
+            'video_link' => 'nullable|url',
+        ]);
 
-        Sound::create(['level_id' => $levelId, 'audio_file' => $audioPath]);
-        return redirect()->route('admin.sounds.index', $levelId)->with('status', 'Sound created successfully');
+        $audioPath = $request->file('audio_file') ? $request->file('audio_file')->store('sounds', 'public') : null;
+        $videoPath = $request->file('video_file') ? $request->file('video_file')->store('videos', 'public') : null;
+
+        // Transform video link into an embeddable format
+        $videoLink = $request->input('video_link') ? $this->transformVideoLink($request->input('video_link')) : null;
+
+        Sound::create([
+            'level_id' => $levelId,
+            'audio_file' => $audioPath,
+            'video_file' => $videoPath,
+            'video_link' => $videoLink,
+        ]);
+
+        return redirect()->route('admin.sounds.index', $levelId)->with('status', 'Sound and video created successfully');
+    }
+
+    /**
+     * Transform a video URL into an embeddable format (e.g., YouTube or Vimeo).
+     */
+    private function transformVideoLink($url)
+    {
+        // Check for YouTube links
+        if (preg_match('/(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $url, $matches)) {
+            return "https://www.youtube.com/embed/" . $matches[1];
+        }
+
+        // Check for Vimeo links
+        if (preg_match('/(?:vimeo\.com\/(?:channels\/[a-zA-Z0-9]+\/|groups\/[a-zA-Z0-9]+\/videos\/|album\/[a-zA-Z0-9]+\/video\/|video\/|)|(?:vimeo\.com\/)([0-9]+))/', $url, $matches)) {
+            return "https://player.vimeo.com/video/" . $matches[1];
+        }
+
+        // If no match, return the original URL
+        return $url;
     }
 
     public function destroySound($levelId, $soundId)
     {
         $sound = Sound::findOrFail($soundId);
+
+        if ($sound->audio_file) {
+            Storage::disk('public')->delete($sound->audio_file);
+        }
+        if ($sound->video_file) {
+            Storage::disk('public')->delete($sound->video_file);
+        }
+
         $sound->delete();
-        return redirect()->route('admin.sounds.index', $levelId)->with('status', 'Sound deleted successfully');
+        return redirect()->route('admin.sounds.index', $levelId)->with('status', 'Sound and video deleted successfully');
     }
 }

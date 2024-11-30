@@ -12,6 +12,8 @@ class Sound extends Model
     protected $fillable = [
         'level_id',
         'audio_file',
+        'video_file',
+        'video_link',
     ];
 
     // Define relationship with Level model
