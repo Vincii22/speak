@@ -34,13 +34,13 @@
 
                 <!-- Navigation Links in the Center -->
                 <nav id="nav-links" class="hidden lg:flex lg:space-x-6 flex-col lg:flex-row mt-4 lg:mt-0 lg:space-y-0 space-y-2">
-                    <a href="#home" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
-                    <a href="#about" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
-                    <a href="#services" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
-                    <a href="#portfolio" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
-                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
-                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
-                    <a href="#contact" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
+                    <a href="/" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
                 </nav>
 
                 <!-- Auth Links on the Right -->
@@ -72,13 +72,13 @@
             <div id="mobile-menu" class="lg:hidden hidden flex flex-col mt-4 space-y-2">
                 <!-- Navigation Links for Mobile -->
                 <nav class="space-y-2">
-                    <a href="#home" class="block text-gray-600 hover:text-gray-800 transition">Home</a>
-                    <a href="#about" class="block text-gray-600 hover:text-gray-800 transition">About</a>
-                    <a href="#services" class="block text-gray-600 hover:text-gray-800 transition">Catalog</a>
-                    <a href="#portfolio" class="block text-gray-600 hover:text-gray-800 transition">Courses</a>
-                    <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Schedule</a>
-                    <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Directory</a>
-                    <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Testimonials</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Home</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">About</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Catalog</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Courses</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Schedule</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Directory</a>
+                    <a href="/" class="block text-gray-600 hover:text-gray-800 transition">Testimonials</a>
                 </nav>
 
                 <!-- Auth Links for Mobile -->
@@ -94,12 +94,12 @@
                 </div>
             </div>
         </header>
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 !bg-[#ffffff]">
-            <img src="{{url('img/cloud1.png')}}" alt="" class="absolute left-[5%] bottom-[30%] w-[10%]">
-            <img src="{{url('img/cloud2.png')}}" alt="" class="absolute left-[20%] top-[16%] w-[10%]">
-            <img src="{{url('img/cloud3.png')}}" alt="" class="absolute right-[27%] top-[15%] w-[8%]">
-            <img src="{{url('img/cloud2.png')}}" alt="" class="absolute right-[2%] w-[10%]">
-            <div class="w-full sm:max-w-sm mt-6 px-6 py-4 bg-white border-2 border-[#694F8E] shadow-xl relative overflow-hidden rounded-lg">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 !bg-[#ffffff] px-10">
+            <img src="{{url('img/cloud1.png')}}" alt="" class="absolute left-[5%] bottom-[30%] w-[10%] max-w-[80px] sm:max-w-[100px] md:max-w-[120px]">
+            <img src="{{url('img/cloud2.png')}}" alt="" class="absolute left-[20%] top-[16%] w-[10%] max-w-[80px] sm:max-w-[100px] md:max-w-[120px]">
+            <img src="{{url('img/cloud3.png')}}" alt="" class="absolute right-[27%] top-[15%] w-[8%] max-w-[60px] sm:max-w-[80px] md:max-w-[100px]">
+            <img src="{{url('img/cloud2.png')}}" alt="" class="absolute right-[2%] w-[10%] max-w-[80px] sm:max-w-[100px] md:max-w-[120px]">
+            <div class="w-full sm:max-w-sm  px-4 sm:px-6 py-6 bg-white border-2 border-[#694F8E] shadow-xl relative overflow-hidden rounded-lg mt-[100px]">
                 {{ $slot }}
             </div>
         </div>

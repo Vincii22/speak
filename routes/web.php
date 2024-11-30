@@ -42,6 +42,9 @@ Route::middleware('auth')->group(function () {
     ->name('user.content.submitRecording');
 });
 
+Route::get('/user/calendar', [UserContentController::class, 'schedule'])->name('user.calendar');
+
+
 Route::get('/user/content/success', function () {
     return view('user.content.success');
 })->name('user.content.success');

@@ -162,4 +162,8 @@ public function error()
 }
 
 
+public function schedule()
+{
+    return view('user.calendar');
+}
 }
