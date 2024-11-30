@@ -137,9 +137,4 @@ public function showLevel($categoryId, $level)
     }
 
 
-
-public function schedule()
-{
-    return view('user.calendar');
-}
 }
