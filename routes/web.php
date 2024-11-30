@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\UserContentController;
@@ -42,7 +43,8 @@ Route::middleware('auth')->group(function () {
     ->name('user.content.submitRecording');
 });
 
-Route::get('/user/calendar', [UserContentController::class, 'schedule'])->name('user.calendar');
+Route::resource('schedule', ScheduleController::class);
+Route::post('/schedule/reserved-dates', [ScheduleController::class, 'fetchReservedDates'])->name('schedule.reservedDates');
 
 
 Route::get('/user/content/success', function () {

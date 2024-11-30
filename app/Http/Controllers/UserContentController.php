@@ -132,9 +132,4 @@ public function error()
     return view('user.content.error');
 }
 
-
-public function schedule()
-{
-    return view('user.calendar');
-}
 }
