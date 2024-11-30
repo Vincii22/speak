@@ -19,7 +19,6 @@
 </head>
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-
         <header class="bg-white shadow py-2 fixed w-full z-10">
             <div class="container mx-auto flex items-center justify-between px-4 md:px-10 ">
                 <!-- Logo -->
