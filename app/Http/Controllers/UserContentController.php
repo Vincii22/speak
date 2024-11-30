@@ -87,50 +87,55 @@ public function showLevel($categoryId, $level)
 
     public function submitRecording(Request $request, $categoryId, $levelId)
     {
+        dd($request->all());  // Dump the request to see if video data is coming through
+
         $request->validate([
             'audio' => 'required|file|mimes:wav,mp3,ogg',
             'video' => 'nullable|file|mimes:webm,mp4,avi',
         ]);
 
         try {
-            $userId = Auth::id();
+            $userId = Auth::id(); // Get the authenticated user's ID
 
             // Process Audio
             $audioFile = $request->file('audio');
-            $audioPath = $audioFile->store('recordings/audio');
+            $audioPath = $audioFile->store('recordings/audio'); // Store the audio file in the specified folder
 
             // Process Video (if provided)
             $videoPath = null;
             if ($request->hasFile('video')) {
                 $videoFile = $request->file('video');
-                $videoPath = $videoFile->store('recordings/video');
+                $videoPath = $videoFile->store('recordings/video'); // Store the video file if present
             }
 
-            // Save to AudioAttempt
+            // Save the recording details in the AudioAttempt table
             AudioAttempt::create([
                 'user_id' => $userId,
                 'category_id' => $categoryId,
                 'level_id' => $levelId,
-                'audio_file' => $audioPath,
-                'video_file' => $videoPath, // Save video file if available
+                'audio_file' => $audioPath,  // Store the audio file path
+                'video_file' => $videoPath,  // Store the video file path if available
             ]);
 
+            // Return a success response
             return redirect()->route('user.content.success')->with('status', 'Recording submitted successfully!');
         } catch (\Exception $e) {
-            Log::error('Error during submission: ' . $e->getMessage());
+            Log::error('Error during submission: ' . $e->getMessage()); // Log the error for debugging
             return redirect()->route('user.content.error')->with('error', 'There was an error processing your submission. Please try again.');
         }
     }
 
-public function success()
-{
-    return view('user.content.success');
-}
 
-public function error()
-{
-    return view('user.content.error');
-}
+    public function success()
+    {
+        return view('user.content.success');
+    }
+
+    public function error()
+    {
+        return view('user.content.error');
+    }
+
 
 
 public function schedule()
