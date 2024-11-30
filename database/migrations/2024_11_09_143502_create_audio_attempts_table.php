@@ -16,7 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('level_id'); // Foreign key for Level
-            $table->string('audio_file'); // Path to the MP3 file
+            $table->string('audio_file')->nullable(); // Path to the MP3 file
+            $table->string('video_file')->nullable(); // Add the video file column
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
