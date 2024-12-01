@@ -11,6 +11,10 @@
                 <div class="upper-design"></div>
                 <div class="upper-design"></div>
             </div>
+
+
+
+
             
             <div class="bg-[#8e44ad] h-[50px] rounded-t-xl"></div>
 
