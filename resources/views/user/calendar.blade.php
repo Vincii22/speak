@@ -11,8 +11,11 @@
                 <div class="upper-design"></div>
                 <div class="upper-design"></div>
             </div>
+            
             <div class="bg-[#8e44ad] h-[50px] rounded-t-xl"></div>
+
             <div class="outer-calendar bg-[#FFDED6] rounded-b-xl">
+
                 <div class="bg-[#694f8e] px-4">
                     <div class="text-center text-white text-xl font-semibold mb-2" id="calendarYear"></div>
                     <div class="flex justify-between items-center">
@@ -21,6 +24,7 @@
                         <button id="nextMonth" class=" text-white text-4xl px-4 rounded-md">></button>
                     </div>
                 </div>
+
 
                 <div id="calendarGrid"
                     class="grid gap-6 grid-cols-7 text-center text-sm font-medium text-gray-700 pb-5 relative px-4">
