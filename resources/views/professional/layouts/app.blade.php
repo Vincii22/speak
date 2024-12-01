@@ -15,7 +15,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen ">
         @include('professional.layouts.navigation') <!-- Adjust to use the professional navigation -->
 
         <!-- Page Heading -->
@@ -28,9 +28,11 @@
         @endisset
 
         <!-- Page Content -->
-        <main>
-            @yield('content') <!-- Change from {{ $slot }} to @yield('content') -->
-        </main>
+        <div class="!mt-[70px]">
+            <main>
+                @yield('professional_content')
+            </main>
+        </div>
     </div>
 </body>
 </html>
