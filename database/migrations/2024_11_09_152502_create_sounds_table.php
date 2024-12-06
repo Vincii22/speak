@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sounds', function (Blueprint $table) {
             $table->id();
             $table->foreignId('level_id')->constrained()->onDelete('cascade');
-            $table->string('audio_file');
+            $table->string('audio_file')->nullable();
             $table->string('video_file')->nullable(); // For uploaded video
             $table->string('video_link')->nullable(); // For embedded video links
             $table->timestamps();
