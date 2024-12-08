@@ -13,12 +13,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::all();
-        $pathologists = User::where('role', 'professional')->get();
-        return view('user.calendar', [
-            'schedules' => $schedules,
-            'pathologists' => $pathologists,
-        ]);    }
+        
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +36,12 @@ class ScheduleController extends Controller
 
     public function create()
     {
-        //
+        $schedules = Schedule::all();
+        $pathologists = User::where('role', 'professional')->get();
+        return view('user.calendar', [
+            'schedules' => $schedules,
+            'pathologists' => $pathologists,
+        ]);   
     }
 
     /**
@@ -60,7 +61,7 @@ class ScheduleController extends Controller
 
         $schedule->save();
 
-        return redirect()->route('schedule.index')
+        return redirect()->route('schedule.create')
                          ->with('error', 'You must complete previous categories to unlock this one.');
     }
 
@@ -69,7 +70,7 @@ class ScheduleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**

@@ -11,8 +11,15 @@
                 <div class="upper-design"></div>
                 <div class="upper-design"></div>
             </div>
+
+
+
+
+            
             <div class="bg-[#8e44ad] h-[50px] rounded-t-xl"></div>
+
             <div class="outer-calendar bg-[#FFDED6] rounded-b-xl">
+
                 <div class="bg-[#694f8e] px-4">
                     <div class="text-center text-white text-xl font-semibold mb-2" id="calendarYear"></div>
                     <div class="flex justify-between items-center">
@@ -21,6 +28,7 @@
                         <button id="nextMonth" class=" text-white text-4xl px-4 rounded-md">></button>
                     </div>
                 </div>
+
 
                 <div id="calendarGrid"
                     class="grid gap-6 grid-cols-7 text-center text-sm font-medium text-gray-700 pb-5 relative px-4">
@@ -35,11 +43,15 @@
                 </div>
             </div>
             <div class="flex mt-4 justify-around">
-                <div class="flex gap-3 items-center">
+                <div class="flex gap-1 items-center">
+                    <div class="bg-pink-400 w-[20px] h-[20px] rounded-full"></div>
+                    <h1 class="text-xl">Date Today</h1>
+                </div>
+                <div class="flex gap-1 items-center">
                     <div class="bg-[#5b69c7] w-[20px] h-[20px] rounded-full"></div>
                     <h1 class="text-xl">Available</h1>
                 </div>
-                <div class="flex gap-3 items-center">
+                <div class="flex gap-1 items-center">
                     <div class="bg-[#694f8e] w-[20px] h-[20px] rounded-full"></div>
                     <h1 class="text-xl">Occupied</h1>
                 </div>
@@ -49,15 +61,18 @@
         <!---------------- Form (Right Side) ---------------->
         <div class="form bg-white px-6 w-full lg:w-[60%] py-5">
             <h2 class="text-4xl font-bold mb-4 text-gray-600 uppercase">Select a Date!</h2>
-            <p class="text-gray-600 mb-6 text-xl">
-                Please choose a convenient date and time for your session with a SpeechLanguage Pathologist to begin
-                yourteletherapy journey
+            <p class="text-gray-600 mb-5 text-xl">
+                Please choose a convenient date and time for your session with a Speech Language Pathologist to begin your teletherapy journey.
             </p>
             <form action="{{ route('schedule.store') }}" method="POST">
                 @csrf
+                <div class="">
+                    <i class="text-[#858585]">First, choose your prefered Pathologist</i>
+                </div>
                 <div class="w-full mb-3">
-                    <label class=" text-xl block mt-4 mb-2 text-gray-700 font-medium">Speech-Language Pathologist</label>
-                    <select name="speech_language_pathologist" id="pathologist" class="text-xl border border-gray-300 p-2 rounded-md w-full">
+                    <label class=" text-xl block mb-2 text-gray-700 font-medium">Speech-Language Pathologist</label>
+                    <select name="speech_language_pathologist" id="pathologist" class="text-xl border border-gray-300 p-2 rounded-md w-full" required>
+                        <option value="" readonly>Choose a pathologist</option>
                     @if($pathologists->isEmpty())
                         <option value="" disabled>No professionals available</option>
                     @else
@@ -68,34 +83,34 @@
                     </select>
                 </div>
                 <div class="">
-                    <i class="text-[#858585]">Choose a date on the calendar</i>
+                    <i class="text-[#858585]">Then, choose a date on the calendar</i>
                 </div>
                 <div class="flex gap-5 items-center mb-4">
                     <div class="w-full">
                         <label class=" text-xl block mb-2 w-full text-gray-700 font-medium">Month</label>
-                        <input name="month" type="text" id="month" class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
+                        <input required name="month" type="text" id="month" class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
                     </div>
                     <div class="w-full">
                         <label class=" text-xl block mb-2 w-full text-gray-700 font-medium">Day</label>
-                        <input name="day" type="text" id="day" class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
+                        <input required name="day" type="text" id="day" class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
                     </div>
                     <div class="w-full">
                         <label class=" text-xl block mb-2 w-full text-gray-700 font-medium">Year</label>
-                        <input name="year" type="text" id="year" class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
+                        <input required name="year" type="text" id="year" class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
                     </div>
                     <div class="w-full">
                         <label class="text-xl block mb-2 text-gray-700 font-medium">Time</label>
-                        <input name="time" type="time" id="time" class="text-xl border border-gray-300 p-2 rounded-md w-full">
+                        <input required name="time" type="time" id="time" class="text-xl border border-gray-300 p-2 rounded-md w-full">
                     </div>
                 </div>
                 <div class="flex gap-5 mb-4">
                     <div class="w-full">
-                        <label class=" text-xl block mt-4 mb-2 text-gray-700 font-medium">Email</label>
-                        <input name="email" type="email" id="email" class="text-xl border border-gray-300 p-2 rounded-md w-full" placeholder="Enter your email">
+                        <label class=" text-xl block mb-2 text-gray-700 font-medium">Email</label>
+                        <input required name="email" type="email" id="email" class="text-xl border border-gray-300 p-2 rounded-md w-full" placeholder="Enter your email">
                     </div>
                     <div class="w-full">
-                        <label class=" text-xl block mt-4 mb-2 text-gray-700 font-medium">Contact No.</label>
-                        <input name="contact" type="tel" id="contact" class="text-xl border border-gray-300 p-2 rounded-md w-full" placeholder="Enter your contact number">
+                        <label class=" text-xl block mb-2 text-gray-700 font-medium">Contact No.</label>
+                        <input required name="contact" type="tel" id="contact" class="text-xl border border-gray-300 p-2 rounded-md w-full" placeholder="Enter your contact number">
                     </div>
                 </div>
                 <button class="uppercase bg-purple-800 text-white py-2 px-4 rounded-md mt-6 w-full hover:bg-purple-700 transition">
@@ -174,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     // CSS classes based on the date status
                     const textClass = isSunday ? '!text-red-500 font-bold' : '';
-                    const todayClass = isToday ? 'bg-[#694f8e] !text-white rounded-full' : '';
+                    const todayClass = isToday ? 'bg-pink-400 !text-white rounded-full' : '';
                     const hoverClass = isBooked || isPastDate ? '' : 'hover:bg-[#5b69c7] hover:text-white cursor-pointer rounded-full';
                     const disabledClass = isPastDate ? 'disabled' : '';
                     const bookedClass = isBooked ? 'bg-[#694f8e] text-white rounded-full' : '';

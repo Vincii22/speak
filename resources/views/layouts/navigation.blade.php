@@ -22,7 +22,7 @@
                     <a href="#about" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
                     <a href="#catalog" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
                     <a href="#courses" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
-                    <a href="{{ route ('schedule.index')}}" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
+                    <a href="{{ route ('schedule.create')}}" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
                     <a href="#directory" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
                     <a href="#testimonials" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
                     <a href="{{ route('user.content.index')}}" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">User Content</a>
