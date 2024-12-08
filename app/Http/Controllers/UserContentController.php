@@ -87,43 +87,45 @@ public function showLevel($categoryId, $level)
 
     public function submitRecording(Request $request, $categoryId, $levelId)
     {
-        dd($request->all());  // Dump the request to see if video data is coming through
-
+        // Validate the video file
         $request->validate([
-            'audio' => 'required|file|mimes:wav,mp3,ogg',
-            'video' => 'nullable|file|mimes:webm,mp4,avi',
+            'video' => 'required|file|mimes:webm,mp4,avi|max:102400', // 100MB max size
         ]);
 
-        try {
-            $userId = Auth::id(); // Get the authenticated user's ID
+        // Get authenticated user's ID
+        $userId = Auth::id();
 
-            // Process Audio
-            $audioFile = $request->file('audio');
-            $audioPath = $audioFile->store('recordings/audio'); // Store the audio file in the specified folder
+        // Get the uploaded video file
+        $videoFile = $request->file('video');
 
-            // Process Video (if provided)
-            $videoPath = null;
-            if ($request->hasFile('video')) {
-                $videoFile = $request->file('video');
-                $videoPath = $videoFile->store('recordings/video'); // Store the video file if present
+        if ($videoFile) {
+            // Save the video file
+            $videoPath = $videoFile->storeAs('public/videos', $videoFile->getClientOriginalName());
+            Log::info("Video stored at: " . $videoPath);
+
+            // Attempt to insert into database
+            try {
+                $audioAttempt = AudioAttempt::create([
+                    'user_id' => $userId,
+                    'category_id' => $categoryId,
+                    'level_id' => $levelId,
+                    'video_file' => $videoPath, // Save file path to the database
+                ]);
+
+                // Debugging: Check the returned AudioAttempt object
+                Log::info("Database insertion success: " . json_encode($audioAttempt));
+
+                return redirect()->route('user.content.success')->with('status', 'Video submitted successfully!');
+            } catch (\Exception $e) {
+                // Log database insertion error
+                Log::error('Database insertion failed: ' . $e->getMessage());
+                return redirect()->route('user.content.error')->with('error', 'Failed to save the video to the database.');
             }
-
-            // Save the recording details in the AudioAttempt table
-            AudioAttempt::create([
-                'user_id' => $userId,
-                'category_id' => $categoryId,
-                'level_id' => $levelId,
-                'audio_file' => $audioPath,  // Store the audio file path
-                'video_file' => $videoPath,  // Store the video file path if available
-            ]);
-
-            // Return a success response
-            return redirect()->route('user.content.success')->with('status', 'Recording submitted successfully!');
-        } catch (\Exception $e) {
-            Log::error('Error during submission: ' . $e->getMessage()); // Log the error for debugging
-            return redirect()->route('user.content.error')->with('error', 'There was an error processing your submission. Please try again.');
         }
+
+        return redirect()->back()->with('error', 'No video file was uploaded.');
     }
+
 
 
     public function success()

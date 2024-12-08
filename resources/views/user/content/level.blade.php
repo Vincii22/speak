@@ -55,7 +55,7 @@
             <!-- Video Submission -->
             <form action="{{ route('user.content.submitRecording', ['category' => $category->id, 'level' => $level]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="video" id="videoBlob">  <!-- Hidden input for video -->
+                <input type="file" name="video" id="videoBlob" hidden accept="video/webm, video/mp4, video/avi">  <!-- Hidden input for video -->
                 <button type="submit" id="submitVideoBtn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 rounded-lg mt-4 transition duration-300 ease-in-out">
                     Submit Video
                 </button>
@@ -76,16 +76,16 @@
     document.getElementById('startVideoRecordingBtn').addEventListener('click', startVideoRecording);
     document.getElementById('stopVideoRecordingBtn').addEventListener('click', stopVideoRecording);
     document.getElementById('resetVideoRecordingBtn').addEventListener('click', resetVideoRecording);
-    document.getElementById('submitVideoBtn').addEventListener('click', function(e) {
-    e.preventDefault(); // Prevent default form submission
+    document.getElementById('submitVideoBtn').addEventListener('click', function (e) {
+    const videoInput = document.getElementById('videoBlob');
+    document.getElementById('videoBlob').click();
 
-    // Check if video is recorded, if not prevent submission and show an error
-    if (document.getElementById('videoBlob').files.length === 0) {
+    if (!videoInput.files || videoInput.files.length === 0) {
         alert("Please record a video before submitting.");
         return;
     }
 
-    // Submit the form programmatically if the video exists
+    console.log("Form submitting with video:", videoInput.files[0]); // Debug log
     document.querySelector('form').submit();
 });
 
@@ -175,12 +175,12 @@
 
     function prepareVideoFile(videoBlob) {
     const videoFile = new File([videoBlob], "recording.webm", { type: "video/webm" });
-
-    // Create a new DataTransfer object to simulate a file upload
     const videoInput = document.getElementById('videoBlob');
     const dataTransfer = new DataTransfer();
-    dataTransfer.items.add(videoFile); // Add the video file to the DataTransfer
-    videoInput.files = dataTransfer.files;  // Set the file in the hidden input field
+    dataTransfer.items.add(videoFile);
+    videoInput.files = dataTransfer.files;
+
+    console.log("Video file prepared:", videoFile); // Debug log
 }
 
 

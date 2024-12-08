@@ -9,7 +9,7 @@ class AudioAttempt extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'category_id', 'level', 'audio_file', 'video_file',];
+    protected $fillable = ['user_id', 'category_id', 'level_id', 'video_file',];
 
     // Relationship with the User model
     public function user()
