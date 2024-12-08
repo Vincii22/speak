@@ -71,12 +71,10 @@
                                 <label>Time appointed:</label>
                                 <h1 class="ml-1">{{ $schedule->time }}</h1>
                             </div>
-                            <div class="flex justify-between mt-3 mb-1 items-center">
-                                <a href="{{ route('schedule.edit',$schedule->id)}}" class="bg-pink-400 rounded-lg px-3 py-1 text-white">
-                                    Reschedule
-                                </a>
-                                <a href="" class="text-white bg-red-600 rounded-lg px-3 py-1">
-                                    Cancel
+                            <div class="flex justify-between mt-3 items-center">
+                                <a href="{{ route('schedule.edit', $schedule->id) }}" class="bg-pink-400 text-white rounded-lg px-3 py-1">Reschedule</a>
+                                <a href="" class="text-white bg-red-800 rounded-lg px-3 py-1">
+                                    <h1 class="">Cancel</h1>
                                 </a>
                             </div>
                         </div>
@@ -177,8 +175,8 @@
 
                                 calendarGrid.innerHTML += `
                                     <div 
-                                        class="py-2 text-[#828fe2] calendar-date 
-                                        ${isBooked ? 'bg-[#694f8e] text-[#cccccc] rounded-full cursor-pointer' : 'text-gray-300'}
+                                        class="py-2 text-[#5c6bcc] calendar-date 
+                                        ${isBooked ? 'bg-[#694f8e] !text-[#cccccc] rounded-full cursor-pointer' : 'text-gray-300'}
                                         ${isToday ? 'bg-pink-500 !text-white rounded-full' : ''}"
                                         data-day="${day}" 
                                         data-month="${monthNames[month]}" 
@@ -216,10 +214,10 @@
                     calendarDates.forEach(dateElement => {
                         dateElement.addEventListener("click", function () {
                             // Remove highlight from all calendar dates
-                            calendarDates.forEach(el => el.classList.remove("bg-purple-500", "text-white"));
+                            calendarDates.forEach(el => el.classList.remove("bg-purple-500", "text-blue-100"));
 
                             // Highlight the clicked calendar date
-                            this.classList.add("bg-purple-500", "text-white");
+                            this.classList.add("bg-purple-500", "text-blue-100", "rounded-full");
                             lastClickedDate = this;
 
                             // Highlight corresponding schedule item

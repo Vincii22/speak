@@ -13,13 +13,25 @@ class ScheduleController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        // Fetch schedules from the database
-        $schedules = Schedule::all(); // Adjust query as needed (e.g., filter by professional)
+{
+    $user = Auth::user();
 
-        // Pass schedules to the view
-        return view('professional.dashboard', compact('schedules'));
+    // Ensure the logged-in user is a professional
+    if ($user->role !== 'professional') {
+        return redirect()->route('home')->with('error', 'Unauthorized access.');
     }
+
+    // Fetch only schedules where the user_id matches the logged-in professional's id and sort by year, month, and day
+    $schedules = Schedule::where('user_id', $user->id)
+                         ->orderBy('year', 'asc')
+                         ->orderBy('month', 'asc')
+                         ->orderBy('day', 'asc')
+                         ->get();
+
+    // Pass schedules to the view
+    return view('professional.dashboard', compact('schedules'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,12 +42,14 @@ class ScheduleController extends Controller
         try {
             $user = Auth::user();
 
+            // Ensure the logged-in user is a professional
             if ($user->role !== 'professional') {
                 return response()->json(['error' => 'Unauthorized access.'], 403);
             }
 
+            // Fetch reserved dates only for the logged-in user's ID
             $reservedDates = Schedule::where('user_id', $user->id)
-                ->get(['month', 'day', 'year', 'time']);
+                ->get(['month', 'day', 'year']); // Only retrieve the necessary fields
 
             return response()->json($reservedDates);
         } catch (\Exception $e) {
@@ -102,7 +116,7 @@ class ScheduleController extends Controller
      */
     public function show(string $id)
     {
-        
+       
     }
 
     /**
@@ -110,15 +124,51 @@ class ScheduleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $reservedDate = Schedule::findOrFail($id);
+        $pathologists = User::where('role', 'professional')->get();
+        
+        return view('professional.schedule.edit', compact('reservedDate', 'pathologists'));
     }
+
+   
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $schedule = Schedule::findOrFail($id);
+    
+            $request->validate([
+                'month' => 'required|string',
+                'day' => 'required|integer|min:1|max:31',
+                'year' => 'required|integer|min:' . now()->year,
+                'time' => 'required|date_format:H:i',
+            ]);
+    
+            $schedule->month = $request->input('month');
+            $schedule->day = $request->input('day');
+            $schedule->year = $request->input('year');
+            $schedule->time = $request->input('time');
+            $schedule->save();
+    
+            return redirect()
+                ->route('schedule.index')
+                ->with('success', 'Schedule updated successfully.');
+    
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()
+                ->back()
+                ->withErrors($e->errors()) // Validation errors
+                ->withInput(); // Retain old input values
+        } catch (\Exception $e) {
+            return redirect()
+                ->back()
+                ->with('error', 'An unexpected error occurred: ' . $e->getMessage())
+                ->withInput();
+        }    
     }
 
     /**
