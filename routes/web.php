@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\UserContentController;
@@ -22,7 +23,13 @@ Route::middleware(['auth', RoleMiddleware::class . ':user'])->group(function () 
 });
 
 Route::middleware(['auth', RoleMiddleware::class . ':professional'])->group(function () {
-    Route::view('/professional/dashboard', 'professional.dashboard')->name('professional.dashboard');
+    Route::get('/professional/dashboard', function () {
+        // Fetch schedules for the professional (you can filter if needed)
+        $schedules = Schedule::where('user_id', Auth::id()) // Filter by logged-in user's ID
+            ->orderBy('day') // Order by day
+            ->get();
+        return view('professional.dashboard', ['schedules' => $schedules]); // Pass data to the view
+    })->name('professional.dashboard');
 });
 
 Route::middleware(['auth', RoleMiddleware::class . ':admin'])->group(function () {
@@ -43,8 +50,7 @@ Route::middleware('auth')->group(function () {
     ->name('user.content.submitRecording');
 });
 
-Route::resource('schedule', ScheduleController::class);
-Route::post('/schedule/reserved-dates', [ScheduleController::class, 'fetchReservedDates'])->name('schedule.reservedDates');
+
 
 
 Route::get('/user/content/success', function () {
@@ -78,3 +84,9 @@ Route::get('/admin/levels/{levelId}/sounds/create', [AdminController::class, 'cr
 Route::post('/admin/levels/{levelId}/sounds', [AdminController::class, 'storeSound'])->name('admin.sounds.store');
 Route::delete('/admin/levels/{levelId}/sounds/{soundId}', [AdminController::class, 'destroySound'])->name('admin.sounds.destroy');
 require __DIR__.'/auth.php';
+
+
+// Schedule Controls
+Route::resource('schedule', ScheduleController::class);
+Route::post('/schedule/reserved-dates', [ScheduleController::class, 'fetchReservedDates'])->name('schedule.reservedDates');
+Route::post('/schedule/fetchReservedDatesForLoggedInUser', [ScheduleController::class, 'fetchReservedDatesForLoggedInUser'])->name('schedule.fetchReservedDatesForLoggedInUser');

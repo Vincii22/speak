@@ -45,6 +45,10 @@ class User extends Authenticatable
             'role' => 'string', // Cast role to string, if needed
         ];
     }
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 
     /**
      * Define any additional relationships, methods, etc. below
