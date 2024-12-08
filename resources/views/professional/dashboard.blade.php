@@ -56,6 +56,23 @@
 
             <!---------------- Form (Right Side) ---------------->
             <div class="element form bg-white px-6 w-full lg:w-[60%] py-5 max-h-[90vh] overflow-y-scroll pr-10 pt-14">
+                <h2 class="text-4xl font-bold mb-4 text-gray-600 uppercase">List of Pending Appointments</h2>
+                <div class="mb-5">
+                    <i class="text-[#858585]">Select a date from the calendar or click on the appointment boxes to highlight your scheduled appointment.</i>
+                </div>
+                @if(session('message'))
+                    <div class="alert flex items-center justify-between bg-[#FFC0CB] text-gray-500 p-4 rounded-lg shadow-md mb-4 w-full">
+                        <div class="flex-1">
+                            <span class="font-semibold">{{ session('message') }}</span>
+                        </div>
+                        <button onclick="this.parentElement.style.display='none'" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                @endif
+
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
                     @foreach ($schedules as $schedule)
                         <div class="shadow-md w-full relative h-[150px] rounded-lg px-7 py-3 flex flex-col justify-center schedule-item transition-colors pt-7"
@@ -73,9 +90,11 @@
                             </div>
                             <div class="flex justify-between mt-3 items-center">
                                 <a href="{{ route('schedule.edit', $schedule->id) }}" class="bg-pink-400 text-white rounded-lg px-3 py-1">Reschedule</a>
-                                <a href="" class="text-white bg-red-800 rounded-lg px-3 py-1">
-                                    <h1 class="">Cancel</h1>
-                                </a>
+                                <form action="{{ route('schedule.destroy', $schedule->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button onclick="return confirm('Are you sure to delete this?')" class="text-white bg-red-800 rounded-lg px-3 py-1">Cancel</button>
+                                </form>
                             </div>
                         </div>
 
