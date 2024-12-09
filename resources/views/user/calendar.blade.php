@@ -57,7 +57,8 @@
         <div class="form bg-white px-6 w-full lg:w-[60%] py-5">
             <h2 class="text-4xl font-bold mb-4 text-gray-600 uppercase">Select a Date!</h2>
             <p class="text-gray-600 mb-5 text-xl">
-                Please choose a convenient date and time for your session with a Speech Language Pathologist to begin your teletherapy journey.
+                Please choose a convenient date and time for your session with a Speech Language Pathologist to begin
+                your teletherapy journey.
             </p>
             <form action="{{ route('schedule.store') }}" method="POST">
                 @csrf
@@ -66,15 +67,16 @@
                 </div>
                 <div class="w-full mb-3">
                     <label class=" text-xl block mb-2 text-gray-700 font-medium">Speech-Language Pathologist</label>
-                    <select name="speech_language_pathologist" id="pathologist" class="text-xl border border-gray-300 p-2 rounded-md w-full" required>
+                    <select name="speech_language_pathologist" id="pathologist"
+                        class="text-xl border border-gray-300 p-2 rounded-md w-full" required>
                         <option value="" readonly>Choose a pathologist</option>
-                    @if($pathologists->isEmpty())
-                        <option value="" disabled>No professionals available</option>
-                    @else
-                        @foreach ($pathologists as $pathologist)
-                            <option value="{{ $pathologist->name }}">{{ $pathologist->name }}</option>
-                        @endforeach
-                    @endif
+                        @if($pathologists->isEmpty())
+                            <option value="" disabled>No professionals available</option>
+                        @else
+                            @foreach ($pathologists as $pathologist)
+                                <option value="{{ $pathologist->name }}">{{ $pathologist->name }}</option>
+                            @endforeach
+                        @endif
                     </select>
                 </div>
                 <div class="">
@@ -83,32 +85,40 @@
                 <div class="flex gap-5 items-center mb-4">
                     <div class="w-full">
                         <label class=" text-xl block mb-2 w-full text-gray-700 font-medium">Month</label>
-                        <input required name="month" type="text" id="month" class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
+                        <input required name="month" type="text" id="month"
+                            class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
                     </div>
                     <div class="w-full">
                         <label class=" text-xl block mb-2 w-full text-gray-700 font-medium">Day</label>
-                        <input required name="day" type="text" id="day" class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
+                        <input required name="day" type="text" id="day"
+                            class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
                     </div>
                     <div class="w-full">
                         <label class=" text-xl block mb-2 w-full text-gray-700 font-medium">Year</label>
-                        <input required name="year" type="text" id="year" class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
+                        <input required name="year" type="text" id="year"
+                            class="text-xl border border-gray-300 p-2 rounded-md w-full" readonly>
                     </div>
                     <div class="w-full">
                         <label class="text-xl block mb-2 text-gray-700 font-medium">Time</label>
-                        <input required name="time" type="time" id="time" class="text-xl border border-gray-300 p-2 rounded-md w-full">
+                        <input required name="time" type="time" id="time"
+                            class="text-xl border border-gray-300 p-2 rounded-md w-full">
                     </div>
                 </div>
                 <div class="flex gap-5 mb-4">
                     <div class="w-full">
                         <label class=" text-xl block mb-2 text-gray-700 font-medium">Email</label>
-                        <input required name="email" type="email" id="email" class="text-xl border border-gray-300 p-2 rounded-md w-full" placeholder="Enter your email">
+                        <input required name="email" type="email" id="email"
+                            class="text-xl border border-gray-300 p-2 rounded-md w-full" placeholder="Enter your email">
                     </div>
                     <div class="w-full">
                         <label class=" text-xl block mb-2 text-gray-700 font-medium">Contact No.</label>
-                        <input required name="contact" type="tel" id="contact" class="text-xl border border-gray-300 p-2 rounded-md w-full" placeholder="Enter your contact number">
+                        <input required name="contact" type="tel" id="contact"
+                            class="text-xl border border-gray-300 p-2 rounded-md w-full"
+                            placeholder="Enter your contact number">
                     </div>
                 </div>
-                <button class="uppercase bg-purple-800 text-white py-2 px-4 rounded-md mt-6 w-full hover:bg-purple-700 transition">
+                <button
+                    class="uppercase bg-purple-800 text-white py-2 px-4 rounded-md mt-6 w-full hover:bg-purple-700 transition">
                     Schedule Now!
                 </button>
             </form>
@@ -116,36 +126,78 @@
     </div>
 
 
+    
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        let currentMonth = new Date(); // Tracks the current month displayed
-        let selectedDate = null;
-        let bookedDates = []; // Store the booked dates for the selected pathologist
+    <!-- Success Modal -->
+    @if (session('success') && session('scheduleData'))
+            <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-[#694F8E] w-3/5 p-6 rounded-[30px] shadow-lg px-8 relative">
+                    <img src="{{url('img/clock-removebg-preview.png')}}" alt="" class="absolute w-[7.5rem] right-10 top-[-50px]">
+                    <div class="">
+                        <h2 class="text-3xl font-bold text-white mb-4 text-center">Please wait for the pathologist approval.</h2>
+                        <p class="text-white mb-6 text-xl">
+                            Your appointment is scheduled for
+                            <span class="font-bold text-[#FEF2D0]">{{ session('scheduleData')['date'] }}</span>, at
+                            <span class="font-bold text-[#FEF2D0]">{{ session('scheduleData')['time'] }}</span> with Speech-Language
+                            Pathologis
+                            <span class="font-bold text-[#FEF2D0]">{{ session('scheduleData')['pathologist'] }}</span>.
+                        </p>
+                        <i class="text-md text-gray-200 mb-4">
+                            Please note that changes to the appointment can only be made up to two days in advance. 
+                            Kindly check your email for confirmation or view notifications within the system for further communication with the Speech-Language Pathologist (SLP).
+                        </i>
+                        <div class="flex justify-center gap-4">
+                            <button onclick="closeModal()"
+                                class="bg-[#E3A5C7] text-white py-2 px-4 w-28 font-bold tracking-wide rounded-full hover:bg-purple-700 transition">
+                                Okay
+                            </button>
+                            <button class="bg-[#E3A5C7] text-white py-2 px-4 w-28 font-bold tracking-wide rounded-full hover:bg-red-500 transition">
+                                Re-Sched
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    @endif
 
-        // Function to render the calendar
-        function renderCalendar() {
-            const month = currentMonth.getMonth();
-            const year = currentMonth.getFullYear();
-            const today = new Date();
-            today.setHours(0, 0, 0, 0); // Remove time part for comparison
+    <script>
+        // Close modal function
+        function closeModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+    </script>
 
-            const monthNames = [
-                "January", "February", "March", "April", "May", "June", "July",
-                "August", "September", "October", "November", "December"
-            ];
 
-            // Update the visible month and year
-            document.getElementById("calendarYear").textContent = year;
-            document.getElementById("calendarMonth").textContent = monthNames[month];
 
-            // Set hidden input values for form submission
-            document.getElementById("month").value = monthNames[month];
-            document.getElementById("year").value = year;
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let currentMonth = new Date(); // Tracks the current month displayed
+            let selectedDate = null;
+            let bookedDates = []; // Store the booked dates for the selected pathologist
 
-            // Prepare the calendar grid
-            const calendarGrid = document.getElementById("calendarGrid");
-            calendarGrid.innerHTML = `
+            // Function to render the calendar
+            function renderCalendar() {
+                const month = currentMonth.getMonth();
+                const year = currentMonth.getFullYear();
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Remove time part for comparison
+
+                const monthNames = [
+                    "January", "February", "March", "April", "May", "June", "July",
+                    "August", "September", "October", "November", "December"
+                ];
+
+                // Update the visible month and year
+                document.getElementById("calendarYear").textContent = year;
+                document.getElementById("calendarMonth").textContent = monthNames[month];
+
+                // Set hidden input values for form submission
+                document.getElementById("month").value = monthNames[month];
+                document.getElementById("year").value = year;
+
+                // Prepare the calendar grid
+                const calendarGrid = document.getElementById("calendarGrid");
+                calendarGrid.innerHTML = `
                 <div class="absolute bg-[#694f8e] h-10 w-full top-[0px] z-10"></div>
                 <div class="py-2 relative z-20 text-white uppercase font-bold text-red-500">Sun</div>
                 <div class="py-2 relative z-20 text-white uppercase">Mon</div>
@@ -156,130 +208,130 @@
                 <div class="py-2 relative z-20 text-white uppercase">Sat</div>
             `;
 
-            const firstDay = new Date(year, month, 1).getDay(); // Get the first day of the month (0-6)
-            const lastDate = new Date(year, month + 1, 0).getDate(); // Last date of the month
+                const firstDay = new Date(year, month, 1).getDay(); // Get the first day of the month (0-6)
+                const lastDate = new Date(year, month + 1, 0).getDate(); // Last date of the month
 
-            let day = 1;
-            for (let i = 0; i < 6; i++) {
-                for (let j = 0; j < 7; j++) {
-                    if (i === 0 && j < firstDay) {
-                        // Empty cells before the first day of the month
-                        calendarGrid.innerHTML += `<div class="py-2"></div>`;
-                    } else if (day <= lastDate) {
-                        const isSunday = j === 0;
-                        const isToday =
-                            today.getDate() === day &&
-                            today.getMonth() === month &&
-                            today.getFullYear() === year;
-                        const isSelected = selectedDate === day ? 'bg-purple-500 !text-white' : '';
-                        const isBooked = bookedDates.some(schedule =>
-                            schedule.year == year &&
-                            schedule.month === monthNames[month] &&
-                            schedule.day == day
-                        );
+                let day = 1;
+                for (let i = 0; i < 6; i++) {
+                    for (let j = 0; j < 7; j++) {
+                        if (i === 0 && j < firstDay) {
+                            // Empty cells before the first day of the month
+                            calendarGrid.innerHTML += `<div class="py-2"></div>`;
+                        } else if (day <= lastDate) {
+                            const isSunday = j === 0;
+                            const isToday =
+                                today.getDate() === day &&
+                                today.getMonth() === month &&
+                                today.getFullYear() === year;
+                            const isSelected = selectedDate === day ? 'bg-purple-500 !text-white' : '';
+                            const isBooked = bookedDates.some(schedule =>
+                                schedule.year == year &&
+                                schedule.month === monthNames[month] &&
+                                schedule.day == day
+                            );
 
-                        // Disable past dates (but not reserved dates)
-                        const dateToCompare = new Date(year, month, day);
-                        const isPastDate = dateToCompare < today && !isBooked; // Disable past dates only if not reserved
+                            // Disable past dates (but not reserved dates)
+                            const dateToCompare = new Date(year, month, day);
+                            const isPastDate = dateToCompare < today && !isBooked; // Disable past dates only if not reserved
 
-                        // CSS classes based on the date status
-                        const textClass = isSunday ? '!text-red-500 font-bold' : '';
-                        const todayClass = isToday ? 'bg-pink-400 !text-white rounded-full' : '';
-                        const hoverClass = isBooked || isPastDate ? '' : 'hover:bg-[#5b69c7] hover:text-white cursor-pointer rounded-full';
-                        const disabledClass = isPastDate ? 'disabled' : '';
-                        const bookedClass = isBooked ? 'bg-[#694f8e] text-white rounded-full' : '';
+                            // CSS classes based on the date status
+                            const textClass = isSunday ? '!text-red-500 font-bold' : '';
+                            const todayClass = isToday ? 'bg-pink-400 !text-white rounded-full' : '';
+                            const hoverClass = isBooked || isPastDate ? '' : 'hover:bg-[#5b69c7] hover:text-white cursor-pointer rounded-full';
+                            const disabledClass = isPastDate ? 'disabled' : '';
+                            const bookedClass = isBooked ? 'bg-[#694f8e] text-white rounded-full' : '';
 
-                        calendarGrid.innerHTML += `
+                            calendarGrid.innerHTML += `
                             <div class="py-2 text-[#5b69c7] ${textClass} ${isSelected} ${todayClass} ${hoverClass} ${disabledClass} ${bookedClass}" 
                                 data-day="${day}" 
                                 ${isBooked || isPastDate || isSunday ? '' : `onclick="selectDay(${day})"`}>
                                 ${day}
                             </div>`;
-                        day++;
+                            day++;
+                        }
                     }
                 }
             }
+
+            window.selectDay = function (day) {
+                selectedDate = day;
+                document.getElementById("day").value = day; // Set hidden input value for the selected day
+                renderCalendar(); // Re-render the calendar to reflect the selected date
+            };
+
+            // Handle previous month navigation
+            document.getElementById("prevMonth").addEventListener("click", function () {
+                currentMonth.setMonth(currentMonth.getMonth() - 1);
+                renderCalendar();
+            });
+
+            // Handle next month navigation
+            document.getElementById("nextMonth").addEventListener("click", function () {
+                currentMonth.setMonth(currentMonth.getMonth() + 1);
+                renderCalendar();
+            });
+
+            // Update calendar when a pathologist is selected
+            document.getElementById('pathologist').addEventListener('change', function () {
+                const selectedPathologist = this.value;
+
+                // Fetch reserved dates for the selected pathologist
+                fetch('{{ route('schedule.reservedDates') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                    body: JSON.stringify({ speech_language_pathologist: selectedPathologist }),
+                })
+                    .then(response => response.json())
+                    .then(reservedDates => {
+                        bookedDates = reservedDates; // Update booked dates
+                        renderCalendar(); // Re-render calendar with updated dates
+                    })
+                    .catch(error => {
+                        console.error('Error fetching reserved dates:', error);
+                    });
+            });
+
+            // Render the calendar initially
+            renderCalendar();
+        });
+    </script>
+
+
+    <style>
+        .upper-design {
+            width: 25px;
+            height: 25px;
+            background-color: #fff;
+            border-radius: 50%;
+            position: relative;
+            top: 50px;
         }
 
-        window.selectDay = function (day) {
-            selectedDate = day;
-            document.getElementById("day").value = day; // Set hidden input value for the selected day
-            renderCalendar(); // Re-render the calendar to reflect the selected date
-        };
+        .upper-design-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            /* background-color: #8e44ad; */
+            padding: 10px 0px;
+            border-radius: 16px 16px 0 0;
+        }
 
-        // Handle previous month navigation
-        document.getElementById("prevMonth").addEventListener("click", function () {
-            currentMonth.setMonth(currentMonth.getMonth() - 1);
-            renderCalendar();
-        });
-
-        // Handle next month navigation
-        document.getElementById("nextMonth").addEventListener("click", function () {
-            currentMonth.setMonth(currentMonth.getMonth() + 1);
-            renderCalendar();
-        });
-
-        // Update calendar when a pathologist is selected
-        document.getElementById('pathologist').addEventListener('change', function () {
-            const selectedPathologist = this.value;
-
-            // Fetch reserved dates for the selected pathologist
-            fetch('{{ route('schedule.reservedDates') }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                },
-                body: JSON.stringify({ speech_language_pathologist: selectedPathologist }),
-            })
-            .then(response => response.json())
-            .then(reservedDates => {
-                bookedDates = reservedDates; // Update booked dates
-                renderCalendar(); // Re-render calendar with updated dates
-            })
-            .catch(error => {
-                console.error('Error fetching reserved dates:', error);
-            });
-        });
-
-        // Render the calendar initially
-        renderCalendar();
-    });
-</script>
-
-
-<style>
-    .upper-design {
-        width: 25px;
-        height: 25px;
-        background-color: #fff;
-        border-radius: 50%;
-        position: relative;
-        top: 50px;
-    }
-
-    .upper-design-container {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        /* background-color: #8e44ad; */
-        padding: 10px 0px;
-        border-radius: 16px 16px 0 0;
-    }
-
-    .upper-design::after {
-        content: '';
-        position: absolute;
-        width: 16px;
-        height: 65px;
-        background-color: #b692d0;
-        border-radius: 50px;
-        top: -52%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
-    }
-</style>
+        .upper-design::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 65px;
+            background-color: #b692d0;
+            border-radius: 50px;
+            top: -52%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 
 
 
@@ -287,4 +339,3 @@
 
 
 </x-app-layout>
-

@@ -95,8 +95,14 @@ class ScheduleController extends Controller
 
         $schedule->save();
 
-        return redirect()->route('schedule.create')
-                        ->with('success', 'Schedule created successfully.');
+        return redirect()->route('schedule.create')->with([
+            'success' => 'Schedule created successfully.',
+            'scheduleData' => [
+                'date' => "{$request->month} {$request->day}, {$request->year}",
+                'time' => $request->time,
+                'pathologist' => $request->speech_language_pathologist,
+            ],
+        ]);
     }
     
 
