@@ -25,7 +25,6 @@
                     </div>
                 </div>
 
-
                 <div id="calendarGrid"
                     class="grid gap-6 grid-cols-7 text-center text-sm font-medium text-gray-700 pb-5 relative px-4">
                     <div class="absolute bg-[#694f8e] h-10 w-full top-[10px]"></div>

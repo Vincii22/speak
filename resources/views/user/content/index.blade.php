@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="py-8 px-4 bg-gray-100">
+    <div class="py-8 px-4 bg-gray-100 mt-24">
         <h1 class="text-3xl font-semibold text-center mb-8">LET'S PRACTICE</h1>
 
         <!-- Display Alert for Locked Categories (only show when category is locked) -->
