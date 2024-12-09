@@ -838,19 +838,16 @@
     </style>
 
 
-    <!-- JavaScript for toggling mobile menu -->
     <script>
-        // responsive nav js
         document.getElementById('menu-toggle').addEventListener('click', function () {
             document.getElementById('mobile-menu').classList.toggle('hidden');
         });
 
-        // active links js
         let sections = document.querySelectorAll('.section');
         let navLinks = document.querySelectorAll('header nav a');
 
         window.onscroll = () => {
-            sections.forEach(sec => { // Corrected: "foreach" to "forEach"
+            sections.forEach(sec => { 
                 let top = window.scrollY;
                 let offset = sec.offsetTop - 150;
                 let height = sec.offsetHeight;
@@ -865,7 +862,6 @@
             });
         };
 
-        // carousel JS
         document.addEventListener('DOMContentLoaded', () => {
             const carousel = document.getElementById('carousel');
             const nextButton = document.getElementById('next');
@@ -876,13 +872,11 @@
             const slideWidth = carousel.children[0].getBoundingClientRect().width + 16; // Including space between slides
 
             nextButton.addEventListener('click', () => {
-                // Increment index, wrap around if at the end
                 currentIndex = (currentIndex + 1) % totalSlides;
                 updateCarouselPosition();
             });
 
             prevButton.addEventListener('click', () => {
-                // Decrement index, wrap around if at the beginning
                 currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
                 updateCarouselPosition();
             });
@@ -891,7 +885,6 @@
                 carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
             };
 
-            // Update slide width dynamically on window resize
             window.addEventListener('resize', () => {
                 const updatedSlideWidth = carousel.children[0].getBoundingClientRect().width + 16;
                 if (updatedSlideWidth !== slideWidth) {
