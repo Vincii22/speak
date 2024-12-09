@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\UserContentController;
@@ -13,8 +14,19 @@ Route::get('/', function () {
 
 // Shared dashboard route
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $user = Auth::user();
+
+    // Redirect based on the user's role
+    switch ($user->role) {
+        case 'professional':
+            return redirect()->route('professional.dashboard');
+        case 'admin':
+            return redirect()->route('admin.dashboard');
+        default:
+            return redirect()->route('user.dashboard'); // Default to user dashboard
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 
 Route::middleware(['auth', RoleMiddleware::class . ':user'])->group(function () {
@@ -43,8 +55,7 @@ Route::middleware('auth')->group(function () {
     ->name('user.content.submitRecording');
 });
 
-Route::resource('schedule', ScheduleController::class);
-Route::post('/schedule/reserved-dates', [ScheduleController::class, 'fetchReservedDates'])->name('schedule.reservedDates');
+
 
 
 Route::get('/user/content/success', function () {
@@ -78,3 +89,9 @@ Route::get('/admin/levels/{levelId}/sounds/create', [AdminController::class, 'cr
 Route::post('/admin/levels/{levelId}/sounds', [AdminController::class, 'storeSound'])->name('admin.sounds.store');
 Route::delete('/admin/levels/{levelId}/sounds/{soundId}', [AdminController::class, 'destroySound'])->name('admin.sounds.destroy');
 require __DIR__.'/auth.php';
+
+
+// Schedule Controls
+Route::resource('schedule', ScheduleController::class);
+Route::post('/schedule/reserved-dates', [ScheduleController::class, 'fetchReservedDates'])->name('schedule.reservedDates');
+Route::post('/schedule/fetchReservedDatesForLoggedInUser', [ScheduleController::class, 'fetchReservedDatesForLoggedInUser'])->name('schedule.fetchReservedDatesForLoggedInUser');
