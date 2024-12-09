@@ -68,7 +68,7 @@
             </div>
 
             <!-- Responsive Dropdown Menu -->
-            <div id="mobile-menu" class="lg:hidden hidden flex flex-col mt-4 space-y-2">
+            <div id="mobile-menu" class="lg:hidden hidden flex-col mt-4 space-y-2">
                 <!-- Navigation Links for Mobile -->
                 <nav class="space-y-2">
                     <a href="#home" class="block text-gray-600 hover:text-gray-800 transition">Home</a>

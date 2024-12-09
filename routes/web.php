@@ -14,8 +14,19 @@ Route::get('/', function () {
 
 // Shared dashboard route
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $user = Auth::user();
+
+    // Redirect based on the user's role
+    switch ($user->role) {
+        case 'professional':
+            return redirect()->route('professional.dashboard');
+        case 'admin':
+            return redirect()->route('admin.dashboard');
+        default:
+            return redirect()->route('user.dashboard'); // Default to user dashboard
+    }
 })->middleware(['auth', 'verified'])->name('dashboard');
+
 
 
 Route::middleware(['auth', RoleMiddleware::class . ':user'])->group(function () {
@@ -23,13 +34,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':user'])->group(function () 
 });
 
 Route::middleware(['auth', RoleMiddleware::class . ':professional'])->group(function () {
-    Route::get('/professional/dashboard', function () {
-        // Fetch schedules for the professional (you can filter if needed)
-        $schedules = Schedule::where('user_id', Auth::id()) // Filter by logged-in user's ID
-            ->orderBy('day') // Order by day
-            ->get();
-        return view('professional.dashboard', ['schedules' => $schedules]); // Pass data to the view
-    })->name('professional.dashboard');
+    Route::view('/professional/dashboard', 'professional.dashboard')->name('professional.dashboard');
 });
 
 Route::middleware(['auth', RoleMiddleware::class . ':admin'])->group(function () {

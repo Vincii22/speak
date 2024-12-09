@@ -29,7 +29,7 @@ class ScheduleController extends Controller
                          ->get();
 
     // Pass schedules to the view
-    return view('professional.dashboard', compact('schedules'));
+    return view('professional.schedule.index', compact('schedules'));
 }
 
 
