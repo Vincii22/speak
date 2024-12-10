@@ -36,7 +36,7 @@
                     <!-- Navigation Links in the Center -->
                     <nav id="navlinks"
                         class="hidden lg:flex lg:space-x-6 flex-col lg:flex-row mt-4 lg:mt-0 lg:space-y-0 space-y-2">
-                        <a href="#home"
+                        <a href="/"
                             class="active text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
                         <a href="#about"
                             class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
