@@ -16,75 +16,68 @@
 
     <!-- Tailwind CSS -->
     @vite('resources/css/app.css')
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+    
+    <div class="bg-gray-50 text-black/50 dark:bg-white dark:text-white/50">
         <header class="bg-white shadow py-2 fixed w-full z-10">
-            <div class="container mx-auto flex items-center justify-between px-4 md:px-10 ">
+            <div class="container mx-auto px-10">
                 <!-- Logo -->
-                <div class="flex items-center">
-                    <img src="logo.png" alt="Logo" class="h-8 w-8 mr-3">
-                    <!-- Replace logo.png with the actual logo path -->
-                    <span class="font-semibold text-lg text-black dark:text-white">Speak</span>
-                </div>
+                <div class="flex items-center justify-center lg:justify-between">
+                    <div class="flex items-center py-1 px-3 bg-[#feddd5] rounded-md">
+                        <img src="{{url('img/pink-bg-logo.png')}}" alt="Logo" class="h-8 w-34 mr-3 ">
+                    </div>
 
-                <!-- Mobile Menu Toggle Button -->
-                <button id="menu-toggle" class="block lg:hidden text-gray-600 dark:text-white focus:outline-none">
-                    <!-- Icon for the menu (hamburger icon) -->
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                </button>
+                    <!-- Mobile Menu Toggle Button -->
+                    <button id="menu-toggle" class="block left- absolute lg:hidden text-gray-600 dark:text-black focus:outline-none">
+                        <!-- Icon for the menu (hamburger icon) -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
 
-                <!-- Navigation Links in the Center -->
-                <nav id="navlinks"
-                    class="hidden lg:flex lg:space-x-6 flex-col lg:flex-row mt-4 lg:mt-0 lg:space-y-0 space-y-2">
-                    <a href="#home"
-                        class="active text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
-                    <a href="#about"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
-                    <a href="#catalog"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
-                    <a href="#courses"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
-                    <a href="{{route('login')}}"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
-                    <a href="#directory"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
-                    <a href="#testimonials"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
-                </nav>
+                    <!-- Navigation Links in the Center -->
+                    <nav id="navlinks" class="hidden lg:flex lg:space-x-6 flex-col lg:flex-row mt-4 lg:mt-0 lg:space-y-0 space-y-2">
+                        <a href="#home" class="active text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
+                        <a href="#about" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
+                        <a href="#catalog" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
+                        <a href="#courses" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
+                        <a href="{{route('login')}}" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
+                        <a href="#directory" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
+                        <a href="#testimonials" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
+                    </nav>
 
-                <!-- Auth Links on the Right -->
-                <div class="hidden lg:flex items-center space-x-4">
-                    @if (Route::has('login'))
-                        <div class="flex flex-col lg:flex-row items-center lg:space-x-4 space-y-2 lg:space-y-0">
-                            @auth
-                                <a href="{{ url('/dashboard') }}"
-                                    class="rounded-md px-4 py-2 text-gray-600 ring-1 ring-transparent transition hover:text-gray-800 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                    Dashboard
-                                </a>
-                            @else
-                                <a href="{{ route('login') }}"
-                                    class="rounded-[50px] px-4 py-2 border-4 border-[#694F8E] text-lg text-gray-600 ring-1 ring-transparent transition hover:text-gray-800 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                    Log in
-                                </a>
-
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}"
-                                        class="rounded-[50px] bg-[#694F8E] px-4 py-2 text-white border-4 border-[#694F8E] ring-1 ring-transparent transition hover:text-gray-800 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                        Register
+                    <!-- Auth Links on the Right -->
+                    <div class="hidden lg:flex items-center space-x-4">
+                        @if (Route::has('login'))
+                            <div class="flex flex-col lg:flex-row items-center lg:space-x-4 space-y-2 lg:space-y-0">
+                                @auth
+                                    <a href="{{ url('/dashboard') }}"
+                                        class="rounded-md px-4 py-2 text-gray-600 ring-1 ring-transparent transition hover:text-gray-800 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                        Dashboard
                                     </a>
-                                @endif
-                            @endauth
-                        </div>
-                    @endif
-                </div>
+                                @else
+                                    <a href="{{ route('login') }}"
+                                        class="rounded-[50px] px-4 py-2 border-4 border-[#694F8E] text-lg !text-gray-600 ring-1 ring-transparent transition hover:text-gray-800 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                        Log in
+                                    </a>
 
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}"
+                                            class="rounded-[50px] bg-[#694F8E] px-4 py-2 text-white border-4 border-[#694F8E] ring-1 ring-transparent transition hover:text-gray-800 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                            Register
+                                        </a>
+                                    @endif
+                                @endauth
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
 
             <!-- Responsive Dropdown Menu -->
@@ -123,10 +116,10 @@
                 class="relative max-w-[80%] md:max-w-[60%] py-8 bg-[#694F8E] rounded-[50px] border border-gray-300 dark:border-gray-700 text-white dark:text-white/80 mx-4">
                 <!-- Content -->
                 <div class="w-full px-8 md:px-16 mx-auto text-justify">
-                    <h1 class="text-3xl md:text-4xl font-semibold mb-4 text-[#FFDED6]">
+                    <h1 class="text-3xl md:text-4xl lg:text-[5vh] font-semibold mb-4 text-[#FFDED6]">
                         Empowering Clear Speech, One Step at a Time!
                     </h1>
-                    <h3 class="text-xl md:text-3xl mb-6 leading-8 md:leading-10">
+                    <h3 class="text-xl md:text-3xl lg:text-[3.9vh] mb-6 leading-8 md:leading-10">
                         We specialize in helping adults with dysarthria communicate at
                         their best by offering convenient, effective, and affordable
                         speech therapy.
@@ -176,7 +169,7 @@
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:px-[150px] mx-4 pt-7 pb-5 relative sm:px-[150px]">
                 <div
                     class="bg-[#694F8E] min-h-[40vh] lg:min-h-[57vh] rounded-xl flex flex-col items-center p-4 md:px-5 gap-4">
-                    <div class="h-[100px] md:h-[150px]">
+                    <div class="h-[100px] md:h-[150px] lg:h-[25vh]">
                         <img src="{{url('img/about1.png')}}" alt="" class="h-[100%]">
                     </div>
                     <div class="h-[40%]">
@@ -193,7 +186,7 @@
 
                 <div
                     class="bg-[#694F8E] min-h-[40vh] lg:min-h-[57vh] rounded-xl flex flex-col items-center p-4 md:px-5 gap-4">
-                    <div class="h-[100px] md:h-[150px]">
+                    <div class="h-[100px] md:h-[150px] lg:h-[25vh]">
                         <img src="{{url('img/about2.png')}}" alt="" class="h-[100%]">
                     </div>
                     <div class="h-[40%]">
@@ -209,7 +202,7 @@
 
                 <div
                     class="bg-[#694F8E] min-h-[40vh] lg:min-h-[57vh] rounded-xl flex flex-col items-center p-4 md:px-5 gap-4">
-                    <div class="h-[100px] md:h-[150px]">
+                    <div class="h-[100px] md:h-[150px] lg:h-[25vh]">
                         <img src="{{url('img/about3.png')}}" alt="" class="h-[100%]">
                     </div>
                     <div class="h-[40%]">
@@ -240,7 +233,7 @@
 
         <!---------------------- Developers ---------------------->
 
-        <section id="developers" class="section min-h-[80vh] bg-white text-center">
+        <section id="developers" class="section bg-white text-center">
             <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2 px-4">
                 <h1 class="text-[#694F8E] text-[1.6rem] md:text-[4rem] font-semibold">DEVELOPERS OF</h1>
                 <img src="{{url('img/pink-bg-logo.png')}}" alt="" class="w-[20%] md:w-[15%] h-auto">
@@ -251,11 +244,11 @@
                 <div
                     class="h-[15rem] md:h-[20rem] w-[15rem] md:w-[20rem] flex flex-col justify-center items-center mx-auto relative ">
                     <div
-                        class="bg-[#694F8E] h-[12rem] md:h-[15rem] w-[12rem] md:w-[15rem] rounded-full overflow-hidden flex items-center justify-center">
-                        <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full object-cover">
+                        class="bg-[#694F8E] h-[12rem] md:h-[33vh] w-[12rem] md:w-[33vh] rounded-full overflow-hidden flex items-center justify-center p-4">
+                        <img src="{{url('img/bella.jpeg')}}" alt="" class="rounded-full w-full h-full object-cover">
                     </div>
                     <h1
-                        class="bg-[#A6A6A6] text-white text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
+                        class="bg-[#A6A6A6] text-white lg:text-[2.5vh] text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
                         Bella Beatrice C. Fundano
                     </h1>
                 </div>
@@ -263,11 +256,11 @@
                 <div
                     class="h-[15rem] md:h-[20rem] w-[15rem] md:w-[20rem] flex flex-col justify-center items-center mx-auto relative ">
                     <div
-                        class="bg-[#694F8E] h-[12rem] md:h-[15rem] w-[12rem] md:w-[15rem] rounded-full overflow-hidden flex items-center justify-center">
-                        <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full object-cover">
+                        class="bg-[#694F8E] h-[12rem] md:h-[33vh] w-[12rem] md:w-[33vh] rounded-full overflow-hidden flex items-center justify-center p-4">
+                        <img src="{{url('img/roxanne.jpeg')}}" alt="" class="rounded-full w-full h-full object-cover">
                     </div>
                     <h1
-                        class="bg-[#A6A6A6] text-white text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
+                        class="bg-[#A6A6A6] text-white lg:text-[2.5vh] text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
                         Roxanne E. Gutierrez
                     </h1>
                 </div>
@@ -275,11 +268,11 @@
                 <div
                     class="h-[15rem] md:h-[20rem] w-[15rem] md:w-[20rem] flex flex-col justify-center items-center mx-auto relative ">
                     <div
-                        class="bg-[#694F8E] h-[12rem] md:h-[15rem] w-[12rem] md:w-[15rem] rounded-full overflow-hidden flex items-center justify-center">
-                        <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full object-cover">
+                        class="bg-[#694F8E] h-[12rem] md:h-[33vh] w-[12rem] md:w-[33vh] rounded-full overflow-hidden flex items-center justify-center p-4">
+                        <img src="{{url('img/rean.jpeg')}}" alt="" class="rounded-full w-full h-full object-cover">
                     </div>
                     <h1
-                        class="bg-[#A6A6A6] text-white text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
+                        class="bg-[#A6A6A6] text-white lg:text-[2.5vh] text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
                         Rean Luane G. Luzuriaga
                     </h1>
                 </div>
@@ -287,12 +280,12 @@
                 <div
                     class="h-[15rem] md:h-[20rem] w-[15rem] md:w-[20rem] flex flex-col justify-center items-center mx-auto relative ">
                     <div
-                        class="bg-[#694F8E] h-[12rem] md:h-[15rem] w-[12rem] md:w-[15rem] rounded-full overflow-hidden flex items-center justify-center">
-                        <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full object-cover">
+                        class="bg-[#694F8E] h-[12rem] md:h-[33vh] w-[12rem] md:w-[33vh] rounded-full overflow-hidden flex items-center justify-center p-4">
+                        <img src="{{url('img/john.jpeg')}}" alt="" class="rounded-full w-full h-full object-cover">
                     </div>
                     <h1
-                        class="bg-[#A6A6A6] text-white text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
-                        JohnChristopher L. Obispo
+                        class="bg-[#A6A6A6] text-white lg:text-[2.5vh] text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
+                        John Christopher L. Obispo
                     </h1>
                 </div>
             </div>
@@ -313,7 +306,7 @@
 
         <!---------------------- Catalog Section ---------------------->
 
-        <section id="catalog" class="section min-h-[270vh] bg-white">
+        <section id="catalog" class="section py-5 bg-white">
             <!---------------------- Catalog Header ---------------------->
             <div class="px-10 md:px-[150px] sticky py-5  bg-[#FFDED6] z-[2] top-[50px] lg:px-32">
                 <h1 class="text-[#694F8E] text-[1.6rem] md:text-[2.5rem] font-semibold">Catalog</h1>
@@ -416,6 +409,9 @@
                 </div>
             </div>
 
+            <div class="hidden">
+                <h1>AM&MAB</h1>
+            </div>
             <!---------------------- End of Articles Section ---------------------->
 
 
@@ -427,10 +423,10 @@
                         Creators</h1>
                 </div>
                 <div class="flex flex-wrap gap-5 justify-center px-4 md:px-[100px] pt-10 pb-5 relative">
-                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] p-4">
+                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] lg:w-[25rem] p-4">
                         <div class="flex flex-col justify-center items-center relative">
                             <div
-                                class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full flex items-center flex-col justify-center">
+                                class="bg-[#694F8E] h-[15rem] w-[15rem] md:w-[29vh] md:h-[29vh] rounded-full flex items-center flex-col justify-center">
                                 <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
                             </div>
                             <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
@@ -438,19 +434,19 @@
                             </a>
                         </div>
                         <div class="text-black">
-                            <h1 class="text-lg font-semibold rounded-xl mt-10 text-center mb-3">
-                                TEACHERKAYE TALKS, SLP
+                            <h1 class="text-lg lg:text-[3vh] font-semibold rounded-xl mt-10 text-center mb-3">
+                                TEACHER KAYE TALKS, SLP
                             </h1>
-                            <h2>Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
-                            <h2>- Performed evaluation and treatment planning of over 50 patients a month</h2>
-                            <h2>- Provided direct and indirect speech therapy services to 350 students with
+                            <h2 class="lg:text-[2.1vh] mb-2">Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Performed evaluation and treatment planning of over 50 patients a month</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Provided direct and indirect speech therapy services to 350 students with
                                 communication disorders.</h2>
                         </div>
                     </div>
-                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] p-4">
+                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] lg:w-[25rem] p-4">
                         <div class="flex flex-col justify-center items-center relative">
                             <div
-                                class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full flex items-center flex-col justify-center">
+                                class="bg-[#694F8E] h-[15rem] w-[15rem] md:w-[29vh] md:h-[29vh] rounded-full flex items-center flex-col justify-center">
                                 <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
                             </div>
                             <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
@@ -458,19 +454,19 @@
                             </a>
                         </div>
                         <div class="text-black">
-                            <h1 class="text-lg font-semibold rounded-xl mt-10 text-center mb-3">
+                            <h1 class="text-lg lg:text-[3vh] font-semibold rounded-xl mt-10 text-center mb-3">
                                 TEACHERKAYE TALKS, SLP
                             </h1>
-                            <h2>Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
-                            <h2>- Performed evaluation and treatment planning of over 50 patients a month</h2>
-                            <h2>- Provided direct and indirect speech therapy services to 350 students with
+                            <h2 class="lg:text-[2.1vh] mb-2">Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Performed evaluation and treatment planning of over 50 patients a month</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Provided direct and indirect speech therapy services to 350 students with
                                 communication disorders.</h2>
                         </div>
                     </div>
-                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] p-4">
+                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] lg:w-[25rem] p-4">
                         <div class="flex flex-col justify-center items-center relative">
                             <div
-                                class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full flex items-center flex-col justify-center">
+                                class="bg-[#694F8E] h-[15rem] w-[15rem] md:w-[29vh] md:h-[29vh] rounded-full flex items-center flex-col justify-center">
                                 <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
                             </div>
                             <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
@@ -478,12 +474,12 @@
                             </a>
                         </div>
                         <div class="text-black">
-                            <h1 class="text-lg font-semibold rounded-xl mt-10 text-center mb-3">
+                            <h1 class="text-lg lg:text-[3vh] font-semibold rounded-xl mt-10 text-center mb-3">
                                 TEACHERKAYE TALKS, SLP
                             </h1>
-                            <h2>Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
-                            <h2>- Performed evaluation and treatment planning of over 50 patients a month</h2>
-                            <h2>- Provided direct and indirect speech therapy services to 350 students with
+                            <h2 class="lg:text-[2.1vh] mb-2">Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Performed evaluation and treatment planning of over 50 patients a month</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Provided direct and indirect speech therapy services to 350 students with
                                 communication disorders.</h2>
                         </div>
                     </div>
@@ -500,15 +496,15 @@
 
         <!---------------------- Courses Section ---------------------->
 
-        <section id="courses" class="section min-h-[90vh] bg-white">
+        <section id="courses" class="section bg-white">
             <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2 px-5">
                 <h1 class="text-[#694F8E] text-[2rem] md:text-[3rem] lg:text-[4rem] font-semibold">Courses</h1>
             </div>
 
-            <div class="flex flex-col lg:flex-row h-auto lg:h-[35rem]">
+            <div class="flex flex-col lg:flex-row h-auto lg:h-[80vh]">
                 <div class="bg-[#694F8E] py-5 w-full lg:w-[60%] flex flex-col items-center justify-center">
                     <div class="bg-[#DEDBE3] text-right px-5 md:px-10 py-3 w-full">
-                        <h1 class="text-3xl md:text-4xl lg:text-5xl text-[#694F8E] font-bold">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl  text-[#694F8E] font-bold">
                             DYSARTHRIA COUNSELING <br class="hidden md:block"> FOR FAMILIES
                         </h1>
                     </div>
@@ -525,7 +521,7 @@
                         COURSES AND WEBINARS
                     </a>
                 </div>
-                <div class="w-full lg:w-[40%] h-[20rem] lg:h-[35rem] mt-5 lg:mt-0">
+                <div class="w-full lg:w-[40%] h-[20rem] lg:h-[80vh] mt-5 lg:mt-0">
                     <img src="{{url('img/course-image.png')}}" alt="" class="w-full h-full object-cover">
                 </div>
             </div>
@@ -557,25 +553,25 @@
                         </h1>
                     </div>
                     <div class="text-black px-5 md:px-12">
-                        <h1 class="text-lg md:text-xl font-semibold rounded-xl mt-5 text-center mb-3">
+                        <h1 class="text-lg md:text-xl lg:text-[3vh] font-semibold rounded-xl mt-5 text-center mb-3">
                             Hannah Maria D. Albert, SLP
                         </h1>
-                        <h1 class="text-justify mb-3">
+                        <h1 class="text-justify mb-3 lg:text-[2.1vh]">
                             <span class="font-semibold">Credentials:</span>
                             Faculty member of the Department of Speech Pathology.
                         </h1>
-                        <h2 class="text-justify mb-3">
+                        <h2 class="text-justify mb-3 lg:text-[2.1vh]">
                             - Bachelor's degree in Speech Pathology from the College of Allied Medical Professions, UP
                             Manila in 2011.
                         </h2>
-                        <h2 class="text-justify mb-3">
+                        <h2 class="text-justify mb-3 lg:text-[2.1vh]">
                             - Master in Rehabilitation Science in Speech Pathology in 2022.
                         </h2>
 
                         <!-- Hidden content -->
                         <div id="more-info" class="hidden text-justify mt-3">
                             <h2 class="text-lg font-semibold">Full Information:</h2>
-                            <p>
+                            <p class=" lg:text-[2.1vh]">
                                 "Hannah Maria D. Albert is a full time faculty member of the Department of Speech
                                 Pathology. She obtained her Bachelor's degree in Speech Pathology from the College of
                                 Allied Medical Professions, UP Manila in 2011, and her Master in Rehabilitation Science
@@ -589,7 +585,7 @@
                         </div>
 
                         <div class="text-center mt-3">
-                            <button id="learn-more-btn" class="bg-pink-400 px-4 py-1 rounded-full text-white">
+                            <button id="learn-more-btn" class="bg-pink-400 px-4 py-1 rounded-full text-white lg:text-[2.1vh]">
                                 Learn more..
                             </button>
                         </div>
@@ -610,40 +606,39 @@
                         </h1>
                     </div>
                     <div class="text-black px-5 md:px-12">
-                        <h1 class="text-lg md:text-xl font-semibold rounded-xl mt-5 text-center mb-3">
+                        <h1 class="text-lg md:text-xl lg:text-[3vh] font-semibold rounded-xl mt-5 text-center mb-3 ">
                             Founder
                         </h1>
-                        <h1 class="text-justify mb-3">
+                        <h1 class="text-justify mb-3 lg:text-[2.1vh]">
                             <span class="font-semibold">Credentials:</span> Founder of Our Learning Corner ·
                             Self-employed
                         </h1>
-                        <h2 class="text-justify mb-3">
+                        <h2 class="text-justify mb-3 lg:text-[2.1vh]">
                             - Bachelor's degree in Speech Pathology from University of Santo Tomas in 2016.
                         </h2>
-                        <h2 class="text-justify mb-3">
+                        <h2 class="text-justify mb-3 lg:text-[2.1vh]">
                             - Consultant Speech Language Pathologist <br>
                             Theratalk Therapy Center · Part-time <br>
                             Feb 2018 - Sep 2023
                         </h2>
-                        <h2 class="text-justify mb-3">
-                            - Itinerant Speech Language Pathologist <br>
-                            Gifted Ones Development Foundation Center · Part-time <br>
-                            Jul 2016 - Present
-                        </h2>
 
                         <div id="more-info2" class="hidden text-justify mt-3">
                             <h2 class="text-lg font-semibold">Full Information:</h2>
-                            <p>
+                            <p class="lg:text-[2.1vh]">
                                 Speech Teletherapist · Self-employed · May 2020 - Present <br><br>
                                 - Facilitated therapy sessions through direct patient interactions with digital materials or functional home activities with average patient load of 15 clients per week.
                                 <br>
                                 <br>
                                 Registered Speech-Language Pathologist · Philippine Professional Regulation Commission · Issued Mar 2023
+                                <br><br>
+                                - Itinerant Speech Language Pathologist <br>
+                                Gifted Ones Development Foundation Center · Part-time <br>
+                                Jul 2016 - Present
                             </p>
                         </div>
 
                         <div class="text-center mt-3">
-                            <button id="learn-more-btn2" class="bg-pink-400 px-4 py-1 rounded-full text-white">
+                            <button id="learn-more-btn2" class="bg-pink-400 px-4 py-1 rounded-full text-white lg:text-[2.1vh]">
                                 Learn more..
                             </button>
                         </div>
@@ -685,7 +680,7 @@
 
         <!---------------------- Testimonials Section ---------------------->
 
-        <section id="testimonials" class="section min-h-[70vh] bg-[#fff7f5]">
+        <section id="testimonials" class="section bg-[#fff7f5]">
             <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2 px-4">
                 <h1 class="text-[#694F8E] text-[2rem] md:text-[4rem] lg:text-[3rem] font-semibold">TESTIMONIALS</h1>
             </div>

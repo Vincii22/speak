@@ -2,7 +2,7 @@
     <div>
         <!-- Dashboard content goes here -->
         @section('professional_content')
-        <div class="flex flex-wrap gap-8 justify-around pl-20">
+        <div class="flex flex-wrap gap-8 justify-around pl-10">
             <div class="calendar rounded-lg  w-full lg:w-[30%] relative h-full pt-5">
                 <div class="upper-design-container ">
                     <div class="upper-design"></div>
@@ -55,7 +55,7 @@
             </div>
 
             <!---------------- Form (Right Side) ---------------->
-            <div class="element form bg-white px-6 w-full lg:w-[60%] py-5 max-h-[90vh] overflow-y-scroll pr-10 pt-14">
+            <div class="element form bg-white px-6 w-full lg:w-[67%] py-5 max-h-[90vh] overflow-y-scroll pr-10 pt-14">
                 <h2 class="text-4xl font-bold mb-4 text-gray-600 uppercase">List of Pending Appointments</h2>
                 <div class="mb-5">
                     <i class="text-[#858585]">Select a date from the calendar or click on the appointment boxes to highlight your scheduled appointment.</i>
@@ -75,7 +75,7 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
                     @foreach ($schedules as $schedule)
-                        <div class="shadow-md w-full relative h-[150px] rounded-lg px-7 py-3 flex flex-col justify-center schedule-item transition-colors pt-7"
+                        <div class="shadow-md w-full relative h-[150px] rounded-lg px-4 py-3 flex flex-col justify-center schedule-item transition-colors pt-7"
                             data-day="{{ $schedule->day }}" data-month="{{ $schedule->month }}"
                             data-year="{{ $schedule->year }}">
                             <img src="{{ url('img/pin.png')}}" alt="" class="absolute w-[60px] right-[-20px] top-[-10px]">
@@ -88,12 +88,14 @@
                                 <label>Time appointed:</label>
                                 <h1 class="ml-1">{{ $schedule->time }}</h1>
                             </div>
-                            <div class="flex justify-between mt-3 items-center">
-                                <a href="{{ route('schedule.edit', $schedule->id) }}" class="bg-pink-400 text-white rounded-lg px-3 py-1">Reschedule</a>
+                            <div class="flex justify-between mt-3 items-center ">
+                                <!-- <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1 open-approve-modal" data-id="{{ $schedule->id }}">Approve</a> -->
+                                <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1 open-approve-modal" data-id="{{ $schedule->id }}">Approve</a>
+                                <a href="{{ route('schedule.edit', $schedule->id) }}" class="bg-pink-400 text-white rounded-lg text-sm px-3 py-1">Reschedule</a>
                                 <form action="{{ route('schedule.destroy', $schedule->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button onclick="return confirm('Are you sure to delete this?')" class="text-white bg-red-800 rounded-lg px-3 py-1">Cancel</button>
+                                    <button onclick="return confirm('Are you sure to delete this?')" class="text-white bg-red-800 rounded-lg text-sm px-3 py-1">Cancel</button>
                                 </form>
                             </div>
                         </div>
@@ -104,10 +106,64 @@
             </div>
         </div>
 
+
+        <!------------ Modals ------------>
+        
+        <div id="approveModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+            <div class="bg-white p-6 rounded-lg w-1/3">
+                <h2 class="text-xl font-bold mb-4">Approve Appointment</h2>
+                <div id="modalContent">
+                    <!-- Fetched data will be dynamically inserted here -->
+                </div>
+                <div class="flex justify-end mt-4">
+                    <button id="closeModal" class="px-4 py-2 bg-gray-500 text-white rounded-lg mr-2">Close</button>
+                    <button id="confirmApprove" class="px-4 py-2 bg-green-500 text-white rounded-lg">Approve</button>
+                </div>
+            </div>
+        </div>
+        
+        <!------------ end of Modals ------------>
+        <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const approveButtons = document.querySelectorAll('.open-approve-modal');
+        const approveModal = document.getElementById('approveModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalContent = document.getElementById('modalContent');
+        const confirmApprove = document.getElementById('confirmApprove');
+
+        // Event listener for opening the modal
+        approveButtons.forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent the default anchor action
+                const scheduleId = button.getAttribute('data-id');
+
+                // Dynamically load data into the modal (for example, schedule ID)
+                modalContent.innerHTML = `<p>Are you sure you want to approve the appointment with ID: <strong>${scheduleId}</strong>?</p>`;
+
+                // Show the modal
+                approveModal.classList.remove('hidden');
+            });
+        });
+
+        // Event listener for closing the modal
+        closeModal.addEventListener('click', function () {
+            approveModal.classList.add('hidden'); // Hide the modal
+        });
+
+        // Event listener for confirming the approval
+        confirmApprove.addEventListener('click', function () {
+            const scheduleId = document.querySelector('.open-approve-modal').getAttribute('data-id');
+
+            // You can replace this part with an AJAX request to approve the schedule
+            console.log('Approved Schedule ID:', scheduleId);
+
+            // Close the modal after confirming
+            approveModal.classList.add('hidden');
+        });
+    });
+</script>
         <style>
-            .element::-webkit-scrollbar {
-                display: none;
-            }
+
             .upper-design {
                 width: 25px;
                 height: 25px;

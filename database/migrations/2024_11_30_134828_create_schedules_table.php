@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('speech_language_pathologist');
             $table->string('email');
             $table->string('contact');
+            $table->string('status')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
