@@ -1,6 +1,6 @@
 <x-app-layout>
 
-<div>
+    <div>
 
         <!---------------------- Landing Section ---------------------->
 
@@ -9,10 +9,10 @@
                 class="relative max-w-[80%] md:max-w-[60%] py-8 bg-[#694F8E] rounded-[50px] border border-gray-300 dark:border-gray-700 text-white dark:text-white/80 mx-4">
                 <!-- Content -->
                 <div class="w-full px-8 md:px-16 mx-auto text-justify">
-                    <h1 class="text-3xl md:text-4xl font-semibold mb-4 text-[#FFDED6]">
+                    <h1 class="text-3xl md:text-4xl lg:text-[5vh] font-semibold mb-4 text-[#FFDED6]">
                         Empowering Clear Speech, One Step at a Time!
                     </h1>
-                    <h3 class="text-xl md:text-3xl mb-6 leading-8 md:leading-10">
+                    <h3 class="text-xl md:text-3xl lg:text-[3.9vh] mb-6 leading-8 md:leading-10">
                         We specialize in helping adults with dysarthria communicate at
                         their best by offering convenient, effective, and affordable
                         speech therapy.
@@ -62,7 +62,7 @@
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:px-[150px] mx-4 pt-7 pb-5 relative sm:px-[150px]">
                 <div
                     class="bg-[#694F8E] min-h-[40vh] lg:min-h-[57vh] rounded-xl flex flex-col items-center p-4 md:px-5 gap-4">
-                    <div class="h-[100px] md:h-[150px]">
+                    <div class="h-[100px] md:h-[150px] lg:h-[25vh]">
                         <img src="{{url('img/about1.png')}}" alt="" class="h-[100%]">
                     </div>
                     <div class="h-[40%]">
@@ -79,7 +79,7 @@
 
                 <div
                     class="bg-[#694F8E] min-h-[40vh] lg:min-h-[57vh] rounded-xl flex flex-col items-center p-4 md:px-5 gap-4">
-                    <div class="h-[100px] md:h-[150px]">
+                    <div class="h-[100px] md:h-[150px] lg:h-[25vh]">
                         <img src="{{url('img/about2.png')}}" alt="" class="h-[100%]">
                     </div>
                     <div class="h-[40%]">
@@ -95,7 +95,7 @@
 
                 <div
                     class="bg-[#694F8E] min-h-[40vh] lg:min-h-[57vh] rounded-xl flex flex-col items-center p-4 md:px-5 gap-4">
-                    <div class="h-[100px] md:h-[150px]">
+                    <div class="h-[100px] md:h-[150px] lg:h-[25vh]">
                         <img src="{{url('img/about3.png')}}" alt="" class="h-[100%]">
                     </div>
                     <div class="h-[40%]">
@@ -126,7 +126,7 @@
 
         <!---------------------- Developers ---------------------->
 
-        <section id="developers" class="section min-h-[80vh] bg-white text-center">
+        <section id="developers" class="section bg-white text-center">
             <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2 px-4">
                 <h1 class="text-[#694F8E] text-[1.6rem] md:text-[4rem] font-semibold">DEVELOPERS OF</h1>
                 <img src="{{url('img/pink-bg-logo.png')}}" alt="" class="w-[20%] md:w-[15%] h-auto">
@@ -137,11 +137,11 @@
                 <div
                     class="h-[15rem] md:h-[20rem] w-[15rem] md:w-[20rem] flex flex-col justify-center items-center mx-auto relative ">
                     <div
-                        class="bg-[#694F8E] h-[12rem] md:h-[15rem] w-[12rem] md:w-[15rem] rounded-full overflow-hidden flex items-center justify-center">
-                        <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full object-cover">
+                        class="bg-[#694F8E] h-[12rem] md:h-[33vh] w-[12rem] md:w-[33vh] rounded-full overflow-hidden flex items-center justify-center p-4">
+                        <img src="{{url('img/bella.jpeg')}}" alt="" class="rounded-full w-full h-full object-cover">
                     </div>
                     <h1
-                        class="bg-[#A6A6A6] text-white text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
+                        class="bg-[#A6A6A6] text-white lg:text-[2.5vh] text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
                         Bella Beatrice C. Fundano
                     </h1>
                 </div>
@@ -149,11 +149,11 @@
                 <div
                     class="h-[15rem] md:h-[20rem] w-[15rem] md:w-[20rem] flex flex-col justify-center items-center mx-auto relative ">
                     <div
-                        class="bg-[#694F8E] h-[12rem] md:h-[15rem] w-[12rem] md:w-[15rem] rounded-full overflow-hidden flex items-center justify-center">
-                        <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full object-cover">
+                        class="bg-[#694F8E] h-[12rem] md:h-[33vh] w-[12rem] md:w-[33vh] rounded-full overflow-hidden flex items-center justify-center p-4">
+                        <img src="{{url('img/roxanne.jpeg')}}" alt="" class="rounded-full w-full h-full object-cover">
                     </div>
                     <h1
-                        class="bg-[#A6A6A6] text-white text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
+                        class="bg-[#A6A6A6] text-white lg:text-[2.5vh] text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
                         Roxanne E. Gutierrez
                     </h1>
                 </div>
@@ -161,11 +161,11 @@
                 <div
                     class="h-[15rem] md:h-[20rem] w-[15rem] md:w-[20rem] flex flex-col justify-center items-center mx-auto relative ">
                     <div
-                        class="bg-[#694F8E] h-[12rem] md:h-[15rem] w-[12rem] md:w-[15rem] rounded-full overflow-hidden flex items-center justify-center">
-                        <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full object-cover">
+                        class="bg-[#694F8E] h-[12rem] md:h-[33vh] w-[12rem] md:w-[33vh] rounded-full overflow-hidden flex items-center justify-center p-4">
+                        <img src="{{url('img/rean.jpeg')}}" alt="" class="rounded-full w-full h-full object-cover">
                     </div>
                     <h1
-                        class="bg-[#A6A6A6] text-white text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
+                        class="bg-[#A6A6A6] text-white lg:text-[2.5vh] text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
                         Rean Luane G. Luzuriaga
                     </h1>
                 </div>
@@ -173,12 +173,12 @@
                 <div
                     class="h-[15rem] md:h-[20rem] w-[15rem] md:w-[20rem] flex flex-col justify-center items-center mx-auto relative ">
                     <div
-                        class="bg-[#694F8E] h-[12rem] md:h-[15rem] w-[12rem] md:w-[15rem] rounded-full overflow-hidden flex items-center justify-center">
-                        <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full object-cover">
+                        class="bg-[#694F8E] h-[12rem] md:h-[33vh] w-[12rem] md:w-[33vh] rounded-full overflow-hidden flex items-center justify-center p-4">
+                        <img src="{{url('img/john.jpeg')}}" alt="" class="rounded-full w-full h-full object-cover">
                     </div>
                     <h1
-                        class="bg-[#A6A6A6] text-white text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
-                        JohnChristopher L. Obispo
+                        class="bg-[#A6A6A6] text-white lg:text-[2.5vh] text-base md:text-lg font-semibold rounded-xl mt-2 px-2 absolute bottom-[10px] sm:bottom-[20px]">
+                        John Christopher L. Obispo
                     </h1>
                 </div>
             </div>
@@ -199,9 +199,9 @@
 
         <!---------------------- Catalog Section ---------------------->
 
-        <section id="catalog" class="section min-h-[270vh] bg-white">
+        <section id="catalog" class="section py-5 bg-white">
             <!---------------------- Catalog Header ---------------------->
-            <div class="px-10 md:px-[150px] sticky py-5  bg-[#FFDED6] z-[2] top-[100px] lg:px-32">
+            <div class="px-10 md:px-[150px] sticky py-5  bg-[#FFDED6] z-[2] top-[50px] lg:px-32">
                 <h1 class="text-[#694F8E] text-[1.6rem] md:text-[2.5rem] font-semibold">Catalog</h1>
             </div>
 
@@ -209,7 +209,7 @@
             <!---------------------- Stories Section ---------------------->
 
             <div class="">
-                <div class="px-4 md:px-[150px] sticky py-5 top-[100px] flex justify-end z-[2] lg:px-32">
+                <div class="px-4 md:px-[150px] sticky py-5 top-[50px] flex justify-end z-[2] lg:px-32">
                     <h1 class="text-[#694F8E] text-[1.6rem] md:text-[2.5rem] font-semibold px-3 rounded-2xl">Stories
                     </h1>
                 </div>
@@ -252,7 +252,7 @@
             <!---------------------- Articles Section ---------------------->
 
             <div class="">
-                <div class="px-4 md:px-[150px] sticky py-5 top-[100px] flex justify-end z-[2] lg:px-32">
+                <div class="px-4 md:px-[150px] sticky py-5 top-[50px] flex justify-end z-[2] lg:px-32">
                     <h1 class="text-[#694F8E] text-[1.6rem] md:text-[2.5rem] font-semibold px-3 rounded-2xl ">Articles
                     </h1>
                 </div>
@@ -302,21 +302,24 @@
                 </div>
             </div>
 
+            <div class="hidden">
+                <h1>AM&MAB</h1>
+            </div>
             <!---------------------- End of Articles Section ---------------------->
 
 
             <!---------------------- Content Creator Section ---------------------->
 
             <div class="">
-                <div class="px-4 md:px-[150px] sticky py-5 top-[100px] flex justify-end z-[2] lg:px-32">
+                <div class="px-4 md:px-[150px] sticky py-5 top-[50px] flex justify-end z-[2] lg:px-32">
                     <h1 class="text-[#694F8E] text-[1.6rem] md:text-[2.5rem] font-semibold px-3 rounded-2xl">Content
                         Creators</h1>
                 </div>
                 <div class="flex flex-wrap gap-5 justify-center px-4 md:px-[100px] pt-10 pb-5 relative">
-                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] p-4">
+                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] lg:w-[25rem] p-4">
                         <div class="flex flex-col justify-center items-center relative">
                             <div
-                                class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full flex items-center flex-col justify-center">
+                                class="bg-[#694F8E] h-[15rem] w-[15rem] md:w-[29vh] md:h-[29vh] rounded-full flex items-center flex-col justify-center">
                                 <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
                             </div>
                             <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
@@ -324,19 +327,22 @@
                             </a>
                         </div>
                         <div class="text-black">
-                            <h1 class="text-lg font-semibold rounded-xl mt-10 text-center mb-3">
-                                TEACHERKAYE TALKS, SLP
+                            <h1 class="text-lg lg:text-[3vh] font-semibold rounded-xl mt-10 text-center mb-3">
+                                TEACHER KAYE TALKS, SLP
                             </h1>
-                            <h2>Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
-                            <h2>- Performed evaluation and treatment planning of over 50 patients a month</h2>
-                            <h2>- Provided direct and indirect speech therapy services to 350 students with
+                            <h2 class="lg:text-[2.1vh] mb-2">Speech-Language Pathologist - Bulan RegionalHealth (2015 -
+                                2016)</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Performed evaluation and treatment planning of over 50
+                                patients a month</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Provided direct and indirect speech therapy services to
+                                350 students with
                                 communication disorders.</h2>
                         </div>
                     </div>
-                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] p-4">
+                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] lg:w-[25rem] p-4">
                         <div class="flex flex-col justify-center items-center relative">
                             <div
-                                class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full flex items-center flex-col justify-center">
+                                class="bg-[#694F8E] h-[15rem] w-[15rem] md:w-[29vh] md:h-[29vh] rounded-full flex items-center flex-col justify-center">
                                 <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
                             </div>
                             <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
@@ -344,19 +350,22 @@
                             </a>
                         </div>
                         <div class="text-black">
-                            <h1 class="text-lg font-semibold rounded-xl mt-10 text-center mb-3">
+                            <h1 class="text-lg lg:text-[3vh] font-semibold rounded-xl mt-10 text-center mb-3">
                                 TEACHERKAYE TALKS, SLP
                             </h1>
-                            <h2>Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
-                            <h2>- Performed evaluation and treatment planning of over 50 patients a month</h2>
-                            <h2>- Provided direct and indirect speech therapy services to 350 students with
+                            <h2 class="lg:text-[2.1vh] mb-2">Speech-Language Pathologist - Bulan RegionalHealth (2015 -
+                                2016)</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Performed evaluation and treatment planning of over 50
+                                patients a month</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Provided direct and indirect speech therapy services to
+                                350 students with
                                 communication disorders.</h2>
                         </div>
                     </div>
-                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] p-4">
+                    <div class="min-h-[20rem] w-[90%] md:w-[20rem] lg:w-[25rem] p-4">
                         <div class="flex flex-col justify-center items-center relative">
                             <div
-                                class="bg-[#694F8E] h-[15rem] w-[15rem] rounded-full flex items-center flex-col justify-center">
+                                class="bg-[#694F8E] h-[15rem] w-[15rem] md:w-[29vh] md:h-[29vh] rounded-full flex items-center flex-col justify-center">
                                 <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
                             </div>
                             <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
@@ -364,12 +373,15 @@
                             </a>
                         </div>
                         <div class="text-black">
-                            <h1 class="text-lg font-semibold rounded-xl mt-10 text-center mb-3">
+                            <h1 class="text-lg lg:text-[3vh] font-semibold rounded-xl mt-10 text-center mb-3">
                                 TEACHERKAYE TALKS, SLP
                             </h1>
-                            <h2>Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
-                            <h2>- Performed evaluation and treatment planning of over 50 patients a month</h2>
-                            <h2>- Provided direct and indirect speech therapy services to 350 students with
+                            <h2 class="lg:text-[2.1vh] mb-2">Speech-Language Pathologist - Bulan RegionalHealth (2015 -
+                                2016)</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Performed evaluation and treatment planning of over 50
+                                patients a month</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Provided direct and indirect speech therapy services to
+                                350 students with
                                 communication disorders.</h2>
                         </div>
                     </div>
@@ -386,15 +398,15 @@
 
         <!---------------------- Courses Section ---------------------->
 
-        <section id="courses" class="section min-h-[90vh] bg-white">
+        <section id="courses" class="section bg-white">
             <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2 px-5">
                 <h1 class="text-[#694F8E] text-[2rem] md:text-[3rem] lg:text-[4rem] font-semibold">Courses</h1>
             </div>
 
-            <div class="flex flex-col lg:flex-row h-auto lg:h-[35rem]">
+            <div class="flex flex-col lg:flex-row h-auto lg:h-[80vh]">
                 <div class="bg-[#694F8E] py-5 w-full lg:w-[60%] flex flex-col items-center justify-center">
                     <div class="bg-[#DEDBE3] text-right px-5 md:px-10 py-3 w-full">
-                        <h1 class="text-3xl md:text-4xl lg:text-5xl text-[#694F8E] font-bold">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl  text-[#694F8E] font-bold">
                             DYSARTHRIA COUNSELING <br class="hidden md:block"> FOR FAMILIES
                         </h1>
                     </div>
@@ -411,7 +423,7 @@
                         COURSES AND WEBINARS
                     </a>
                 </div>
-                <div class="w-full lg:w-[40%] h-[20rem] lg:h-[35rem] mt-5 lg:mt-0">
+                <div class="w-full lg:w-[40%] h-[20rem] lg:h-[80vh] mt-5 lg:mt-0">
                     <img src="{{url('img/course-image.png')}}" alt="" class="w-full h-full object-cover">
                 </div>
             </div>
@@ -438,30 +450,30 @@
                             <img src="{{url('img/p1.jpeg')}}" alt="" class="rounded-full w-full h-full object-contain">
                         </div>
                         <h1
-                            class="bg-[#A6A6A6] text-white text-center text-lg font-semibold rounded-xl absolute bottom-[0px] px-3 w-full">
+                            class="bg-[#A6A6A6] text-white text-center text-lg font-semibold rounded-xl absolute bottom-[0px] px-3 w-full z-20">
                             CONTACT
                         </h1>
                     </div>
                     <div class="text-black px-5 md:px-12">
-                        <h1 class="text-lg md:text-xl font-semibold rounded-xl mt-5 text-center mb-3">
+                        <h1 class="text-lg md:text-xl lg:text-[3vh] font-semibold rounded-xl mt-5 text-center mb-3">
                             Hannah Maria D. Albert, SLP
                         </h1>
-                        <h1 class="text-justify mb-3">
+                        <h1 class="text-justify mb-3 lg:text-[2.1vh]">
                             <span class="font-semibold">Credentials:</span>
                             Faculty member of the Department of Speech Pathology.
                         </h1>
-                        <h2 class="text-justify mb-3">
+                        <h2 class="text-justify mb-3 lg:text-[2.1vh]">
                             - Bachelor's degree in Speech Pathology from the College of Allied Medical Professions, UP
                             Manila in 2011.
                         </h2>
-                        <h2 class="text-justify mb-3">
+                        <h2 class="text-justify mb-3 lg:text-[2.1vh]">
                             - Master in Rehabilitation Science in Speech Pathology in 2022.
                         </h2>
 
                         <!-- Hidden content -->
                         <div id="more-info" class="hidden text-justify mt-3">
                             <h2 class="text-lg font-semibold">Full Information:</h2>
-                            <p>
+                            <p class=" lg:text-[2.1vh]">
                                 "Hannah Maria D. Albert is a full time faculty member of the Department of Speech
                                 Pathology. She obtained her Bachelor's degree in Speech Pathology from the College of
                                 Allied Medical Professions, UP Manila in 2011, and her Master in Rehabilitation Science
@@ -475,7 +487,8 @@
                         </div>
 
                         <div class="text-center mt-3">
-                            <button id="learn-more-btn" class="bg-pink-400 px-4 py-1 rounded-full text-white">
+                            <button id="learn-more-btn"
+                                class="bg-pink-400 px-4 py-1 rounded-full text-white lg:text-[2.1vh]">
                                 Learn more..
                             </button>
                         </div>
@@ -491,22 +504,22 @@
                             <img src="{{url('img/p2.jpeg')}}" alt="" class="rounded-full w-full h-full object-cover">
                         </div>
                         <h1
-                            class="bg-[#A6A6A6] text-white text-center text-lg font-semibold rounded-xl absolute bottom-[0px] px-3 w-full">
+                            class="bg-[#A6A6A6] text-white text-center text-lg font-semibold rounded-xl absolute bottom-[0px] px-3 w-full z-20">
                             CONTACT
                         </h1>
                     </div>
                     <div class="text-black px-5 md:px-12">
-                        <h1 class="text-lg md:text-xl font-semibold rounded-xl mt-5 text-center mb-3">
+                        <h1 class="text-lg md:text-xl lg:text-[3vh] font-semibold rounded-xl mt-5 text-center mb-3 ">
                             Founder
                         </h1>
-                        <h1 class="text-justify mb-3">
+                        <h1 class="text-justify mb-3 lg:text-[2.1vh]">
                             <span class="font-semibold">Credentials:</span> Founder of Our Learning Corner ·
                             Self-employed
                         </h1>
-                        <h2 class="text-justify mb-3">
+                        <h2 class="text-justify mb-3 lg:text-[2.1vh]">
                             - Bachelor's degree in Speech Pathology from University of Santo Tomas in 2016.
                         </h2>
-                        <h2 class="text-justify mb-3">
+                        <h2 class="text-justify mb-3 lg:text-[2.1vh]">
                             - Consultant Speech Language Pathologist <br>
                             Theratalk Therapy Center · Part-time <br>
                             Feb 2018 - Sep 2023
@@ -514,12 +527,15 @@
 
                         <div id="more-info2" class="hidden text-justify mt-3">
                             <h2 class="text-lg font-semibold">Full Information:</h2>
-                            <p>
+                            <p class="lg:text-[2.1vh]">
                                 Speech Teletherapist · Self-employed · May 2020 - Present <br><br>
-                                - Facilitated therapy sessions through direct patient interactions with digital materials or functional home activities with average patient load of 15 clients per week.
+                                - Facilitated therapy sessions through direct patient interactions with digital
+                                materials or functional home activities with average patient load of 15 clients per
+                                week.
                                 <br>
                                 <br>
-                                Registered Speech-Language Pathologist · Philippine Professional Regulation Commission · Issued Mar 2023
+                                Registered Speech-Language Pathologist · Philippine Professional Regulation Commission ·
+                                Issued Mar 2023
                                 <br><br>
                                 - Itinerant Speech Language Pathologist <br>
                                 Gifted Ones Development Foundation Center · Part-time <br>
@@ -528,7 +544,8 @@
                         </div>
 
                         <div class="text-center mt-3">
-                            <button id="learn-more-btn2" class="bg-pink-400 px-4 py-1 rounded-full text-white">
+                            <button id="learn-more-btn2"
+                                class="bg-pink-400 px-4 py-1 rounded-full text-white lg:text-[2.1vh]">
                                 Learn more..
                             </button>
                         </div>
@@ -570,7 +587,7 @@
 
         <!---------------------- Testimonials Section ---------------------->
 
-        <section id="testimonials" class="section min-h-[70vh] bg-[#fff7f5]">
+        <section id="testimonials" class="section bg-[#fff7f5]">
             <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2 px-4">
                 <h1 class="text-[#694F8E] text-[2rem] md:text-[4rem] lg:text-[3rem] font-semibold">TESTIMONIALS</h1>
             </div>
@@ -752,182 +769,181 @@
 
 
 
+        <style>
+            nav a {
+                border-radius: 50px;
+                padding: 4px 15px;
+            }
 
+            nav a.active {
+                background-color: #FFBFE2;
+                border-radius: 50px;
+            }
 
-    <style>
-        nav a {
-            border-radius: 50px;
-            padding: 4px 15px;
-        }
-
-        nav a.active {
-            background-color: #FFBFE2;
-            border-radius: 50px;
-        }
-
-        .bg-design {
-            border-radius: 0 0 40px 40px;
-            position: relative;
-        }
-
-        .bg-left {
-            background: #FFDED6;
-            height: 80px;
-            width: 100px;
-            position: absolute;
-            overflow: hidden;
-            left: -100px;
-            top: 0;
-        }
-
-        .bg-left:after {
-            position: absolute;
-            content: '';
-            display: block;
-            height: 200%;
-            width: 200%;
-            left: -100%;
-            background: white;
-            border-radius: 100%;
-        }
-
-        .bg-right {
-            background: #FFDED6;
-            height: 80px;
-            width: 100px;
-            position: absolute;
-            overflow: hidden;
-            right: -100px;
-            top: 0;
-        }
-
-        .bg-right:after {
-            position: absolute;
-            content: '';
-            display: block;
-            height: 200%;
-            width: 200%;
-            right: -100%;
-            background: white;
-            border-radius: 100%;
-        }
-
-        .carousel-container {
-            overflow: hidden;
-        }
-
-        .carousel {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            will-change: transform;
-        }
-
-        @media only screen and (max-width: 768px) {
-            .bg-design:after {
-                display: none;
+            .bg-design {
+                border-radius: 0 0 40px 40px;
+                position: relative;
             }
 
             .bg-left {
-                display: none;
+                background: #FFDED6;
+                height: 80px;
+                width: 100px;
+                position: absolute;
+                overflow: hidden;
+                left: -100px;
+                top: 0;
+            }
+
+            .bg-left:after {
+                position: absolute;
+                content: '';
+                display: block;
+                height: 200%;
+                width: 200%;
+                left: -100%;
+                background: white;
+                border-radius: 100%;
             }
 
             .bg-right {
-                display: none;
+                background: #FFDED6;
+                height: 80px;
+                width: 100px;
+                position: absolute;
+                overflow: hidden;
+                right: -100px;
+                top: 0;
             }
-        }
-    </style>
 
+            .bg-right:after {
+                position: absolute;
+                content: '';
+                display: block;
+                height: 200%;
+                width: 200%;
+                right: -100%;
+                background: white;
+                border-radius: 100%;
+            }
 
-    <!-- JavaScript for toggling mobile menu -->
-    <script>
-        // responsive nav js
-        document.getElementById('menu-toggle').addEventListener('click', function () {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
+            .carousel-container {
+                overflow: hidden;
+            }
 
-        // active links js
-        let sections = document.querySelectorAll('.section');
-        let navLinks = document.querySelectorAll('header nav a');
+            .carousel {
+                display: flex;
+                transition: transform 0.5s ease-in-out;
+                will-change: transform;
+            }
 
-        window.onscroll = () => {
-            sections.forEach(sec => { // Corrected: "foreach" to "forEach"
-                let top = window.scrollY;
-                let offset = sec.offsetTop - 150;
-                let height = sec.offsetHeight;
-                let id = sec.getAttribute('id');
-
-                if (top >= offset && top < offset + height) {
-                    navLinks.forEach(links => {
-                        links.classList.remove('active');
-                        document.querySelector('header nav a[href*=' + id + ']').classList.add('active'); // Also fixed the query string
-                    });
+            @media only screen and (max-width: 768px) {
+                .bg-design:after {
+                    display: none;
                 }
-            });
-        };
 
-        // carousel JS
-        document.addEventListener('DOMContentLoaded', () => {
-            const carousel = document.getElementById('carousel');
-            const nextButton = document.getElementById('next');
-            const prevButton = document.getElementById('prev');
+                .bg-left {
+                    display: none;
+                }
 
-            let currentIndex = 0;
-            const totalSlides = carousel.children.length;
-            const slideWidth = carousel.children[0].getBoundingClientRect().width + 16; // Including space between slides
+                .bg-right {
+                    display: none;
+                }
+            }
+        </style>
 
-            nextButton.addEventListener('click', () => {
-                // Increment index, wrap around if at the end
-                currentIndex = (currentIndex + 1) % totalSlides;
-                updateCarouselPosition();
-            });
 
-            prevButton.addEventListener('click', () => {
-                // Decrement index, wrap around if at the beginning
-                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-                updateCarouselPosition();
+        <!-- JavaScript for toggling mobile menu -->
+        <script>
+            // responsive nav js
+            document.getElementById('menu-toggle').addEventListener('click', function () {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
             });
 
-            const updateCarouselPosition = () => {
-                carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            // active links js
+            let sections = document.querySelectorAll('.section');
+            let navLinks = document.querySelectorAll('header nav a');
+
+            window.onscroll = () => {
+                sections.forEach(sec => { // Corrected: "foreach" to "forEach"
+                    let top = window.scrollY;
+                    let offset = sec.offsetTop - 150;
+                    let height = sec.offsetHeight;
+                    let id = sec.getAttribute('id');
+
+                    if (top >= offset && top < offset + height) {
+                        navLinks.forEach(links => {
+                            links.classList.remove('active');
+                            document.querySelector('header nav a[href*=' + id + ']').classList.add('active'); // Also fixed the query string
+                        });
+                    }
+                });
             };
 
-            // Update slide width dynamically on window resize
-            window.addEventListener('resize', () => {
-                const updatedSlideWidth = carousel.children[0].getBoundingClientRect().width + 16;
-                if (updatedSlideWidth !== slideWidth) {
+            // carousel JS
+            document.addEventListener('DOMContentLoaded', () => {
+                const carousel = document.getElementById('carousel');
+                const nextButton = document.getElementById('next');
+                const prevButton = document.getElementById('prev');
+
+                let currentIndex = 0;
+                const totalSlides = carousel.children.length;
+                const slideWidth = carousel.children[0].getBoundingClientRect().width + 16; // Including space between slides
+
+                nextButton.addEventListener('click', () => {
+                    // Increment index, wrap around if at the end
+                    currentIndex = (currentIndex + 1) % totalSlides;
                     updateCarouselPosition();
-                }
+                });
+
+                prevButton.addEventListener('click', () => {
+                    // Decrement index, wrap around if at the beginning
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    updateCarouselPosition();
+                });
+
+                const updateCarouselPosition = () => {
+                    carousel.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+                };
+
+                // Update slide width dynamically on window resize
+                window.addEventListener('resize', () => {
+                    const updatedSlideWidth = carousel.children[0].getBoundingClientRect().width + 16;
+                    if (updatedSlideWidth !== slideWidth) {
+                        updateCarouselPosition();
+                    }
+                });
             });
-        });
-    </script>
-    <script>
-        document.getElementById('learn-more-btn').addEventListener('click', function () {
-            const moreInfo = document.getElementById('more-info');
+        </script>
+        <script>
+            document.getElementById('learn-more-btn').addEventListener('click', function () {
+                const moreInfo = document.getElementById('more-info');
 
-            // Toggle the hidden class
-            if (moreInfo.classList.contains('hidden')) {
-                moreInfo.classList.remove('hidden'); // Show the content
-                this.textContent = 'Show less'; // Update button text
-            } else {
-                moreInfo.classList.add('hidden'); // Hide the content
-                this.textContent = 'Learn more..'; // Update button text
-            }
+                // Toggle the hidden class
+                if (moreInfo.classList.contains('hidden')) {
+                    moreInfo.classList.remove('hidden'); // Show the content
+                    this.textContent = 'Show less'; // Update button text
+                } else {
+                    moreInfo.classList.add('hidden'); // Hide the content
+                    this.textContent = 'Learn more..'; // Update button text
+                }
 
-        });
-        document.getElementById('learn-more-btn2').addEventListener('click', function () {
-            const moreInfo2 = document.getElementById('more-info2');
+            });
+            document.getElementById('learn-more-btn2').addEventListener('click', function () {
+                const moreInfo2 = document.getElementById('more-info2');
 
-            // Toggle the hidden class
-            if (moreInfo2.classList.contains('hidden')) {
-                moreInfo2.classList.remove('hidden'); // Show the content
-                this.textContent = 'Show less'; // Update button text
-            } else {
-                moreInfo2.classList.add('hidden'); // Hide the content
-                this.textContent = 'Learn more..'; // Update button text
-            }
+                // Toggle the hidden class
+                if (moreInfo2.classList.contains('hidden')) {
+                    moreInfo2.classList.remove('hidden'); // Show the content
+                    this.textContent = 'Show less'; // Update button text
+                } else {
+                    moreInfo2.classList.add('hidden'); // Hide the content
+                    this.textContent = 'Learn more..'; // Update button text
+                }
 
-        });
-    </script>
+            });
+        </script>
+
     </div>
 
 </x-app-layout>

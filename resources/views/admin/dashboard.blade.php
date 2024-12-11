@@ -14,6 +14,7 @@
     <script src="https://kit.fontawesome.com/a1d595f7c6.js" crossorigin="anonymous"></script>
 
     <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
     @vite('resources/css/app.css')
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>

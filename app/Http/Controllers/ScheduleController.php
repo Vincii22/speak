@@ -9,45 +9,34 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
 {
     $user = Auth::user();
 
-    // Ensure the logged-in user is a professional
     if ($user->role !== 'professional') {
         return redirect()->route('home')->with('error', 'Unauthorized access.');
     }
 
-    // Fetch only schedules where the user_id matches the logged-in professional's id and sort by year, month, and day
     $schedules = Schedule::where('user_id', $user->id)
                          ->orderBy('year', 'asc')
                          ->orderBy('month', 'asc')
                          ->orderBy('day', 'asc')
                          ->get();
 
-    // Pass schedules to the view
     return view('professional.schedule.index', compact('schedules'));
 }
 
 
-    /**
-     * Show the form for creating a new resource.
-     */
 
      public function fetchReservedDatesForLoggedInUser()
     {
         try {
             $user = Auth::user();
 
-            // Ensure the logged-in user is a professional
             if ($user->role !== 'professional') {
                 return response()->json(['error' => 'Unauthorized access.'], 403);
             }
 
-            // Fetch reserved dates only for the logged-in user's ID
             $reservedDates = Schedule::where('user_id', $user->id)
                 ->get(['month', 'day', 'year']); // Only retrieve the necessary fields
 
@@ -106,8 +95,14 @@ class ScheduleController extends Controller
 
         $schedule->save();
 
-        return redirect()->route('schedule.create')
-                        ->with('success', 'Schedule created successfully.');
+        return redirect()->route('schedule.create')->with([
+            'success' => 'Schedule created successfully.',
+            'scheduleData' => [
+                'date' => "{$request->month} {$request->day}, {$request->year}",
+                'time' => $request->time,
+                'pathologist' => $request->speech_language_pathologist,
+            ],
+        ]);
     }
     
 
