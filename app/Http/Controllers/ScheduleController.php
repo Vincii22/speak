@@ -17,7 +17,7 @@ class ScheduleController extends Controller
         return redirect()->route('home')->with('error', 'Unauthorized access.');
     }
 
-    $schedules = Schedule::where('user_id', $user->id)
+    $schedules = Schedule::where('professional_id', $user->id)
                          ->orderBy('year', 'asc')
                          ->orderBy('month', 'asc')
                          ->orderBy('day', 'asc')
@@ -37,7 +37,7 @@ class ScheduleController extends Controller
                 return response()->json(['error' => 'Unauthorized access.'], 403);
             }
 
-            $reservedDates = Schedule::where('user_id', $user->id)
+            $reservedDates = Schedule::where('professional_id', $user->id)
                 ->get(['month', 'day', 'year']); // Only retrieve the necessary fields
 
             return response()->json($reservedDates);
@@ -83,8 +83,8 @@ class ScheduleController extends Controller
 
         $schedule = new Schedule();
 
-        $schedule->user_id = $speechLanguagePathologist->id;
-
+        $schedule->professional_id = $speechLanguagePathologist->id;
+        $schedule->user_id = Auth::id();
         $schedule->month = $request->month;
         $schedule->day = $request->day;
         $schedule->year = $request->year;
@@ -125,9 +125,6 @@ class ScheduleController extends Controller
         return view('professional.schedule.edit', compact('reservedDate', 'pathologists'));
     }
 
-   
-
-
     /**
      * Update the specified resource in storage.
      */
@@ -166,6 +163,8 @@ class ScheduleController extends Controller
         }    
     }
 
+
+    
     /**
      * Remove the specified resource from storage.
      */

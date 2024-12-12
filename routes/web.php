@@ -95,3 +95,8 @@ require __DIR__.'/auth.php';
 Route::resource('schedule', ScheduleController::class);
 Route::post('/schedule/reserved-dates', [ScheduleController::class, 'fetchReservedDates'])->name('schedule.reservedDates');
 Route::post('/schedule/fetchReservedDatesForLoggedInUser', [ScheduleController::class, 'fetchReservedDatesForLoggedInUser'])->name('schedule.fetchReservedDatesForLoggedInUser');
+// Route to show the modal for creating an appointment
+Route::get('/schedule/appointments/create', [ScheduleController::class, 'showAppointmentForm'])->name('schedule.showAppointmentForm');
+
+// Route to store a new appointment
+Route::post('/schedule/appointments/store', [ScheduleController::class, 'storeAppointment'])->name('schedule.storeAppointment');
