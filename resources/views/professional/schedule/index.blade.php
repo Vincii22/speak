@@ -58,16 +58,21 @@
             <div class="element form bg-white px-6 w-full lg:w-[67%] py-5 max-h-[90vh] overflow-y-scroll pr-10 pt-14">
                 <h2 class="text-4xl font-bold mb-4 text-gray-600 uppercase">List of Pending Appointments</h2>
                 <div class="mb-5">
-                    <i class="text-[#858585]">Select a date from the calendar or click on the appointment boxes to highlight your scheduled appointment.</i>
+                    <i class="text-[#858585]">Select a date from the calendar or click on the appointment boxes to
+                        highlight your scheduled appointment.</i>
                 </div>
                 @if(session('message'))
-                    <div class="alert flex items-center justify-between bg-[#FFC0CB] text-gray-500 p-4 rounded-lg shadow-md mb-4 w-full">
+                    <div
+                        class="alert flex items-center justify-between bg-[#FFC0CB] text-gray-500 p-4 rounded-lg shadow-md mb-4 w-full">
                         <div class="flex-1">
                             <span class="font-semibold">{{ session('message') }}</span>
                         </div>
-                        <button onclick="this.parentElement.style.display='none'" class="text-gray-600 hover:text-gray-800 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <button onclick="this.parentElement.style.display='none'"
+                            class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </button>
                     </div>
@@ -81,7 +86,8 @@
                             <img src="{{ url('img/pin.png')}}" alt="" class="absolute w-[60px] right-[-20px] top-[-10px]">
                             <div class="flex justify-between items-center flex_schedule">
                                 <h1>{{ $schedule->month }}</h1>
-                                <h1 class="bg-[#694f8e] day_schedule text-white rounded-full py-1 px-2">{{ $schedule->day }}</h1>
+                                <h1 class="bg-[#694f8e] day_schedule text-white rounded-full py-1 px-2">{{ $schedule->day }}
+                                </h1>
                                 <h1>{{ $schedule->year }}</h1>
                             </div>
                             <div class="flex justify-between mt-2">
@@ -90,12 +96,15 @@
                             </div>
                             <div class="flex justify-between mt-3 items-center ">
                                 <!-- <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1 open-approve-modal" data-id="{{ $schedule->id }}">Approve</a> -->
-                                <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1 open-approve-modal" data-id="{{ $schedule->id }}">Approve</a>
-                                <a href="{{ route('schedule.edit', $schedule->id) }}" class="bg-pink-400 text-white rounded-lg text-sm px-3 py-1">Reschedule</a>
+                                <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1 open-approve-modal"
+                                    data-id="{{ $schedule->id }}">Approve</a>
+                                <a href="{{ route('schedule.edit', $schedule->id) }}"
+                                    class="bg-pink-400 text-white rounded-lg text-sm px-3 py-1">Reschedule</a>
                                 <form action="{{ route('schedule.destroy', $schedule->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button onclick="return confirm('Are you sure to delete this?')" class="text-white bg-red-800 rounded-lg text-sm px-3 py-1">Cancel</button>
+                                    <button onclick="return confirm('Are you sure to delete this?')"
+                                        class="text-white bg-red-800 rounded-lg text-sm px-3 py-1">Cancel</button>
                                 </form>
                             </div>
                         </div>
@@ -108,62 +117,103 @@
 
 
         <!------------ Modals ------------>
-        
-        <div id="approveModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-            <div class="bg-white p-6 rounded-lg w-1/3">
-                <h2 class="text-xl font-bold mb-4">Approve Appointment</h2>
-                <div id="modalContent">
-                    <!-- Fetched data will be dynamically inserted here -->
-                </div>
-                <div class="flex justify-end mt-4">
-                    <button id="closeModal" class="px-4 py-2 bg-gray-500 text-white rounded-lg mr-2">Close</button>
-                    <button id="confirmApprove" class="px-4 py-2 bg-green-500 text-white rounded-lg">Approve</button>
+
+        <div id="approveModal"
+            class="fixed inset-0 z-50 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-[#694F8E] w-1/2 p-6 rounded-[30px] shadow-lg px-8 relative">
+                <img src="{{url('img/calendar.webp')}}" alt="" class="absolute w-[8.5rem] left-[-30px] top-[-50px]" style="-webkit-transform: scaleX(-1); transform: scaleX(-1);">
+
+                <button id="closeApproveModal" class="absolute top-2 text-4xl right-2 text-white hover:text-gray-400">
+                    &times;
+                </button>
+                <div class="container mx-auto">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold mb-4"></h2>
+                        <h2 class="text-3xl font-bold text-white mb-4 text-center uppercase">Appointment Approval</h2>
+                        <!-- Schedule Information -->
+                        <p class="text-white mb-6 lg:text-[2.4vh]">
+                            The appointment requested by
+                            <span class="font-bold text-[#FEF2D0]">{{$schedule->user->name}}</span>
+                            is proposed for
+                            <span class="font-bold text-[#FEF2D0]">{{$schedule->month}}</span>
+                            <span class="font-bold text-[#FEF2D0]">{{$schedule->day}}</span>
+                            <span class="font-bold text-[#FEF2D0]">{{$schedule->year}}</span>
+                            <span class="font-bold text-[#FEF2D0]">{{$schedule->time}}</span>. 
+                            The client can be reached at
+                            <span class="font-bold text-[#FEF2D0]">{{$schedule->email}}</span>
+                            or
+                            <span class="font-bold text-[#FEF2D0]">{{$schedule->contact}}</span>
+                            for further details. This request has been directed to 
+                            <span class="font-bold text-[#FEF2D0]">{{$schedule->speech_language_pathologist}}</span>
+                            <span class="font-bold text-[#FEF2D0]"></span>.
+                        </p>
+                        
+                        <form action="{{ route('schedules.appointments.store', $schedule->id) }}" method="POST">
+                            @csrf
+
+                            <input type="text" name="user_name" id="user_name" hidden value="{{ old('user_name', $schedule->user->name) }}">
+                            <input type="email" name="contact_email" id="contact_email" hidden value="{{ old('contact_email', $schedule->email) }}">
+                            <input type="text" name="contact" id="contact" hidden value="{{ old('contact', $schedule->contact) }}">
+                            <input type="text" name="appointment_month" id="appointment_month" hidden value="{{ old('appointment_month', $schedule->month) }}">
+                            <input type="text" name="appointment_day" id="appointment_day" hidden value="{{ old('appointment_day', $schedule->day) }}">
+                            <input type="text" name="appointment_year" id="appointment_year" hidden value="{{ old('appointment_year', $schedule->year) }}">
+                            <input type="text" name="appointment_time" id="appointment_time" hidden value="{{ old('appointment_time', $schedule->time) }}">
+                            <input type="text" name="speech_language_pathologist" id="speech_language_pathologist" hidden value="{{ old('speech_language_pathologist', $schedule->speech_language_pathologist) }}">
+                            <input type="text" name="schedule_id" id="schedule_id" hidden value="{{ old('schedule_id', $schedule->id) }}">
+                            <input type="text" name="schedule_id" id="schedule_id" hidden value="{{ old('schedule_id', $schedule->id) }}">
+                            <input type="email" name="user_email" id="user_email" hidden value="{{ old('user_email', $schedule->user->email) }}">
+
+                            <div class="flex items-center space-x-4 justify-around">
+                                <!-- Approved Button -->
+                                <div class="w-full pb-5 flex justify-center">
+                                    <label class="flex items-center px-20 space-x-2 text-white text-[2.4vh] hover:text-green-400 cursor-pointer">
+                                        <input type="radio" name="status" value="approved" 
+                                            {{ old('status', $schedule->status) == 'approved' ? 'checked' : '' }}
+                                            class="hidden peer">
+                                        <span class="w-6 h-6 border-2 border-green-500 rounded-full flex items-center justify-center relative peer-checked:bg-green-500">
+                                            <svg class="checkmark hidden peer-checked:block w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                                <path d="M5 12l5 5L20 7" />
+                                            </svg>
+                                        </span>
+                                        <span>Approved</span>
+                                    </label>
+                                </div>
+
+                                <!-- Declined Button -->
+                                <div class="w-full py-5 flex justify-center">
+                                    <label class="flex items-center px-20 space-x-2 text-white text-[2.4vh] hover:text-red-400 cursor-pointer">
+                                        <input type="radio" name="status" value="declined" 
+                                            {{ old('status', $schedule->status) == 'declined' ? 'checked' : '' }}
+                                            class="hidden peer">
+                                        <span class="w-6 h-6 border-2 border-red-500 rounded-full flex items-center justify-center relative peer-checked:bg-red-500">
+                                            <svg class="crossmark hidden peer-checked:block w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                                <path d="M6 6l12 12M18 6L6 18" />
+                                            </svg>
+                                        </span>
+                                        <span>Declined</span>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <!-- Submit Button -->
+                            <div class="text-center w-full">
+                                <button type="submit"
+                                    class="bg-pink-400 text-white font-bold py-2 px-4 w-full rounded-lg  hover:bg-pink-300">
+                                    Save Changes
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <!------------ end of Modals ------------>
-        <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const approveButtons = document.querySelectorAll('.open-approve-modal');
-        const approveModal = document.getElementById('approveModal');
-        const closeModal = document.getElementById('closeModal');
-        const modalContent = document.getElementById('modalContent');
-        const confirmApprove = document.getElementById('confirmApprove');
 
-        // Event listener for opening the modal
-        approveButtons.forEach(button => {
-            button.addEventListener('click', function (event) {
-                event.preventDefault(); // Prevent the default anchor action
-                const scheduleId = button.getAttribute('data-id');
 
-                // Dynamically load data into the modal (for example, schedule ID)
-                modalContent.innerHTML = `<p>Are you sure you want to approve the appointment with ID: <strong>${scheduleId}</strong>?</p>`;
 
-                // Show the modal
-                approveModal.classList.remove('hidden');
-            });
-        });
 
-        // Event listener for closing the modal
-        closeModal.addEventListener('click', function () {
-            approveModal.classList.add('hidden'); // Hide the modal
-        });
-
-        // Event listener for confirming the approval
-        confirmApprove.addEventListener('click', function () {
-            const scheduleId = document.querySelector('.open-approve-modal').getAttribute('data-id');
-
-            // You can replace this part with an AJAX request to approve the schedule
-            console.log('Approved Schedule ID:', scheduleId);
-
-            // Close the modal after confirming
-            approveModal.classList.add('hidden');
-        });
-    });
-</script>
         <style>
-
             .upper-design {
                 width: 25px;
                 height: 25px;
@@ -194,7 +244,84 @@
                 transform: translate(-50%, -50%);
                 box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
             }
+            .peer:checked + span {
+        animation: scaleEffect 0.3s ease-in-out;
+    }
+
+    @keyframes scaleEffect {
+        0% {
+            transform: scale(0.8);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
         </style>
+
+        <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const approveButtons = document.querySelectorAll('.open-approve-modal');
+    const approveModal = document.getElementById('approveModal');
+    const closeApproveModal = document.getElementById('closeApproveModal');
+    let currentScheduleId = null;  // Store the current schedule ID
+
+    // Open the modal when the "Approve" button is clicked
+    approveButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            // Get the schedule ID from the button's data-id attribute
+            currentScheduleId = this.getAttribute('data-id');
+            
+            // Check if the scheduleId is correctly captured (debugging step)
+            console.log('Schedule ID clicked:', currentScheduleId);
+            
+            // Populate the modal with the schedule ID or other data
+            // Fetch the schedule data to populate the modal fields
+            fetchScheduleData(currentScheduleId);
+            
+            // Show the modal
+            approveModal.classList.remove('hidden');
+        });
+    });
+
+    // Close the modal when the close button is clicked
+    closeApproveModal.addEventListener('click', function () {
+        approveModal.classList.add('hidden');
+    });
+
+    // Close modal on background click
+    approveModal.addEventListener('click', function (event) {
+        if (event.target === approveModal) {
+            approveModal.classList.add('hidden');
+        }
+    });
+
+    // Function to fetch schedule data and populate the modal fields
+    function fetchScheduleData(scheduleId) {
+        console.log('Fetching data for schedule ID:', scheduleId);  // Debugging step
+        fetch(`/schedule/${scheduleId}/data`)  // Ensure this route exists
+            .then(response => response.json())
+            .then(data => {
+                // Populate modal form fields with the fetched data
+                document.getElementById('user_name').value = data.user_name || '';
+                document.getElementById('user_email').value = data.user_email || '';
+                document.getElementById('appointment_month').value = data.appointment_month || '';
+                document.getElementById('appointment_day').value = data.appointment_day || '';
+                document.getElementById('appointment_year').value = data.appointment_year || '';
+                document.getElementById('appointment_time').value = data.appointment_time || '';
+                document.getElementById('contact').value = data.contact || '';
+                document.getElementById('contact_email').value = data.contact_email || '';
+                document.getElementById('speech_language_pathologist').value = data.speech_language_pathologist || '';
+                document.getElementById('schedule_id').value = data.schedule_id || '';
+            })
+            .catch(error => console.error('Error fetching schedule data:', error));
+    }
+});
+
+
+        </script>
 
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -274,12 +401,12 @@
                             'X-CSRF-TOKEN': '{{ csrf_token() }}',
                         }
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        bookedDates = data;
-                        renderCalendar();
-                    })
-                    .catch(error => console.error('Error fetching reserved dates:', error));
+                        .then(response => response.json())
+                        .then(data => {
+                            bookedDates = data;
+                            renderCalendar();
+                        })
+                        .catch(error => console.error('Error fetching reserved dates:', error));
                 }
 
                 function addDateClickListeners() {
@@ -365,7 +492,7 @@
 
 
 
-       
+
         @stop
     </div>
 </x-professional-layout>

@@ -14,19 +14,21 @@ return new class extends Migration
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('user_name');
-            $table->string('user_email');
-            $table->integer('appointment_month');
-            $table->integer('appointment_day');
-            $table->integer('appointment_year');
-            $table->time('appointment_time');
+            $table->string('name');
+            $table->string('email');
+            $table->string('month');
+            $table->string('day');
+            $table->string('year');
+            $table->string('time');
+            $table->string('status');
             $table->string('contact');
             $table->string('contact_email');
-            $table->string('status')->default('pending');
+            $table->unsignedBigInteger('schedule_id'); // Foreign key to schedules table
             $table->timestamps();
 
-            // Foreign key reference for user_id
+            // Foreign key references
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
         });
     }
 
