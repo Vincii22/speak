@@ -48,70 +48,119 @@
                         <h1 class="text-xl">Date Today</h1>
                     </div>
                     <div class="flex gap-1 items-center">
+                        <div class="bg-[#df96ff] w-[20px] h-[20px] rounded-full"></div>
+                        <h1 class="text-xl">Pending</h1>
+                    </div>
+                    <div class="flex gap-1 items-center">
                         <div class="bg-[#694f8e] w-[20px] h-[20px] rounded-full"></div>
                         <h1 class="text-xl">Confirmed</h1>
                     </div>
+                    
                 </div>
             </div>
 
             <!---------------- Form (Right Side) ---------------->
-            <div class="element form bg-white px-6 w-full lg:w-[67%] py-5 max-h-[90vh] overflow-y-scroll pr-10 pt-14">
-                <h2 class="text-4xl font-bold mb-4 text-gray-600 uppercase">List of Pending Appointments</h2>
-                <div class="mb-5">
-                    <i class="text-[#858585]">Select a date from the calendar or click on the appointment boxes to
-                        highlight your scheduled appointment.</i>
-                </div>
-                @if(session('message'))
-                    <div
-                        class="alert flex items-center justify-between bg-[#FFC0CB] text-gray-500 p-4 rounded-lg shadow-md mb-4 w-full">
-                        <div class="flex-1">
-                            <span class="font-semibold">{{ session('message') }}</span>
-                        </div>
-                        <button onclick="this.parentElement.style.display='none'"
-                            class="text-gray-600 hover:text-gray-800 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
+            <div class="bg-white px-6 w-full lg:w-[67%] py-5 max-h-[90vh] overflow-y-scroll pr-10 pt-14">
+                <div class="element form mb-10">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-600 uppercase">List of Pending Appointments</h2>
+                    <div class="mb-5">
+                        <i class="text-[#858585]">Select a date from the calendar or click on the appointment boxes to
+                            highlight your pending appointments.</i>
                     </div>
-                @endif
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                    @foreach ($schedules as $schedule)
-                        <div class="shadow-md w-full relative h-[150px] rounded-lg px-4 py-3 flex flex-col justify-center schedule-item transition-colors pt-7"
-                            data-day="{{ $schedule->day }}" data-month="{{ $schedule->month }}"
-                            data-year="{{ $schedule->year }}">
-                            <img src="{{ url('img/pin.png')}}" alt="" class="absolute w-[60px] right-[-20px] top-[-10px]">
-                            <div class="flex justify-between items-center flex_schedule">
-                                <h1>{{ $schedule->month }}</h1>
-                                <h1 class="bg-[#694f8e] day_schedule text-white rounded-full py-1 px-2">{{ $schedule->day }}
-                                </h1>
-                                <h1>{{ $schedule->year }}</h1>
+                    @if(session('message'))
+                        <div
+                            class="alert flex items-center justify-between bg-[#FFC0CB] text-gray-500 p-4 rounded-lg shadow-md mb-4 w-full">
+                            <div class="flex-1">
+                                <span class="font-semibold">{{ session('message') }}</span>
                             </div>
-                            <div class="flex justify-between mt-2">
-                                <label>Time appointed:</label>
-                                <h1 class="ml-1">{{ $schedule->time }}</h1>
-                            </div>
-                            <div class="flex justify-between mt-3 items-center ">
-                                <!-- <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1 open-approve-modal" data-id="{{ $schedule->id }}">Approve</a> -->
-                                <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1 open-approve-modal"
-                                    data-id="{{ $schedule->id }}">Approve</a>
-                                <a href="{{ route('schedule.edit', $schedule->id) }}"
-                                    class="bg-pink-400 text-white rounded-lg text-sm px-3 py-1">Reschedule</a>
-                                <form action="{{ route('schedule.destroy', $schedule->id)}}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button onclick="return confirm('Are you sure to delete this?')"
-                                        class="text-white bg-red-800 rounded-lg text-sm px-3 py-1">Cancel</button>
-                                </form>
-                            </div>
+                            <button onclick="this.parentElement.style.display='none'"
+                                class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
                         </div>
+                    @endif
 
-                    @endforeach
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+                        @foreach ($schedules as $schedule)
+                            <div class="shadow-md w-full relative h-[150px] rounded-lg px-4 py-3 flex flex-col justify-center schedule-item transition-colors pt-7"
+                                data-day="{{ $schedule->day }}" data-month="{{ $schedule->month }}"
+                                data-year="{{ $schedule->year }}">
+                                <img src="{{ url('img/pin.png')}}" alt="" class="absolute w-[60px] right-[-20px] top-[-10px]">
+                                <div class="flex justify-between items-center flex_schedule">
+                                    <h1>{{ $schedule->month }}</h1>
+                                    <h1 class="bg-[#694f8e] day_schedule text-white rounded-full py-1 px-2">{{ $schedule->day }}
+                                    </h1>
+                                    <h1>{{ $schedule->year }}</h1>
+                                </div>
+                                <div class="flex justify-between mt-2">
+                                    <label>Time appointed:</label>
+                                    <h1 class="ml-1">{{ $schedule->time }}</h1>
+                                </div>
+                                <div class="flex justify-between mt-3 items-center ">
+                                    <!-- <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1 open-approve-modal" data-id="{{ $schedule->id }}">Approve</a> -->
+                                    <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1 open-approve-modal"
+                                        data-id="{{ $schedule->id }}">Approve</a>
+                                    <a href="{{ route('schedule.edit', $schedule->id) }}"
+                                        class="bg-pink-400 text-white rounded-lg text-sm px-3 py-1">Reschedule</a>
+                                    <form action="{{ route('schedule.destroy', $schedule->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('Are you sure to delete this?')"
+                                            class="text-white bg-red-800 rounded-lg text-sm px-3 py-1">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        @endforeach
+                    </div>
+
                 </div>
+                <div class="border-t-2 pt-4">
+                    <div>
+                        <h2 class="text-4xl font-bold mb-4 text-gray-600 uppercase">List of Approved Appointments</h2>
+                        <div class="mb-5">
+                            <i class="text-[#858585]">Select a date from the calendar or click on the appointment boxes to
+                                highlight your scheduled appointments.</i>
+                        </div>
+                    </div>
 
+                    <!-- Display Approved Appointments -->
+                    @if ($approvedSchedules->isEmpty())
+                        <p class="text-gray-600">No approved appointments yet.</p>
+                    @else
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+
+                        @foreach ($approvedSchedules as $schedule)
+                            <div class="shadow-md w-full relative h-[150px] rounded-lg px-4 py-3 flex flex-col justify-center schedule-item transition-colors pt-7"
+                                data-day="{{ $schedule->day }}" data-month="{{ $schedule->month }}" data-year="{{ $schedule->year }}">
+                                <img src="{{ url('img/pin.png') }}" alt="" class="absolute w-[60px] right-[-20px] top-[-10px]">
+                                <div class="flex justify-between items-center flex_schedule">
+                                    <h1>{{ $schedule->month }}</h1>
+                                    <h1 class="bg-[#694f8e] day_schedule text-white rounded-full py-1 px-2">{{ $schedule->day }}</h1>
+                                    <h1>{{ $schedule->year }}</h1>
+                                </div>
+                                <div class="flex justify-between mt-2">
+                                    <label>Time appointed:</label>
+                                    <h1 class="ml-1">{{ $schedule->time }}</h1>
+                                </div>
+                                <div class="flex justify-between mt-3 items-center">
+                                    <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1">View Appointment</a>
+                                    <form action="{{ route('schedule.destroy', $schedule->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button onclick="return confirm('Are you sure to delete this?')"
+                                            class="text-white bg-red-800 rounded-lg text-sm px-3 py-1">Cancel</button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    @endif
+                </div>
             </div>
         </div>
 
@@ -128,28 +177,29 @@
                 </button>
                 <div class="container mx-auto">
                     <div class="p-6">
-                        <h2 class="text-2xl font-bold mb-4"></h2>
-                        <h2 class="text-3xl font-bold text-white mb-4 text-center uppercase">Appointment Approval</h2>
-                        <!-- Schedule Information -->
-                        <p class="text-white mb-6 lg:text-[2.4vh]">
-                            The appointment requested by
-                            <span class="font-bold text-[#FEF2D0]">{{$schedule->user->name}}</span>
-                            is proposed for
-                            <span class="font-bold text-[#FEF2D0]">{{$schedule->month}}</span>
-                            <span class="font-bold text-[#FEF2D0]">{{$schedule->day}}</span>
-                            <span class="font-bold text-[#FEF2D0]">{{$schedule->year}}</span>
-                            <span class="font-bold text-[#FEF2D0]">{{$schedule->time}}</span>. 
-                            The client can be reached at
-                            <span class="font-bold text-[#FEF2D0]">{{$schedule->email}}</span>
-                            or
-                            <span class="font-bold text-[#FEF2D0]">{{$schedule->contact}}</span>
-                            for further details. This request has been directed to 
-                            <span class="font-bold text-[#FEF2D0]">{{$schedule->speech_language_pathologist}}</span>
-                            <span class="font-bold text-[#FEF2D0]"></span>.
-                        </p>
-                        
                         <form action="{{ route('schedules.appointments.store', $schedule->id) }}" method="POST">
                             @csrf
+                            <h2 class="text-3xl font-bold text-white mb-4 text-center uppercase">Appointment Approval</h2>
+                            <!-- Schedule Information -->
+                            <p class="text-white mb-6 lg:text-[2.4vh]">
+                                The appointment requested by
+                                <span class="font-bold text-[#FEF2D0]">{{$schedule->user->name}}</span>
+                                is proposed for
+                                <span class="font-bold text-[#FEF2D0]">{{$schedule->month}}</span>
+                                <span class="font-bold text-[#FEF2D0]">{{$schedule->day}}</span>
+                                <span class="font-bold text-[#FEF2D0]">{{$schedule->year}}</span>
+                                <span class="font-bold text-[#FEF2D0]">{{$schedule->time}}</span>. 
+                                The client can be reached at
+                                <span class="font-bold text-[#FEF2D0]">{{$schedule->email}}</span>
+                                or
+                                <span class="font-bold text-[#FEF2D0]">{{$schedule->contact}}</span>
+                                for further details. This request has been directed to 
+                                <span class="font-bold text-[#FEF2D0]">{{$schedule->speech_language_pathologist}}</span>
+                                <span class="font-bold text-[#FEF2D0]"></span>.
+                            </p>
+
+
+
 
                             <input type="text" name="user_name" id="user_name" hidden value="{{ old('user_name', $schedule->user->name) }}">
                             <input type="email" name="contact_email" id="contact_email" hidden value="{{ old('contact_email', $schedule->email) }}">
@@ -261,231 +311,194 @@
     }
         </style>
 
-        <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const approveButtons = document.querySelectorAll('.open-approve-modal');
-    const approveModal = document.getElementById('approveModal');
-    const closeApproveModal = document.getElementById('closeApproveModal');
-    let currentScheduleId = null;  // Store the current schedule ID
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let currentMonth = new Date();
+        let bookedDates = [];
+        let lastClickedDate = null;
+        const approveModal = document.getElementById('approveModal');
+        const closeApproveModal = document.getElementById('closeApproveModal');
+        const approveButtons = document.querySelectorAll('.open-approve-modal');
+        let currentScheduleId = null;  // Store the current schedule ID
 
-    // Open the modal when the "Approve" button is clicked
-    approveButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            // Get the schedule ID from the button's data-id attribute
-            currentScheduleId = this.getAttribute('data-id');
-            
-            // Check if the scheduleId is correctly captured (debugging step)
-            console.log('Schedule ID clicked:', currentScheduleId);
-            
-            // Populate the modal with the schedule ID or other data
-            // Fetch the schedule data to populate the modal fields
-            fetchScheduleData(currentScheduleId);
-            
-            // Show the modal
-            approveModal.classList.remove('hidden');
+        // Open the modal when the "Approve" button is clicked
+        approveButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Get the schedule ID from the button's data-id attribute
+                currentScheduleId = this.getAttribute('data-id');
+                
+                // Fetch the schedule data to populate the modal fields
+                fetchScheduleData(currentScheduleId);
+                
+                // Show the modal
+                approveModal.classList.remove('hidden');
+            });
         });
-    });
 
-    // Close the modal when the close button is clicked
-    closeApproveModal.addEventListener('click', function () {
-        approveModal.classList.add('hidden');
-    });
-
-    // Close modal on background click
-    approveModal.addEventListener('click', function (event) {
-        if (event.target === approveModal) {
+        // Close the modal when the close button is clicked
+        closeApproveModal.addEventListener('click', function () {
             approveModal.classList.add('hidden');
-        }
-    });
+        });
 
-    // Function to fetch schedule data and populate the modal fields
-    function fetchScheduleData(scheduleId) {
-        console.log('Fetching data for schedule ID:', scheduleId);  // Debugging step
-        fetch(`/schedule/${scheduleId}/data`)  // Ensure this route exists
+        // Close modal on background click
+        approveModal.addEventListener('click', function (event) {
+            if (event.target === approveModal) {
+                approveModal.classList.add('hidden');
+            }
+        });
+
+        // Function to fetch schedule data and populate the modal fields
+        function fetchScheduleData(id) {
+    fetch(`/schedule/getScheduleData/${id}`)  // Pass 'id' here, not 'scheduleId'
+        .then(response => response.json())
+        .then(data => {
+            // Populate modal form fields with the fetched data
+            document.getElementById('user_name').value = data.user_name || '';
+            document.getElementById('user_email').value = data.user_email || '';
+            document.getElementById('appointment_month').value = data.appointment_month || '';
+            document.getElementById('appointment_day').value = data.appointment_day || '';
+            document.getElementById('appointment_year').value = data.appointment_year || '';
+            document.getElementById('appointment_time').value = data.appointment_time || '';
+            document.getElementById('contact').value = data.contact || '';
+            document.getElementById('contact_email').value = data.contact_email || '';
+            document.getElementById('speech_language_pathologist').value = data.speech_language_pathologist || '';
+            document.getElementById('schedule_id').value = data.schedule_id || '';
+        })
+        .catch(error => console.error('Error fetching schedule data:', error));
+}
+
+
+        // Function to render the calendar
+        function renderCalendar() {
+            const month = currentMonth.getMonth();
+            const year = currentMonth.getFullYear();
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const monthNames = [
+                "January", "February", "March", "April", "May", "June", "July",
+                "August", "September", "October", "November", "December"
+            ];
+
+            // Update the month and year display
+            document.getElementById("calendarYear").textContent = year;
+            document.getElementById("calendarMonth").textContent = monthNames[month];
+
+            const calendarGrid = document.getElementById("calendarGrid");
+            calendarGrid.innerHTML = `
+                <div class="absolute bg-[#694f8e] h-10 w-full top-[0px] z-10"></div>
+                <div class="py-2 relative z-20 text-white uppercase font-bold text-red-500">Sun</div>
+                <div class="py-2 relative z-20 text-white uppercase">Mon</div>
+                <div class="py-2 relative z-20 text-white uppercase">Tue</div>
+                <div class="py-2 relative z-20 text-white uppercase">Wed</div>
+                <div class="py-2 relative z-20 text-white uppercase">Thu</div>
+                <div class="py-2 relative z-20 text-white uppercase">Fri</div>
+                <div class="py-2 relative z-20 text-white uppercase">Sat</div>
+            `;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const lastDate = new Date(year, month + 1, 0).getDate();
+
+            let day = 1;
+            for (let i = 0; i < 6; i++) {
+                for (let j = 0; j < 7; j++) {
+                    if (i === 0 && j < firstDay) {
+                        calendarGrid.innerHTML += `<div class="py-2"></div>`; // Empty space before first day
+                    } else if (day <= lastDate) {
+                        // Find the schedule for the current day
+                        const schedule = bookedDates.find(schedule => 
+                            schedule.day == day && schedule.month == monthNames[month] && schedule.year == year
+                        );
+
+                        const isBooked = schedule !== undefined;
+                        const isToday = today.getDate() === day && today.getMonth() === month && today.getFullYear() === year;
+
+                        // Set background color based on booking status
+                        const backgroundColor = isBooked ? 
+                            (schedule.status === 'approved' ? 'bg-[#694f8e]' : 'bg-[#df96ff]') : 
+                            'bg-gray-300';
+
+                        calendarGrid.innerHTML += `
+                            <div 
+                                class="py-2 !text-[#5c6bcc] calendar-date 
+                                ${isBooked ? `${backgroundColor} !text-white rounded-full cursor-pointer` : 'text-gray-300'}
+                                ${isToday ? 'bg-pink-500 !text-white rounded-full' : ''}"
+                                data-day="${day}" 
+                                data-month="${monthNames[month]}" 
+                                data-year="${year}"
+                                data-schedule-id="${isBooked ? schedule.id : ''}">
+                                ${day}
+                            </div>`;
+                        day++;
+                    }
+                }
+            }
+
+            addDateClickListeners();  // Add event listeners after rendering calendar
+        }
+
+        // Fetch reserved dates from the server
+        function fetchReservedDates() {
+            fetch('/schedule/fetchReservedDatesForLoggedInUser', {  // Corrected endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',  // Ensure CSRF token is sent (if using Blade with CSRF)
+                }
+            })
             .then(response => response.json())
             .then(data => {
-                // Populate modal form fields with the fetched data
-                document.getElementById('user_name').value = data.user_name || '';
-                document.getElementById('user_email').value = data.user_email || '';
-                document.getElementById('appointment_month').value = data.appointment_month || '';
-                document.getElementById('appointment_day').value = data.appointment_day || '';
-                document.getElementById('appointment_year').value = data.appointment_year || '';
-                document.getElementById('appointment_time').value = data.appointment_time || '';
-                document.getElementById('contact').value = data.contact || '';
-                document.getElementById('contact_email').value = data.contact_email || '';
-                document.getElementById('speech_language_pathologist').value = data.speech_language_pathologist || '';
-                document.getElementById('schedule_id').value = data.schedule_id || '';
+                bookedDates = data.map(schedule => ({
+                    day: schedule.day,
+                    month: schedule.month,
+                    year: schedule.year,
+                    status: schedule.status,  // Add status to booked dates
+                    id: schedule.id  // Ensure ID is available
+                }));
+                renderCalendar();  // Re-render the calendar with fetched data
             })
-            .catch(error => console.error('Error fetching schedule data:', error));
-    }
-});
+            .catch(error => console.error('Error fetching reserved dates:', error));
+        }
 
+        // Function to add click event listeners to calendar dates
+        function addDateClickListeners() {
+            const calendarDates = document.querySelectorAll(".calendar-date");
 
-        </script>
+            calendarDates.forEach(dateElement => {
+                dateElement.addEventListener("click", function () {
+                    // Remove highlight from all calendar dates
+                    calendarDates.forEach(el => el.classList.remove("bg-purple-500", "text-blue-100"));
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                let currentMonth = new Date();
-                let bookedDates = [];
-                let lastClickedDate = null;
-                let lastClickedSchedule = null;
+                    // Highlight the clicked calendar date
+                    this.classList.add("bg-purple-500", "text-blue-100", "rounded-full");
+                    lastClickedDate = this;
 
-                function renderCalendar() {
-                    const month = currentMonth.getMonth();
-                    const year = currentMonth.getFullYear();
-                    const today = new Date();
-                    today.setHours(0, 0, 0, 0);
-
-                    const monthNames = [
-                        "January", "February", "March", "April", "May", "June", "July",
-                        "August", "September", "October", "November", "December"
-                    ];
-
-                    document.getElementById("calendarYear").textContent = year;
-                    document.getElementById("calendarMonth").textContent = monthNames[month];
-
-                    const calendarGrid = document.getElementById("calendarGrid");
-                    calendarGrid.innerHTML = `
-                        <div class="absolute bg-[#694f8e] h-10 w-full top-[0px] z-10"></div>
-                        <div class="py-2 relative z-20 text-white uppercase font-bold text-red-500">Sun</div>
-                        <div class="py-2 relative z-20 text-white uppercase">Mon</div>
-                        <div class="py-2 relative z-20 text-white uppercase">Tue</div>
-                        <div class="py-2 relative z-20 text-white uppercase">Wed</div>
-                        <div class="py-2 relative z-20 text-white uppercase">Thu</div>
-                        <div class="py-2 relative z-20 text-white uppercase">Fri</div>
-                        <div class="py-2 relative z-20 text-white uppercase">Sat</div>
-                    `;
-
-                    const firstDay = new Date(year, month, 1).getDay();
-                    const lastDate = new Date(year, month + 1, 0).getDate();
-
-                    let day = 1;
-                    for (let i = 0; i < 6; i++) {
-                        for (let j = 0; j < 7; j++) {
-                            if (i === 0 && j < firstDay) {
-                                calendarGrid.innerHTML += `<div class="py-2"></div>`;
-                            } else if (day <= lastDate) {
-                                const isBooked = bookedDates.some(schedule => {
-                                    return (
-                                        schedule.day == day &&
-                                        schedule.month == monthNames[month] &&
-                                        schedule.year == year
-                                    );
-                                });
-
-                                const isToday = today.getDate() === day && today.getMonth() === month && today.getFullYear() === year;
-
-                                calendarGrid.innerHTML += `
-                                    <div 
-                                        class="py-2 text-[#5c6bcc] calendar-date 
-                                        ${isBooked ? 'bg-[#694f8e] !text-[#cccccc] rounded-full cursor-pointer' : 'text-gray-300'}
-                                        ${isToday ? 'bg-pink-500 !text-white rounded-full' : ''}"
-                                        data-day="${day}" 
-                                        data-month="${monthNames[month]}" 
-                                        data-year="${year}">
-                                        ${day}
-                                    </div>`;
-                                day++;
-                            }
-                        }
+                    // Get the 'data-id' attribute (schedule's id) and use it
+                    const scheduleId = this.dataset.id;  // Use 'data-id' from the clicked element
+                    if (scheduleId) {
+                        currentScheduleId = scheduleId;  // Store the scheduleId
+                        fetchScheduleData(currentScheduleId);  // Fetch data with 'id'
                     }
-
-                    addDateClickListeners();
-                }
-
-                function fetchReservedDates() {
-                    fetch('/schedule/fetchReservedDatesForLoggedInUser', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        }
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            bookedDates = data;
-                            renderCalendar();
-                        })
-                        .catch(error => console.error('Error fetching reserved dates:', error));
-                }
-
-                function addDateClickListeners() {
-                    const calendarDates = document.querySelectorAll(".calendar-date");
-                    const scheduleItems = document.querySelectorAll(".schedule-item");
-
-                    calendarDates.forEach(dateElement => {
-                        dateElement.addEventListener("click", function () {
-                            // Remove highlight from all calendar dates
-                            calendarDates.forEach(el => el.classList.remove("bg-purple-500", "text-blue-100"));
-
-                            // Highlight the clicked calendar date
-                            this.classList.add("bg-purple-500", "text-blue-100", "rounded-full");
-                            lastClickedDate = this;
-
-                            // Highlight corresponding schedule item
-                            highlightSchedule(this.dataset.day, this.dataset.month, this.dataset.year);
-                        });
-                    });
-
-                    scheduleItems.forEach(schedule => {
-                        schedule.addEventListener("click", function () {
-                            // Remove highlight from all schedule items
-                            scheduleItems.forEach(el => el.classList.remove("bg-[#b692d0]", "text-white"));
-
-                            // Highlight the clicked schedule item
-                            this.classList.add("bg-[#b692d0]", "text-white");
-                            lastClickedSchedule = this;
-
-                            // Highlight corresponding calendar date
-                            highlightCalendarDate(this.dataset.day, this.dataset.month, this.dataset.year);
-                        });
-                    });
-                }
-
-                function highlightSchedule(day, month, year) {
-                    const schedules = document.querySelectorAll(".schedule-item");
-                    schedules.forEach(schedule => {
-                        schedule.classList.remove("bg-[#b692d0]", "text-white");
-                        if (
-                            schedule.dataset.day === day &&
-                            schedule.dataset.month === month &&
-                            schedule.dataset.year === year
-                        ) {
-                            schedule.classList.add("bg-[#b692d0]", "text-white");
-                        }
-                    });
-                }
-
-                function highlightCalendarDate(day, month, year) {
-                    const calendarDates = document.querySelectorAll(".calendar-date");
-                    calendarDates.forEach(dateElement => {
-                        dateElement.classList.remove("bg-purple-500", "text-white");
-                        if (
-                            dateElement.dataset.day === day &&
-                            dateElement.dataset.month === month &&
-                            dateElement.dataset.year === year
-                        ) {
-                            dateElement.classList.add("bg-purple-500", "text-white");
-                        }
-                    });
-                }
-
-                // Initial fetch of reserved dates
-                fetchReservedDates();
-
-                // Month navigation
-                document.getElementById("prevMonth").addEventListener("click", function () {
-                    currentMonth.setMonth(currentMonth.getMonth() - 1);
-                    fetchReservedDates();
-                });
-
-                document.getElementById("nextMonth").addEventListener("click", function () {
-                    currentMonth.setMonth(currentMonth.getMonth() + 1);
-                    fetchReservedDates();
                 });
             });
+        }
 
-        </script>
+        // Initial fetch of reserved dates when the page loads
+        fetchReservedDates();
+
+        // Month navigation
+        document.getElementById("prevMonth").addEventListener("click", function () {
+            currentMonth.setMonth(currentMonth.getMonth() - 1);
+            fetchReservedDates();  // Re-fetch the dates for the previous month
+        });
+
+        document.getElementById("nextMonth").addEventListener("click", function () {
+            currentMonth.setMonth(currentMonth.getMonth() + 1);
+            fetchReservedDates();  // Re-fetch the dates for the next month
+        });
+    });
+</script>
+
 
 
 
