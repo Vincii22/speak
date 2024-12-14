@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -17,13 +18,21 @@ class ScheduleController extends Controller
         return redirect()->route('home')->with('error', 'Unauthorized access.');
     }
 
-    $schedules = Schedule::where('user_id', $user->id)
-                         ->orderBy('year', 'asc')
-                         ->orderBy('month', 'asc')
-                         ->orderBy('day', 'asc')
-                         ->get();
+    $schedules = Schedule::where('professional_id', $user->id)
+                        ->where('status', 'pending')
+                        ->orderBy('year', 'asc')
+                        ->orderBy('month', 'asc')
+                        ->orderBy('day', 'asc')
+                        ->get();
 
-    return view('professional.schedule.index', compact('schedules'));
+    $approvedSchedules = Schedule::where('professional_id', $user->id)
+        ->where('status', 'approved') // Only fetch approved schedules
+        ->orderBy('year', 'asc')
+        ->orderBy('month', 'asc')
+        ->orderBy('day', 'asc')
+        ->get();
+
+    return view('professional.schedule.index', compact('schedules', 'approvedSchedules'));
 }
 
 
@@ -37,8 +46,8 @@ class ScheduleController extends Controller
                 return response()->json(['error' => 'Unauthorized access.'], 403);
             }
 
-            $reservedDates = Schedule::where('user_id', $user->id)
-                ->get(['month', 'day', 'year']); // Only retrieve the necessary fields
+            $reservedDates = Schedule::where('professional_id', $user->id)
+                ->get(['month', 'day', 'year', 'status', 'id']); // Only retrieve the necessary fields
 
             return response()->json($reservedDates);
         } catch (\Exception $e) {
@@ -83,8 +92,8 @@ class ScheduleController extends Controller
 
         $schedule = new Schedule();
 
-        $schedule->user_id = $speechLanguagePathologist->id;
-
+        $schedule->professional_id = $speechLanguagePathologist->id;
+        $schedule->user_id = Auth::id();
         $schedule->month = $request->month;
         $schedule->day = $request->day;
         $schedule->year = $request->year;
@@ -125,8 +134,7 @@ class ScheduleController extends Controller
         return view('professional.schedule.edit', compact('reservedDate', 'pathologists'));
     }
 
-   
-
+    
 
     /**
      * Update the specified resource in storage.
@@ -166,6 +174,71 @@ class ScheduleController extends Controller
         }    
     }
 
+    public function storeAppointment(Request $request, $scheduleId)
+{
+    // Validate the incoming request data
+    $validated = $request->validate([
+        'user_name' => 'required|string|max:255',
+        'user_email' => 'required|email|max:255',
+        'appointment_month' => 'required|string|max:50',
+        'appointment_day' => 'required|string|max:50',
+        'appointment_year' => 'required|string|max:50',
+        'appointment_time' => 'required|string|max:50',
+        'status' => 'required|string|in:approved,declined',
+        'contact' => 'required|string|max:255',
+        'contact_email' => 'required|email|max:255',
+        'speech_language_pathologist' => 'nullable|string|max:255',
+    ]);
+
+    // Retrieve the schedule by ID
+    $schedule = Schedule::findOrFail($scheduleId);
+
+    // Create a new Appointment record
+    $appointment = Appointment::create([
+        'user_id' => $schedule->user_id,
+        'name' => $validated['user_name'],
+        'email' => $validated['user_email'],
+        'month' => $validated['appointment_month'],
+        'day' => $validated['appointment_day'],
+        'year' => $validated['appointment_year'],
+        'time' => $validated['appointment_time'],
+        'status' => $validated['status'],
+        'contact' => $validated['contact'],
+        'contact_email' => $validated['contact_email'],
+        'schedule_id' => $schedule->id,
+    ]);
+
+    // Update the schedule status to 'completed' (or another status)
+    $schedule->status = 'approved'; // You can choose a different status if needed
+    $schedule->save();
+
+    // Redirect or respond with success
+    return redirect()->back()->with('success', 'Appointment has been successfully saved and the schedule status has been updated.');
+}
+
+
+public function getScheduleData($id)
+{
+    // Fetch the schedule and its related user data using the 'id' column
+    $schedule = Schedule::with('user')->findOrFail($id);
+
+    // Return the data in JSON format
+    return response()->json([
+        'user_name' => $schedule->user->name,
+        'user_email' => $schedule->user->email,
+        'appointment_month' => $schedule->month,
+        'appointment_day' => $schedule->day,
+        'appointment_year' => $schedule->year,
+        'appointment_time' => $schedule->time,
+        'contact' => $schedule->contact,
+        'contact_email' => $schedule->email,
+        'speech_language_pathologist' => $schedule->speech_language_pathologist,
+        'schedule_id' => $schedule->id,
+    ]);
+}
+
+
+    
     /**
      * Remove the specified resource from storage.
      */

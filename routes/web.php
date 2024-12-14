@@ -95,3 +95,5 @@ require __DIR__.'/auth.php';
 Route::resource('schedule', ScheduleController::class);
 Route::post('/schedule/reserved-dates', [ScheduleController::class, 'fetchReservedDates'])->name('schedule.reservedDates');
 Route::post('/schedule/fetchReservedDatesForLoggedInUser', [ScheduleController::class, 'fetchReservedDatesForLoggedInUser'])->name('schedule.fetchReservedDatesForLoggedInUser');
+Route::post('/schedules/{schedule}/appointments', [ScheduleController::class, 'storeAppointment'])->name('schedules.appointments.store');
+Route::get('/schedule/getScheduleData/{id}', [ScheduleController::class, 'getScheduleData']);
