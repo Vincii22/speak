@@ -14,6 +14,10 @@
                         <span class="text-lg font-medium">{{ $category->name }}</span>
 
                         <div class="flex items-center space-x-3">
+                            <a href="{{ route('admin.categories.exercises.index', $category) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">View Exercises</a>
+
+
+                            <a href="{{ route('admin.exercises.create', $category) }}" class="text-green-600 hover:text-green-800 transition">Add Exercise</a>
                             <a href="{{ route('admin.categories.edit', $category->id) }}" class="text-indigo-600 hover:text-indigo-800 transition">Edit</a>
 
                             <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" id="delete-form-{{ $category->id }}" style="display: inline;">
