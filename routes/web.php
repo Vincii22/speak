@@ -62,16 +62,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::get('/user/content/success', function () {
-    return view('user.content.success');
-})->name('user.content.success');
 
-Route::get('/user/content/error', function () {
-    return view('user.content.error');
-})->name('user.content.error');
-Route::get('/content/{category}/{level}', [UserContentController::class, 'showLevel'])->name('user.content.level');
-
-// Admin Category CRUD
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('sets', SetController::class);
     Route::resource('days', DayController::class);
@@ -79,6 +70,12 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('exercises', ExerciseController::class);
 });
 require __DIR__.'/auth.php';
+
+Route::get('/admin/days/create/{set}', [DayController::class, 'create'])->name('admin.days.create');
+Route::post('/admin/days/store/{set}', [DayController::class, 'store'])->name('admin.days.store');
+
+Route::get('/admin/sets/{set}/days', [DayController::class, 'index'])->name('admin.sets.days.index');
+
 
 
 // Schedule Controls

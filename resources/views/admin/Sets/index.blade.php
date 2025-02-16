@@ -16,6 +16,12 @@
                         <div class="flex items-center space-x-3">
                             <a href="{{ route('admin.sets.edit', $set->id) }}" class="text-indigo-600 hover:text-indigo-800 transition">Edit</a>
 
+                            <!-- Link to the page showing the days for this set -->
+                            <a href="{{ route('admin.sets.days.index', $set) }}" class="text-blue-600 hover:text-blue-800 transition">View Days</a>
+
+                            <a href="{{ route('admin.days.create', $set->id) }}" class="text-green-600 hover:text-green-800 transition">Add Day</a>
+
+                            <!-- Delete Form -->
                             <form action="{{ route('admin.sets.destroy', $set->id) }}" method="POST" id="delete-form-{{ $set->id }}" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
