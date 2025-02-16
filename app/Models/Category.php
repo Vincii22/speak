@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,15 +10,15 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'order'];
+    protected $fillable = ['day_id', 'name'];
 
-    public function levels()
+    public function day()
     {
-        return $this->hasMany(Level::class);
+        return $this->belongsTo(Day::class);
     }
 
-    public function userProgress()
+    public function exercises()
     {
-        return $this->hasMany(UserProgress::class);
+        return $this->hasMany(Exercise::class);
     }
 }

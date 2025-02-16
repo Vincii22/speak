@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\UserContentController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\SetController;
+use App\Http\Controllers\Admin\DayController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ExerciseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -68,26 +72,12 @@ Route::get('/user/content/error', function () {
 Route::get('/content/{category}/{level}', [UserContentController::class, 'showLevel'])->name('user.content.level');
 
 // Admin Category CRUD
-Route::get('/admin/categories', [AdminController::class, 'indexCategories'])->name('admin.categories.index');
-Route::get('/admin/categories/create', [AdminController::class, 'createCategory'])->name('admin.categories.create');
-Route::post('/admin/categories', [AdminController::class, 'storeCategory'])->name('admin.categories.store');
-Route::get('/admin/categories/{id}/edit', [AdminController::class, 'editCategory'])->name('admin.categories.edit');
-Route::put('/admin/categories/{id}', [AdminController::class, 'updateCategory'])->name('admin.categories.update');
-Route::delete('/admin/categories/{id}', [AdminController::class, 'destroyCategory'])->name('admin.categories.destroy');
-
-// Admin Level CRUD
-Route::get('/admin/categories/{categoryId}/levels', [AdminController::class, 'indexLevels'])->name('admin.levels.index');
-Route::get('/admin/categories/{categoryId}/levels/create', [AdminController::class, 'createLevel'])->name('admin.levels.create');
-Route::post('/admin/categories/{categoryId}/levels', [AdminController::class, 'storeLevel'])->name('admin.levels.store');
-Route::get('/admin/categories/{categoryId}/levels/{levelId}/edit', [AdminController::class, 'editLevel'])->name('admin.levels.edit');
-Route::put('/admin/categories/{categoryId}/levels/{levelId}', [AdminController::class, 'updateLevel'])->name('admin.levels.update');
-Route::delete('/admin/categories/{categoryId}/levels/{levelId}', [AdminController::class, 'destroyLevel'])->name('admin.levels.destroy');
-
-// Admin Sound CRUD
-Route::get('/admin/levels/{levelId}/sounds', [AdminController::class, 'indexSounds'])->name('admin.sounds.index');
-Route::get('/admin/levels/{levelId}/sounds/create', [AdminController::class, 'createSound'])->name('admin.sounds.create');
-Route::post('/admin/levels/{levelId}/sounds', [AdminController::class, 'storeSound'])->name('admin.sounds.store');
-Route::delete('/admin/levels/{levelId}/sounds/{soundId}', [AdminController::class, 'destroySound'])->name('admin.sounds.destroy');
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::resource('sets', SetController::class);
+    Route::resource('days', DayController::class);
+    Route::resource('categories', CategoryController::class);
+    Route::resource('exercises', ExerciseController::class);
+});
 require __DIR__.'/auth.php';
 
 

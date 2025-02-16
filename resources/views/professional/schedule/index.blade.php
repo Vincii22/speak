@@ -55,7 +55,7 @@
                         <div class="bg-[#694f8e] w-[20px] h-[20px] rounded-full"></div>
                         <h1 class="text-xl">Confirmed</h1>
                     </div>
-                    
+
                 </div>
             </div>
 
@@ -188,12 +188,12 @@
                                 <span class="font-bold text-[#FEF2D0]">{{$schedule->month}}</span>
                                 <span class="font-bold text-[#FEF2D0]">{{$schedule->day}}</span>
                                 <span class="font-bold text-[#FEF2D0]">{{$schedule->year}}</span>
-                                <span class="font-bold text-[#FEF2D0]">{{$schedule->time}}</span>. 
+                                <span class="font-bold text-[#FEF2D0]">{{$schedule->time}}</span>.
                                 The client can be reached at
                                 <span class="font-bold text-[#FEF2D0]">{{$schedule->email}}</span>
                                 or
                                 <span class="font-bold text-[#FEF2D0]">{{$schedule->contact}}</span>
-                                for further details. This request has been directed to 
+                                for further details. This request has been directed to
                                 <span class="font-bold text-[#FEF2D0]">{{$schedule->speech_language_pathologist}}</span>
                                 <span class="font-bold text-[#FEF2D0]"></span>.
                             </p>
@@ -205,7 +205,7 @@
                             <input type="email" name="contact_email" id="contact_email" hidden value="{{ old('contact_email', $schedule->email) }}">
                             <input type="text" name="contact" id="contact" hidden value="{{ old('contact', $schedule->contact) }}">
                             <input type="text" name="appointment_month" id="appointment_month" hidden value="{{ old('appointment_month', $schedule->month) }}">
-                            <input type="text" name="appointment_day" id="appointment_day" hidden value="{{ old('appointment_day', $schedule->day) }}">
+                            <input type="text" name="appointment_day" id="appointment_day" value="{{ old('appointment_day', $schedule->day) }}">
                             <input type="text" name="appointment_year" id="appointment_year" hidden value="{{ old('appointment_year', $schedule->year) }}">
                             <input type="text" name="appointment_time" id="appointment_time" hidden value="{{ old('appointment_time', $schedule->time) }}">
                             <input type="text" name="speech_language_pathologist" id="speech_language_pathologist" hidden value="{{ old('speech_language_pathologist', $schedule->speech_language_pathologist) }}">
@@ -217,7 +217,7 @@
                                 <!-- Approved Button -->
                                 <div class="w-full pb-5 flex justify-center">
                                     <label class="flex items-center px-20 space-x-2 text-white text-[2.4vh] hover:text-green-400 cursor-pointer">
-                                        <input type="radio" name="status" value="approved" 
+                                        <input type="radio" name="status" value="approved"
                                             {{ old('status', $schedule->status) == 'approved' ? 'checked' : '' }}
                                             class="hidden peer">
                                         <span class="w-6 h-6 border-2 border-green-500 rounded-full flex items-center justify-center relative peer-checked:bg-green-500">
@@ -232,7 +232,7 @@
                                 <!-- Declined Button -->
                                 <div class="w-full py-5 flex justify-center">
                                     <label class="flex items-center px-20 space-x-2 text-white text-[2.4vh] hover:text-red-400 cursor-pointer">
-                                        <input type="radio" name="status" value="declined" 
+                                        <input type="radio" name="status" value="declined"
                                             {{ old('status', $schedule->status) == 'declined' ? 'checked' : '' }}
                                             class="hidden peer">
                                         <span class="w-6 h-6 border-2 border-red-500 rounded-full flex items-center justify-center relative peer-checked:bg-red-500">
@@ -326,10 +326,10 @@
             button.addEventListener('click', function () {
                 // Get the schedule ID from the button's data-id attribute
                 currentScheduleId = this.getAttribute('data-id');
-                
+
                 // Fetch the schedule data to populate the modal fields
                 fetchScheduleData(currentScheduleId);
-                
+
                 // Show the modal
                 approveModal.classList.remove('hidden');
             });
@@ -406,7 +406,7 @@
                         calendarGrid.innerHTML += `<div class="py-2"></div>`; // Empty space before first day
                     } else if (day <= lastDate) {
                         // Find the schedule for the current day
-                        const schedule = bookedDates.find(schedule => 
+                        const schedule = bookedDates.find(schedule =>
                             schedule.day == day && schedule.month == monthNames[month] && schedule.year == year
                         );
 
@@ -414,17 +414,17 @@
                         const isToday = today.getDate() === day && today.getMonth() === month && today.getFullYear() === year;
 
                         // Set background color based on booking status
-                        const backgroundColor = isBooked ? 
-                            (schedule.status === 'approved' ? 'bg-[#694f8e]' : 'bg-[#df96ff]') : 
+                        const backgroundColor = isBooked ?
+                            (schedule.status === 'approved' ? 'bg-[#694f8e]' : 'bg-[#df96ff]') :
                             'bg-gray-300';
 
                         calendarGrid.innerHTML += `
-                            <div 
-                                class="py-2 !text-[#5c6bcc] calendar-date 
+                            <div
+                                class="py-2 !text-[#5c6bcc] calendar-date
                                 ${isBooked ? `${backgroundColor} !text-white rounded-full cursor-pointer` : 'text-gray-300'}
                                 ${isToday ? 'bg-pink-500 !text-white rounded-full' : ''}"
-                                data-day="${day}" 
-                                data-month="${monthNames[month]}" 
+                                data-day="${day}"
+                                data-month="${monthNames[month]}"
                                 data-year="${year}"
                                 data-schedule-id="${isBooked ? schedule.id : ''}">
                                 ${day}
