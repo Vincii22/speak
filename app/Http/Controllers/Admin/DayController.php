@@ -6,12 +6,15 @@ use App\Models\Day;
 use App\Models\Set;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Log;
 class DayController extends Controller
 {
     public function index(Set $set)
     {
+        // Get all days related to this specific set
         $days = $set->days;
+
+        // Return the view with days and the set data
         return view('admin.days.index', compact('days', 'set'));
     }
 
@@ -22,10 +25,23 @@ class DayController extends Controller
 
     public function store(Request $request, Set $set)
     {
-        $request->validate(['name' => 'required']);
-        $set->days()->create($request->all());
-        return redirect()->route('admin.days.index', $set);
+        // Log the entire request to check if set_id is coming through
+        Log::debug('Form data: ', $request->all());
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        // You don't need to manually pass set_id because it's already part of the $set model
+        $set->days()->create([
+            'name' => $request->name, // Only the name is needed
+        ]);
+
+        return redirect()->route('admin.sets.days.index', $set);
     }
+
+
+
 
     public function edit(Day $day)
     {
