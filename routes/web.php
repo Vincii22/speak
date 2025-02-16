@@ -86,6 +86,14 @@ Route::get('/admin/categories/exercises/create/{category}', [ExerciseController:
 Route::post('/admin/categories/exercises/store/{category}', [ExerciseController::class, 'store'])->name('admin.exercises.store');
 
 
+Route::prefix('user')->name('user.')->group(function () {
+    Route::get('/activityExercise', [ExerciseController::class, 'index'])->name('exercises.index');
+    Route::get('/set/{set}/days', [ExerciseController::class, 'showDays'])->name('exercises.days');
+    Route::get('/day/{day}/categories', [ExerciseController::class, 'showCategories'])->name('exercises.categories');
+    Route::get('/category/{category}/exercises', [ExerciseController::class, 'showExercises'])->name('exercises.exercises');
+    Route::get('/exercise/{exercise}/record', [ExerciseController::class, 'record'])->name('exercises.record');
+    Route::post('/exercise/{exercise}/submit', [ExerciseController::class, 'submit'])->name('exercises.submit');
+});
 
 // Schedule Controls
 Route::resource('schedule', ScheduleController::class);
