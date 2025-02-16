@@ -45,7 +45,10 @@ class User extends Authenticatable
             'role' => 'string', // Cast role to string, if needed
         ];
     }
-
+    public function activities()
+    {
+        return $this->hasMany(UserActivity::class);
+    }
     /**
      * Define any additional relationships, methods, etc. below
      */
