@@ -101,7 +101,7 @@ class ExerciseController extends Controller
             return back()->withErrors('Error saving exercise.');
         }
 
-        return redirect()->route('admin.exercises.index', $category);
+        return redirect()->route('admin.categories.exercises.index', $category);
     }
 
 
