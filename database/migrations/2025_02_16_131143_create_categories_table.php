@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sounds', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('level_id')->constrained()->onDelete('cascade');
-            $table->string('audio_file')->nullable();
-            $table->string('video_file')->nullable(); // For uploaded video
-            $table->string('video_link')->nullable(); // For embedded video links
+            $table->foreignId('day_id')->constrained()->onDelete('cascade');
+            $table->string('name'); // for Sounds, Phrases
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('sounds');
+        Schema::dropIfExists('categories');
     }
 };

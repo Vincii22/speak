@@ -14,18 +14,13 @@
                         <span class="text-lg font-medium">{{ $category->name }}</span>
 
                         <div class="flex items-center space-x-3">
-                            <!-- Edit Link -->
                             <a href="{{ route('admin.categories.edit', $category->id) }}" class="text-indigo-600 hover:text-indigo-800 transition">Edit</a>
 
-                            <!-- Delete Form with Dropdown Confirmation -->
                             <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" id="delete-form-{{ $category->id }}" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" onclick="confirmDelete({{ $category->id }})" class="text-red-600 hover:text-red-800 transition">Delete</button>
                             </form>
-
-                            <!-- View Levels Link -->
-                            <a href="{{ route('admin.levels.index', $category->id) }}" class="text-green-600 hover:text-green-800 transition">View Levels</a>
                         </div>
                     </li>
                 @endforeach
@@ -35,12 +30,10 @@
     @endsection
 
     <script>
-        // JavaScript for delete confirmation
         function confirmDelete(categoryId) {
             if (confirm('Are you sure you want to delete this category? This action cannot be undone.')) {
                 document.getElementById('delete-form-' + categoryId).submit();
             }
         }
     </script>
-
 </x-admin-layout>

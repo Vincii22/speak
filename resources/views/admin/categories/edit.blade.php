@@ -3,7 +3,6 @@
     <div class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-semibold mb-6">Edit Category</h1>
 
-        <!-- Edit Form -->
         <form action="{{ route('admin.categories.update', $category->id) }}" method="POST" class="bg-white shadow-md rounded-lg p-6">
             @csrf
             @method('PUT')

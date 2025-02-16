@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('levels', function (Blueprint $table) {
+        Schema::create('days', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->integer('level');
+            $table->foreignId('set_id')->constrained()->onDelete('cascade');
+            $table->string('name'); // for Day 1, Day 2, etc.
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('levels');
+        Schema::dropIfExists('days');
     }
 };

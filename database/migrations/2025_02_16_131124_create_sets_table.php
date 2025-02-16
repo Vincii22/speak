@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('sets', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50)->unique();
-            $table->integer('order')->unique();
+            $table->string('name'); // for Set 1, Set 2, etc.
             $table->timestamps();
         });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('sets');
     }
 };
