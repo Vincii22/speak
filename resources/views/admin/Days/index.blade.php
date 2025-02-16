@@ -16,8 +16,11 @@
 
                             <!-- Day Actions -->
                             <div class="flex space-x-4">
-                                <a href="{{ route('admin.categories.index', $day->id) }}" class="text-indigo-600 hover:text-indigo-800 transition">View Categories</a>
-                                <a href="{{ route('admin.categories.create', $day->id) }}" class="text-green-600 hover:text-green-800 transition">Add Category</a>
+                                <!-- Link to Categories for a Specific Day -->
+                                <a href="{{ route('admin.days.categories.index', $day) }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">View Categories</a>
+
+
+                                <a href="{{ route('admin.categories.create', $day) }}" class="text-green-600 hover:text-green-800 transition">Add Category</a>
                                 <a href="{{ route('admin.days.edit', $day->id) }}" class="text-blue-600 hover:text-blue-800 transition">Edit</a>
 
                                 <!-- Delete Form for Day -->

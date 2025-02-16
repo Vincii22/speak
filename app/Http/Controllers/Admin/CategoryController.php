@@ -11,9 +11,10 @@ class CategoryController extends Controller
 {
     public function index(Day $day)
     {
-        $categories = $day->categories;
+        $categories = $day->categories;  // Get categories associated with this specific day
         return view('admin.categories.index', compact('categories', 'day'));
     }
+
 
     public function create(Day $day)
     {
@@ -23,8 +24,10 @@ class CategoryController extends Controller
     public function store(Request $request, Day $day)
     {
         $request->validate(['name' => 'required']);
-        $day->categories()->create($request->all());
-        return redirect()->route('admin.categories.index', $day);
+        $day->categories()->create([
+            'name' => $request->name,
+        ]);
+        return redirect()->route('admin.days.categories.index', $day);
     }
 
     public function edit(Category $category)

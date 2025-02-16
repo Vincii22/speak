@@ -63,6 +63,7 @@ Route::middleware('auth')->group(function () {
 
 
 
+
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('sets', SetController::class);
     Route::resource('days', DayController::class);
@@ -75,6 +76,9 @@ Route::get('/admin/days/create/{set}', [DayController::class, 'create'])->name('
 Route::post('/admin/days/store/{set}', [DayController::class, 'store'])->name('admin.days.store');
 
 Route::get('/admin/sets/{set}/days', [DayController::class, 'index'])->name('admin.sets.days.index');
+Route::get('/admin/days/{day}/categories', [CategoryController::class, 'index'])->name('admin.days.categories.index');
+Route::get('/admin/days/{day}/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
+Route::post('/admin/days/{day}/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store');
 
 
 
