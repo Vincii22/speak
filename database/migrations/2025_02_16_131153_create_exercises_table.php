@@ -16,7 +16,8 @@ public function up()
         $table->id();
         $table->foreignId('category_id')->constrained()->onDelete('cascade');
         $table->string('name'); // e.g. bah, beh, bih, etc.
-        $table->string('media_url'); // URL for the media (video/sound file)
+        $table->string('media_url')->nullable(); // URL for the media (video/sound file)
+        $table->string('media_file')->nullable();
         $table->timestamps();
     });
 }

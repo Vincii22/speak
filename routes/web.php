@@ -76,9 +76,14 @@ Route::get('/admin/days/create/{set}', [DayController::class, 'create'])->name('
 Route::post('/admin/days/store/{set}', [DayController::class, 'store'])->name('admin.days.store');
 
 Route::get('/admin/sets/{set}/days', [DayController::class, 'index'])->name('admin.sets.days.index');
-Route::get('/admin/days/{day}/categories', [CategoryController::class, 'index'])->name('admin.days.categories.index');
-Route::get('/admin/days/{day}/categories/create', [CategoryController::class, 'create'])->name('admin.categories.create');
-Route::post('/admin/days/{day}/categories/store', [CategoryController::class, 'store'])->name('admin.categories.store');
+
+Route::get('/admin/days/categories/{day}', [CategoryController::class, 'index'])->name('admin.days.categories.index');
+Route::get('/admin/days/categories/create/{day}', [CategoryController::class, 'create'])->name('admin.categories.create');
+Route::post('/admin/days/categories/store/{day}', [CategoryController::class, 'store'])->name('admin.categories.store');
+
+Route::get('/admin/categories/exercises/{category}', [ExerciseController::class, 'index'])->name('admin.categories.exercises.index');
+Route::get('/admin/categories/exercises/create/{category}', [ExerciseController::class, 'create'])->name('admin.exercises.create');
+Route::post('/admin/categories/exercises/store/{category}', [ExerciseController::class, 'store'])->name('admin.exercises.store');
 
 
 
