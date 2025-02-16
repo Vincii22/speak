@@ -4,7 +4,7 @@
         <h1 class="text-3xl font-semibold mb-6">Categories</h1>
 
         <div class="mb-4">
-            <a href="{{ route('admin.categories.create') }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">Add New Category</a>
+            <a href="{{ route('admin.categories.create', $day) }}" class="text-green-600 hover:text-green-800 transition">Add Category</a>
         </div>
 
         <div class="bg-white shadow-md rounded-lg p-6">
