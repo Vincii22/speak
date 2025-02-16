@@ -87,13 +87,14 @@ Route::post('/admin/categories/exercises/store/{category}', [ExerciseController:
 
 
 Route::prefix('user')->name('user.')->group(function () {
-    Route::get('/activityExercise', [ExerciseController::class, 'index'])->name('exercises.index');
-    Route::get('/set/{set}/days', [ExerciseController::class, 'showDays'])->name('exercises.days');
-    Route::get('/day/{day}/categories', [ExerciseController::class, 'showCategories'])->name('exercises.categories');
-    Route::get('/category/{category}/exercises', [ExerciseController::class, 'showExercises'])->name('exercises.exercises');
-    Route::get('/exercise/{exercise}/record', [ExerciseController::class, 'record'])->name('exercises.record');
-    Route::post('/exercise/{exercise}/submit', [ExerciseController::class, 'submit'])->name('exercises.submit');
+    Route::get('/activityExercise', [\App\Http\Controllers\User\ExerciseController::class, 'index'])->name('exercises.index');
+    Route::get('/set/{set}/days', [\App\Http\Controllers\User\ExerciseController::class, 'showDays'])->name('exercises.days');
+    Route::get('/day/{day}/categories', [\App\Http\Controllers\User\ExerciseController::class, 'showCategories'])->name('exercises.categories');
+    Route::get('/category/{category}/exercises', [\App\Http\Controllers\User\ExerciseController::class, 'showExercises'])->name('exercises.exercises');
+    Route::get('/exercise/{exercise}/record', [\App\Http\Controllers\User\ExerciseController::class, 'record'])->name('exercises.record');
+    Route::post('/exercise/{exercise}/submit', [\App\Http\Controllers\User\ExerciseController::class, 'submit'])->name('exercises.submit');
 });
+
 
 // Schedule Controls
 Route::resource('schedule', ScheduleController::class);

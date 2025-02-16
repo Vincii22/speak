@@ -162,8 +162,10 @@
         <div class="flex justify-center gap-10 items-center bg-[#FFEFEB] py-2 relative z-30">
             <a href="{{ route('schedule.create')}}"
                 class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
+            <a href="{{ route('user.exercises.index')}}"
+                class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Exercises</a>
             <a href="{{ route('user.content.index')}}"
-                class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">User Content</a>
+                class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Practice</a>
         </div>
     </header>
 
