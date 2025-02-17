@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\DayController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ExerciseController;
 use App\Http\Controllers\ProfessionalController;
+use App\Http\Controllers\Admin\PracticeCategoryController;
+use App\Http\Controllers\Admin\PracticeExerciseController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -60,7 +62,14 @@ Route::middleware('auth')->group(function () {
 });
 
 
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
 
+    // Practice Category Routes
+    Route::resource('practiceCategories', PracticeCategoryController::class);
+
+    // Practice Exercise Routes
+    Route::resource('practiceExercises', PracticeExerciseController::class);
+});
 
 
 
