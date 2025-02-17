@@ -49,11 +49,17 @@ class ExerciseController extends Controller
 
     public function submit(Request $request, Exercise $exercise)
     {
+    // Check if the user is authenticated
+    if (!auth()->check()) {
+        return redirect()->route('login')->with('error', 'You must be logged in to submit this exercise.');
+    }
+
         // Handle the submission of user's recording
         $request->validate([
-            'media_file' => 'required|file|mimes:mp4,mp3,avi,mkv,wav,flac',
+            'media_file' => 'required|file|mimes:mp4,mp3,avi,mkv,wav,flac,webm', // Allow webm as well
         ]);
 
+        // Store the uploaded file
         $media_file = $request->file('media_file')->store('user_activities', 'public');
 
         // Store activity in the user_activities table
@@ -67,6 +73,7 @@ class ExerciseController extends Controller
             'submitted_at' => now(),
         ]);
 
-        return redirect()->route('user.activities.index')->with('success', 'Exercise submitted successfully!');
+        return redirect()->route('user.exercises.exercises')->with('success', 'Exercise submitted successfully!');
     }
+
 }
