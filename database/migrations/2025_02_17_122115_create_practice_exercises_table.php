@@ -11,9 +11,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('practiceExercises', function (Blueprint $table) {
+        Schema::create('practice_exercises', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('practiceCategory_id')->constrained()->onDelete('cascade');
+            $table->unsignedBigInteger('practiceCategory_id');
+            $table->foreign('practiceCategory_id')
+          ->references('id')
+          ->on('practice_categories')
+          ->onDelete('cascade');
             $table->string('name'); // e.g. bah, beh, bih, etc.
             $table->string('media_file')->nullable();
             $table->timestamps();
