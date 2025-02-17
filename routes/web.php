@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\ExerciseController;
 use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\Admin\PracticeCategoryController;
 use App\Http\Controllers\Admin\PracticeExerciseController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -114,6 +115,13 @@ Route::get('/professional/exercise/{activityId}', [ProfessionalController::class
 
 // Route to handle the evaluation form submission
 Route::post('/professional/evaluate-exercise/{activityId}', [ProfessionalController::class, 'evaluateExercise'])->name('professional.evaluateExercise');
+
+
+// Show all exercises by category
+Route::get('/practices/category/{categoryId}', [PracticeExerciseController::class, 'index'])->name('user.practices.index');
+
+// Show a specific exercise
+Route::get('/practices/category/{categoryId}/exercise/{exerciseId}', [PracticeExerciseController::class, 'show'])->name('user.practices.show');
 
 
 // Schedule Controls
