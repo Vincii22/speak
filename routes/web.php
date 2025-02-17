@@ -62,14 +62,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
 
-    // Practice Category Routes
-    Route::resource('practiceCategories', PracticeCategoryController::class);
-
-    // Practice Exercise Routes
-    Route::resource('practiceExercises', PracticeExerciseController::class);
-});
 
 
 
@@ -78,6 +71,11 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('days', DayController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('exercises', ExerciseController::class);
+        // Practice Category Routes
+        Route::resource('practiceCategories', PracticeCategoryController::class);
+
+        // Practice Exercise Routes
+        Route::resource('practiceExercises', PracticeExerciseController::class);
 });
 require __DIR__.'/auth.php';
 
