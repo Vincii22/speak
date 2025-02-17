@@ -40,6 +40,7 @@ class ExerciseController extends Controller
         return view('user.exercises.exercises', compact('category', 'exercises'));
     }
 
+
     public function record(Exercise $exercise)
     {
         // Show exercise detail and allow user to record media (webcam + mic)
