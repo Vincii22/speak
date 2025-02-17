@@ -164,10 +164,10 @@
         <!-- Sub nav -->
         <div class="flex justify-center gap-10 items-center bg-[#FFEFEB] py-2 relative z-30">
             <a href="{{ route ('schedule.index')}}" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
-            <a href="{{ route('user.content.index')}}" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">User Content</a>
+            <a href="{{ route('professional.userExercises')}}" class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">User Exercises</a>
         </div>
     </header>
 
-    
+
 
 </nav>
