@@ -177,6 +177,7 @@
                 </button>
                 <div class="container mx-auto">
                     <div class="p-6">
+                        @foreach ($schedules as $schedule)
                         <form action="{{ route('schedules.appointments.store', $schedule->id) }}" method="POST">
                             @csrf
                             <h2 class="text-3xl font-bold text-white mb-4 text-center uppercase">Appointment Approval</h2>
@@ -254,7 +255,7 @@
                                 </button>
                             </div>
                         </form>
-
+                        @endforeach
                     </div>
                 </div>
             </div>

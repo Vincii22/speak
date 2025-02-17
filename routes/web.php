@@ -11,7 +11,7 @@ use App\Http\Controllers\Admin\SetController;
 use App\Http\Controllers\Admin\DayController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ExerciseController;
-
+use App\Http\Controllers\ProfessionalController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -94,6 +94,19 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/exercise/{exercise}/record', [\App\Http\Controllers\User\ExerciseController::class, 'record'])->name('exercises.record');
     Route::post('/exercise/{exercise}/submit', [\App\Http\Controllers\User\ExerciseController::class, 'submit'])->name('exercises.submit');
 });
+
+
+// Route to show the user list (index page)
+Route::get('/professional/userExercises', [ProfessionalController::class, 'index'])->name('professional.userExercises');
+
+// Route to show a specific user's exercises (exercises page)
+Route::get('/professional/user-exercises/{userId}', [ProfessionalController::class, 'showUserExercises'])->name('professional.userExercises.show');
+
+// Route to show the exercise details (show page)
+Route::get('/professional/exercise/{activityId}', [ProfessionalController::class, 'showExercise'])->name('professional.exercise.show');
+
+// Route to handle the evaluation form submission
+Route::post('/professional/evaluate-exercise/{activityId}', [ProfessionalController::class, 'evaluateExercise'])->name('professional.evaluateExercise');
 
 
 // Schedule Controls

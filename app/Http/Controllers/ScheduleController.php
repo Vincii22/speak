@@ -19,14 +19,14 @@ class ScheduleController extends Controller
     }
 
     $schedules = Schedule::where('professional_id', $user->id)
-                        ->where('status', 'pending')
-                        ->orderBy('year', 'asc')
-                        ->orderBy('month', 'asc')
-                        ->orderBy('day', 'asc')
-                        ->get();
+        ->where('status', 'pending')
+        ->orderBy('year', 'asc')
+        ->orderBy('month', 'asc')
+        ->orderBy('day', 'asc')
+        ->get();
 
     $approvedSchedules = Schedule::where('professional_id', $user->id)
-        ->where('status', 'approved') // Only fetch approved schedules
+        ->where('status', 'approved')
         ->orderBy('year', 'asc')
         ->orderBy('month', 'asc')
         ->orderBy('day', 'asc')
@@ -55,7 +55,7 @@ class ScheduleController extends Controller
         }
     }
 
-     
+
     public function fetchReservedDates(Request $request)
     {
         $pathologist = $request->input('speech_language_pathologist');
@@ -77,13 +77,13 @@ class ScheduleController extends Controller
         return view('user.calendar', [
             'schedules' => $schedules,
             'pathologists' => $pathologists,
-        ]);   
+        ]);
     }
 
     public function store(Request $request)
     {
         $speechLanguagePathologist = User::where('role', 'professional')
-            ->where('name', $request->speech_language_pathologist) 
+            ->where('name', $request->speech_language_pathologist)
             ->first();
 
         if (!$speechLanguagePathologist) {
@@ -113,14 +113,14 @@ class ScheduleController extends Controller
             ],
         ]);
     }
-    
+
 
     /**
      * Display the specified resource.
      */
     public function show(string $id)
     {
-       
+
     }
 
     /**
@@ -130,11 +130,11 @@ class ScheduleController extends Controller
     {
         $reservedDate = Schedule::findOrFail($id);
         $pathologists = User::where('role', 'professional')->get();
-        
+
         return view('professional.schedule.edit', compact('reservedDate', 'pathologists'));
     }
 
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -143,24 +143,24 @@ class ScheduleController extends Controller
     {
         try {
             $schedule = Schedule::findOrFail($id);
-    
+
             $request->validate([
                 'month' => 'required|string',
                 'day' => 'required|integer|min:1|max:31',
                 'year' => 'required|integer|min:' . now()->year,
                 'time' => 'required|date_format:H:i',
             ]);
-    
+
             $schedule->month = $request->input('month');
             $schedule->day = $request->input('day');
             $schedule->year = $request->input('year');
             $schedule->time = $request->input('time');
             $schedule->save();
-    
+
             return redirect()
                 ->route('schedule.index')
                 ->with('success', 'Schedule updated successfully.');
-    
+
         } catch (\Illuminate\Validation\ValidationException $e) {
             return redirect()
                 ->back()
@@ -171,7 +171,7 @@ class ScheduleController extends Controller
                 ->back()
                 ->with('error', 'An unexpected error occurred: ' . $e->getMessage())
                 ->withInput();
-        }    
+        }
     }
 
     public function storeAppointment(Request $request, $scheduleId)
@@ -238,7 +238,7 @@ public function getScheduleData($id)
 }
 
 
-    
+
     /**
      * Remove the specified resource from storage.
      */
