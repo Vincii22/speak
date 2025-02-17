@@ -3,26 +3,44 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\PracticeExercise;
+
+
 use App\Models\PracticeCategory;
+use App\Models\PracticeExercise;
 
 class PracticeExerciseController extends Controller
 {
-    // Show all exercises from a specific category
-    public function index($categoryId)
+    // Show all exercises by category (User side)
+    public function index()
     {
-        $category = PracticeCategory::findOrFail($categoryId); // Fetch the category
-        $exercises = $category->exercises; // Fetch exercises related to this category
+        // Fetch all categories
+        $categories = PracticeCategory::all();
 
-        return view('user.practices.index', compact('category', 'exercises'));
+        // Return the view with categories
+        return view('user.practices.index', compact('categories'));
     }
 
-    // Show a single exercise
-    public function show($categoryId, $exerciseId)
-    {
-        $category = PracticeCategory::findOrFail($categoryId); // Fetch the category
-        $exercise = PracticeExercise::findOrFail($exerciseId); // Fetch the exercise
 
-        return view('user.practices.show', compact('category', 'exercise'));
+    public function showExercisesByCategory($categoryId)
+    {
+    // Fetch the category and its exercises
+    $category = PracticeCategory::findOrFail($categoryId);
+
+    // Get the exercises for this category
+    $exercises = $category->exercises;
+
+    // Return the view with the data
+    return view('user.practices.exercises', compact('category', 'exercises'));
     }
+
+    public function show($exerciseId)
+{
+    // Fetch the exercise
+    $exercise = PracticeExercise::findOrFail($exerciseId);
+
+    // Return the view with the exercise details
+    return view('user.practices.show', compact('exercise'));
+}
+
+
 }

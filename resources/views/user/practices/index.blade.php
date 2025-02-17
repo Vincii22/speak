@@ -1,18 +1,20 @@
-<x-user-layout>
-    @section('content')
-        <div class="container mx-auto px-4 py-8">
-            <h1 class="text-3xl font-semibold mb-6">Exercises in {{ $category->name }}</h1>
+<x-app-layout>
+    <!-- Center the whole content -->
+    <div class="flex justify-center items-center min-h-screen bg-gray-100">
+        <div class="w-full max-w-3xl bg-white p-8 rounded-lg shadow-lg">
+            <!-- Heading -->
+            <h1 class="text-4xl font-bold text-center text-purple-600 mb-6">PRACTICE CATEGORIES</h1>
 
-            <div class="bg-white shadow-md rounded-lg p-6">
-                <ul class="space-y-4">
-                    @foreach($exercises as $exercise)
-                        <li class="flex items-center justify-between py-3 px-4 border-b border-gray-200">
-                            <span class="text-lg font-medium">{{ $exercise->name }}</span>
-                            <a href="{{ route('user.practices.show', [$category->id, $exercise->id]) }}" class="text-blue-600 hover:text-blue-800 transition">View Exercise</a>
-                        </li>
-                    @endforeach
-                </ul>
+            <!-- Display Categories with Custom Styling -->
+            <div class="space-y-4">
+                @foreach($categories as $category)
+                    <a href="{{ route('user.practices.exercises', $category->id) }}"
+                       class="block bg-blue-600 text-white text-lg font-semibold py-4 px-6 rounded-md shadow-md hover:bg-blue-700 transition w-64 mx-auto text-center">
+                        {{ $category->name }}
+                    </a>
+                @endforeach
             </div>
         </div>
-    @endsection
-</x-user-layout>
+    </div>
+
+</x-app-layout>

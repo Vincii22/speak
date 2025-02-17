@@ -12,6 +12,7 @@ class PracticeCategory extends Model
 
     public function exercises()
     {
-        return $this->hasMany(PracticeExercise::class);
+        return $this->hasMany(PracticeExercise::class, 'practiceCategory_id');
     }
+
 }
