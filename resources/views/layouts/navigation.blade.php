@@ -164,7 +164,7 @@
                 class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Schedule</a>
             <a href="{{ route('user.exercises.index')}}"
                 class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Exercises</a>
-            <a href="{{ route('user.content.index')}}"
+            <a href="{{ route('user.practices.index')}}"
                 class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Practice</a>
         </div>
     </header>

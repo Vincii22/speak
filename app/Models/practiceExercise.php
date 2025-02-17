@@ -12,6 +12,6 @@ class PracticeExercise extends Model
 
     public function category()
     {
-        return $this->belongsTo(PracticeCategory::class);
+        return $this->belongsTo(PracticeCategory::class, 'practiceCategory_id');
     }
 }

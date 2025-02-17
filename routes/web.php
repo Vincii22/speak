@@ -117,11 +117,14 @@ Route::get('/professional/exercise/{activityId}', [ProfessionalController::class
 Route::post('/professional/evaluate-exercise/{activityId}', [ProfessionalController::class, 'evaluateExercise'])->name('professional.evaluateExercise');
 
 
-// Show all exercises by category
-Route::get('/practices/category/{categoryId}', [PracticeExerciseController::class, 'index'])->name('user.practices.index');
+// Show all categories (this is the first page users will see)
+Route::get('/practices', [\App\Http\Controllers\User\PracticeExerciseController::class, 'index'])->name('user.practices.index');
 
-// Show a specific exercise
-Route::get('/practices/category/{categoryId}/exercise/{exerciseId}', [PracticeExerciseController::class, 'show'])->name('user.practices.show');
+// Show all exercises for a specific category
+Route::get('/practices/category/{categoryId}', [\App\Http\Controllers\User\PracticeExerciseController::class, 'showExercisesByCategory'])->name('user.practices.exercises');
+
+// Show specific exercise media
+Route::get('/practices/exercise/{exerciseId}', [\App\Http\Controllers\User\PracticeExerciseController::class, 'show'])->name('user.practices.show');
 
 
 // Schedule Controls
