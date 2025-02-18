@@ -16,6 +16,10 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         $this->call(UserSeeder::class);
         $this->call(ScheduleSeeder::class);
+        $this->call([
+            PracticeCategorySeeder::class,
+            PracticeExerciseSeeder::class,
+        ]);
 
         User::factory()->create([
             'name' => 'Test User',
