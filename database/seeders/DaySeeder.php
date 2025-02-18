@@ -12,7 +12,7 @@ class DaySeeder extends Seeder
     {
         $sets = Set::all();
 
-        foreach ($sets as $set) {
+
             Day::create(['set_id' => 1, 'name' => 'Day 1']);
             Day::create(['set_id' => 1, 'name' => 'Day 2']);
             Day::create(['set_id' => 1, 'name' => 'Day 3']);
@@ -30,6 +30,6 @@ class DaySeeder extends Seeder
             Day::create(['set_id' => 3, 'name' => 'Day 3']);
             Day::create(['set_id' => 3, 'name' => 'Day 4']);
             Day::create(['set_id' => 3, 'name' => 'Day 5']);
-        }
+
     }
 }

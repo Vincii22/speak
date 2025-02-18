@@ -1,11 +1,8 @@
 <x-app-layout>
-    <!-- Center the whole content -->
     <div class="flex justify-center items-center min-h-screen bg-gray-100">
         <div class="w-full max-w-3xl bg-white p-8 rounded-lg shadow-lg">
-            <!-- Heading -->
             <h1 class="text-4xl font-bold text-center text-purple-600 mb-6">LET'S PRACTICE!</h1>
 
-            <!-- Display Days with Custom Styling -->
             <div class="space-y-4">
                 @foreach ($days as $day)
                     <a href="{{ route('user.exercises.categories', $day) }}"
@@ -15,7 +12,6 @@
                 @endforeach
             </div>
 
-            <!-- Show the current set name -->
             @isset($set)
                 <div class="mt-8 text-center">
                     <p class="text-xl font-semibold text-purple-600">

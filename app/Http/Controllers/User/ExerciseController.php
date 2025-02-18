@@ -19,12 +19,25 @@ class ExerciseController extends Controller
         return view('user.exercises.index', compact('sets'));
     }
 
-    public function showDays(Set $set)
+    public function showDays($setId)
     {
-        // Show days based on set
-        $days = $set->days;
-        return view('user.exercises.days', compact('set', 'days'));
+        // Fetch only the days associated with the specific set_id
+        $days = Day::where('set_id', $setId)->get();
+
+
+
+        // Fetch the set
+        $set = Set::findOrFail($setId);
+
+        // Pass the filtered days and set to the view
+        return view('user.exercises.days', [
+            'set' => $set,
+            'days' => $days,
+        ]);
     }
+
+
+
 
     public function showCategories(Day $day)
     {
