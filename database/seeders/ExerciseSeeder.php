@@ -71,8 +71,8 @@ class ExerciseSeeder extends Seeder
 
             ['category_id' => 8, 'name' => 'Your pancakes look really good. (Repeat 5 Times)', 'media_file' => 'media/SPEAK RECORDING/FIRST SET (P)/SENTENCES/sentences - your pancakes look really good.m4a'],
             ['category_id' => 8, 'name' => 'He needs to sharpen his pencil. (Repeat 5 Times)', 'media_file' => 'media/SPEAK RECORDING/FIRST SET (P)/SENTENCES/sentences - he needs to sharpen his pencil.m4a'],
-            ['category_id' => 8, 'name' => 'There is a sale on pants today. (Repeat 5 Times)', 'media_file' => 'media/SPEAK RECORDING/FIRST SET (P)/SENTENCES/sentences - there is a sale on pants today.m4a'],
-            ['category_id' => 8, 'name' => 'Your cherry pie looks delicious. (Repeat 5 Times)', 'media_file' => 'media/SPEAK RECORDING/FIRST SET (P)/SENTENCES/sentences - you cherry pie looks delicious.m4a'],
+            ['category_id' => 8, 'name' => 'There is a sale on pants today. (Repeat 5 Times)', 'media_file' => 'media/SPEAK RECORDING/FIRST SET (P)/SENTENCES/sentences - there is a sale on pants today..m4a'],
+            ['category_id' => 8, 'name' => 'Your cherry pie looks delicious. (Repeat 5 Times)', 'media_file' => 'media/SPEAK RECORDING/FIRST SET (P)/SENTENCES/sentences - your cherry pie looks delicious.m4a'],
 
             ['category_id' => 9, 'name' => 'Your pancakes look really good. (Repeat 5 Times)', 'media_file' => 'media/SPEAK RECORDING/FIRST SET (P)/SENTENCES/sentences - your pancakes look really good.m4a'],
             ['category_id' => 9, 'name' => 'He needs to sharpen his pencil. (Repeat 5 Times)', 'media_file' => 'media/SPEAK RECORDING/FIRST SET (P)/SENTENCES/sentences - he needs to sharpen his pencil.m4a'],
@@ -222,12 +222,14 @@ class ExerciseSeeder extends Seeder
 
         // Insert each exercise
         foreach ($exercises as $exercise) {
-            Exercise::create([
-                'category_id' => $exercise['category_id'],
-                'name' => $exercise['name'],
-                'media_url' => Storage::url($exercise['media_file']),
-                'media_file' => $exercise['media_file']
-            ]);
+            if (!Exercise::where('category_id', $exercise['category_id'])->where('name', $exercise['name'])->exists()) {
+                Exercise::create([
+                    'category_id' => $exercise['category_id'],
+                    'name' => $exercise['name'],
+                    'media_url' => Storage::url($exercise['media_file']),
+                    'media_file' => $exercise['media_file']
+                ]);
+            }
         }
     }
 }

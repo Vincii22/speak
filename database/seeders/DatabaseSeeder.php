@@ -19,6 +19,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             PracticeCategorySeeder::class,
             PracticeExerciseSeeder::class,
+            SetSeeder::class,
+            DaySeeder::class,
+            CategorySeeder::class,
+            ExerciseSeeder::class,
+
         ]);
 
         User::factory()->create([

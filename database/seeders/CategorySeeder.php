@@ -12,7 +12,7 @@ class CategorySeeder extends Seeder
     {
         $days = Day::all();
 
-        foreach ($days as $day) {
+
             Category::create(['day_id' => 1, 'name' => 'SOUND']);
             Category::create(['day_id' => 1, 'name' => 'SYLLABLE']);
 
@@ -56,6 +56,6 @@ class CategorySeeder extends Seeder
             Category::create(['day_id' => 15, 'name' => 'SENTENCES']);
 
 
-        }
+
     }
 }
