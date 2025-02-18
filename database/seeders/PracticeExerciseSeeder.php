@@ -27,52 +27,52 @@ class PracticeExerciseSeeder extends Seeder
             [
                 'name' => 'Open Wide and Close Tight',
                 'practiceCategory_id' => $categories->where('name', 'JAW EXERCISES')->first()->id ?? 1,
-                'media_file' => 'JAW EXERCISES/- Open Wide and Close Tight.mp4',
+                'media_file' => 'media/JAW EXERCISES/- Open Wide and Close Tight.mp4',
             ],
             [
                 'name' => 'Jaw Drop',
                 'practiceCategory_id' => $categories->where('name', 'JAW EXERCISES')->first()->id ?? 1,
-                'media_file' => 'JAW EXERCISES/Jaw Drop.mp4',
+                'media_file' => 'media/JAW EXERCISES/Jaw Drop.mp4',
             ],
             [
                 'name' => 'Move Jaw Forward and Backward',
                 'practiceCategory_id' => $categories->where('name', 'JAW EXERCISES')->first()->id ?? 1,
-                'media_file' => 'JAW EXERCISES/Move Jaw Forward And Backward.mp4',
+                'media_file' => 'media/JAW EXERCISES/Move Jaw Forward And Backward.mp4',
             ],
             [
                 'name' => 'Move Jaw From Side to Side',
                 'practiceCategory_id' => $categories->where('name', 'JAW EXERCISES')->first()->id ?? 1,
-                'media_file' => 'JAW EXERCISES/Move Jaw From Side To Side.mp4',
+                'media_file' => 'media/JAW EXERCISES/Move Jaw From Side To Side.mp4',
             ],
             [
                 'name' => 'Wee Woo Whoa',
                 'practiceCategory_id' => $categories->where('name', 'JAW EXERCISES')->first()->id ?? 1,
-                'media_file' => 'JAW EXERCISES/Wee Woo Whoa.mp4',
+                'media_file' => 'media/JAW EXERCISES/Wee Woo Whoa.mp4',
             ],
             [
                 'name' => 'LATERALIZATION',
                 'practiceCategory_id' => $categories->where('name', 'TONGUE EXERCISES')->first()->id ?? 2,
-                'media_file' => 'TONGUE EXERCISES/LATERALIZATION.mp4',
+                'media_file' => 'media/TONGUE EXERCISES/LATERALIZATION.mp4',
             ],
             [
                 'name' => 'PROTRUSION',
                 'practiceCategory_id' => $categories->where('name', 'TONGUE EXERCISES')->first()->id ?? 2,
-                'media_file' => 'TONGUE EXERCISES/PROTRUSION.mp4',
+                'media_file' => 'media/TONGUE EXERCISES/PROTRUSION.mp4',
             ],
             [
                 'name' => 'PUSH',
                 'practiceCategory_id' => $categories->where('name', 'TONGUE EXERCISES')->first()->id ?? 2,
-                'media_file' => 'TONGUE EXERCISES/PUSH.mp4',
+                'media_file' => 'media/TONGUE EXERCISES/PUSH.mp4',
             ],
             [
                 'name' => 'SCRAPE',
                 'practiceCategory_id' => $categories->where('name', 'TONGUE EXERCISES')->first()->id ?? 2,
-                'media_file' => 'TONGUE EXERCISES/SCRAPE.mp4',
+                'media_file' => 'media/TONGUE EXERCISES/SCRAPE.mp4',
             ],
             [
                 'name' => 'TONGUE SLIP',
                 'practiceCategory_id' => $categories->where('name', 'TONGUE EXERCISES')->first()->id ?? 2,
-                'media_file' => 'TONGUE EXERCISES/TONGUE SLIP.mp4',
+                'media_file' => 'media/TONGUE EXERCISES/TONGUE SLIP.mp4',
             ],
 
         ];

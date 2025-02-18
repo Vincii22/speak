@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
         // Create 2 users with 'user' role
         User::create([
             'name' => 'Ivan Jacob Milan',
-            'email' => 'ivanjacobmilan@gmail.com',
+            'email' => 'ivanjacob@gmail.com',
             'password' => Hash::make('ivanjacob'),
             'role' => 'user',
         ]);
