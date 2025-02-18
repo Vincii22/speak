@@ -133,32 +133,36 @@
                         <p class="text-gray-600">No approved appointments yet.</p>
                     @else
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
-
                         @foreach ($approvedSchedules as $schedule)
-                            <div class="shadow-md w-full relative h-[150px] rounded-lg px-4 py-3 flex flex-col justify-center schedule-item transition-colors pt-7"
-                                data-day="{{ $schedule->day }}" data-month="{{ $schedule->month }}" data-year="{{ $schedule->year }}">
-                                <img src="{{ url('img/pin.png') }}" alt="" class="absolute w-[60px] right-[-20px] top-[-10px]">
-                                <div class="flex justify-between items-center flex_schedule">
-                                    <h1>{{ $schedule->month }}</h1>
-                                    <h1 class="bg-[#694f8e] day_schedule text-white rounded-full py-1 px-2">{{ $schedule->day }}</h1>
-                                    <h1>{{ $schedule->year }}</h1>
+                            @foreach ($schedule->appointments as $appointment)
+                                <div class="shadow-md w-full relative h-[150px] rounded-lg px-4 py-3 flex flex-col justify-center schedule-item transition-colors pt-7">
+                                    <img src="{{ url('img/pin.png') }}" alt="" class="absolute w-[60px] right-[-20px] top-[-10px]">
+                                    <div class="flex justify-between items-center flex_schedule">
+                                        <h1>{{ $schedule->month }}</h1>
+                                        <h1 class="bg-[#694f8e] day_schedule text-white rounded-full py-1 px-2">{{ $schedule->day }}</h1>
+                                        <h1>{{ $schedule->year }}</h1>
+                                    </div>
+                                    <div class="flex justify-between mt-2">
+                                        <label>Time appointed:</label>
+                                        <h1 class="ml-1">{{ $schedule->time }}</h1>
+                                    </div>
+                                    <div class="flex justify-between mt-3 items-center">
+                                        <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1">View Appointment</a>
+                                        <a href="{{ $appointment->google_meet_link }}" target="_blank"
+                                            class="bg-blue-400 text-white rounded-lg text-sm px-3 py-1">
+                                            Join Google Meet
+                                        </a>
+                                        <form action="{{ route('schedule.destroy', $schedule->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button onclick="return confirm('Are you sure to delete this?')" class="text-white bg-red-800 rounded-lg text-sm px-3 py-1">Cancel</button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="flex justify-between mt-2">
-                                    <label>Time appointed:</label>
-                                    <h1 class="ml-1">{{ $schedule->time }}</h1>
-                                </div>
-                                <div class="flex justify-between mt-3 items-center">
-                                    <a href="#" class="bg-[#b692d0] text-white rounded-lg text-sm px-3 py-1">View Appointment</a>
-                                    <form action="{{ route('schedule.destroy', $schedule->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button onclick="return confirm('Are you sure to delete this?')"
-                                            class="text-white bg-red-800 rounded-lg text-sm px-3 py-1">Cancel</button>
-                                    </form>
-                                </div>
-                            </div>
+                            @endforeach
                         @endforeach
                     </div>
+
                     @endif
                 </div>
             </div>

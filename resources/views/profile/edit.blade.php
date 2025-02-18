@@ -18,6 +18,18 @@
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    @if (!Auth::user()->google_access_token)
+                        <a href="{{ url('/auth/google') }}" class="bg-red-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-red-600">
+                            Sign in with Google
+                        </a>
+                    @else
+                        <p class="text-green-500">✅ Google account linked!</p>
+                    @endif
+                </div>
+            </div>
+
 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
@@ -25,5 +37,8 @@
                 </div>
             </div>
         </div>
+
+
+
     </div>
 </x-app-layout>

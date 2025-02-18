@@ -7,6 +7,13 @@ use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Google_Client;
+use Google_Service_Calendar;
+use Google_Service_Calendar_Event;
+use Google_Service_Calendar_ConferenceData;
+use Google_Service_Calendar_CreateConferenceRequest;
+use Google_Service_Calendar_ConferenceSolutionKey;
+
 
 class ScheduleController extends Controller
 {
@@ -173,49 +180,116 @@ class ScheduleController extends Controller
                 ->withInput();
         }
     }
-
-    public function storeAppointment(Request $request, $scheduleId)
+// Google Meet event creation logic
+private function createGoogleMeetEvent($appointment)
 {
-    // Validate the incoming request data
-    $validated = $request->validate([
-        'user_name' => 'required|string|max:255',
-        'user_email' => 'required|email|max:255',
-        'appointment_month' => 'required|string|max:50',
-        'appointment_day' => 'required|string|max:50',
-        'appointment_year' => 'required|string|max:50',
-        'appointment_time' => 'required|string|max:50',
-        'status' => 'required|string|in:approved,declined',
-        'contact' => 'required|string|max:255',
-        'contact_email' => 'required|email|max:255',
-        'speech_language_pathologist' => 'nullable|string|max:255',
+    $client = new Google_Client();
+    $user = Auth::user();
+
+    if (!$user->google_access_token) {
+        return 'Google authentication required. Please log in with Google.';
+    }
+
+    $client->setAccessToken($user->google_access_token);
+
+    // If token is expired, refresh it
+    if ($client->isAccessTokenExpired()) {
+        if (!$user->google_refresh_token) {
+            return 'Google token expired. Please re-authenticate.';
+        }
+
+        $client->fetchAccessTokenWithRefreshToken($user->google_refresh_token);
+        $newAccessToken = $client->getAccessToken();
+
+        // Update user token
+        $user->update([
+            'google_access_token' => $newAccessToken['access_token'],
+        ]);
+    }
+
+    // Now use the updated token to create a Google Meet event
+    $service = new Google_Service_Calendar($client);
+    $event = new Google_Service_Calendar_Event([
+        'summary' => 'Appointment with ' . $appointment->name,
+        'start' => [
+            'dateTime' => date('c', strtotime("{$appointment->year}-{$appointment->month}-{$appointment->day} {$appointment->time}")),
+            'timeZone' => 'UTC',
+        ],
+        'end' => [
+            'dateTime' => date('c', strtotime("{$appointment->year}-{$appointment->month}-{$appointment->day} {$appointment->time} +1 hour")),
+            'timeZone' => 'UTC',
+        ],
+        'conferenceData' => [
+            'createRequest' => [
+                'requestId' => uniqid(),
+                'conferenceSolutionKey' => ['type' => 'hangoutsMeet'],
+            ],
+        ],
     ]);
 
-    // Retrieve the schedule by ID
-    $schedule = Schedule::findOrFail($scheduleId);
-
-    // Create a new Appointment record
-    $appointment = Appointment::create([
-        'user_id' => $schedule->user_id,
-        'name' => $validated['user_name'],
-        'email' => $validated['user_email'],
-        'month' => $validated['appointment_month'],
-        'day' => $validated['appointment_day'],
-        'year' => $validated['appointment_year'],
-        'time' => $validated['appointment_time'],
-        'status' => $validated['status'],
-        'contact' => $validated['contact'],
-        'contact_email' => $validated['contact_email'],
-        'schedule_id' => $schedule->id,
-    ]);
-
-    // Update the schedule status to 'completed' (or another status)
-    $schedule->status = 'approved'; // You can choose a different status if needed
-    $schedule->save();
-
-    // Redirect or respond with success
-    return redirect()->back()->with('success', 'Appointment has been successfully saved and the schedule status has been updated.');
+    try {
+        $event = $service->events->insert('primary', $event, ['conferenceDataVersion' => 1]);
+        return $event->getHangoutLink() ?? 'No Google Meet link generated.';
+    } catch (\Exception $e) {
+        return 'Error creating Google Meet event: ' . $e->getMessage();
+    }
 }
 
+
+
+
+
+
+    public function storeAppointment(Request $request, $scheduleId)
+    {
+        // Validate the incoming request data
+        $validated = $request->validate([
+            'user_name' => 'required|string|max:255',
+            'user_email' => 'required|email|max:255',
+            'appointment_month' => 'required|string|max:50',
+            'appointment_day' => 'required|string|max:50',
+            'appointment_year' => 'required|string|max:50',
+            'appointment_time' => 'required|string|max:50',
+            'status' => 'required|string|in:approved,declined',
+            'contact' => 'required|string|max:255',
+            'contact_email' => 'required|email|max:255',
+            'speech_language_pathologist' => 'nullable|string|max:255',
+        ]);
+
+        // Retrieve the schedule by ID
+        $schedule = Schedule::findOrFail($scheduleId);
+
+        // Create a new Appointment record
+        $appointment = Appointment::create([
+            'user_id' => $schedule->user_id,
+            'name' => $validated['user_name'],
+            'email' => $validated['user_email'],
+            'month' => $validated['appointment_month'],
+            'day' => $validated['appointment_day'],
+            'year' => $validated['appointment_year'],
+            'time' => $validated['appointment_time'],
+            'status' => $validated['status'],
+            'contact' => $validated['contact'],
+            'contact_email' => $validated['contact_email'],
+            'schedule_id' => $schedule->id,
+        ]);
+
+        // Update the schedule status to 'approved' when appointment is created
+        $schedule->status = 'approved';
+        $schedule->save();
+
+        // Create Google Meet link if the appointment is approved
+        if ($appointment->status === 'approved') {
+            // Create the Google Meet link
+            $googleMeetLink = $this->createGoogleMeetEvent($appointment);
+
+            // Save the Google Meet link to the appointment
+            $appointment->google_meet_link = $googleMeetLink;
+            $appointment->save();
+        }
+
+        return redirect()->back()->with('success', 'Appointment has been successfully saved and the schedule status has been updated.');
+    }
 
 public function getScheduleData($id)
 {
