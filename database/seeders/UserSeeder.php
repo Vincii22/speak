@@ -29,12 +29,12 @@ class UserSeeder extends Seeder
         ]);
 
         // // Create 2 users with 'professional' role
-        // User::create([
-        //     'name' => 'Arvin Milan',
-        //     'email' => 'vinmilan0922@gmail.com',
-        //     'password' => Hash::make('redblood12'),
-        //     'role' => 'professional',
-        // ]);
+        User::create([
+            'name' => 'Arvin Milan',
+            'email' => 'vinmilan0922@gmail.com',
+            'password' => Hash::make('redblood12'),
+            'role' => 'professional',
+        ]);
 
         // User::create([
         //     'name' => 'Professional 2',

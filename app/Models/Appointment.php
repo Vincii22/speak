@@ -18,8 +18,9 @@ class Appointment extends Model
         'contact',
         'contact_email',
         'schedule_id',
+        'google_meet_link',
     ];
-    
+
     public function schedule()
     {
         return $this->belongsTo(Schedule::class);

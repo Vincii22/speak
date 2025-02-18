@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ScheduleController;
 use App\Models\Schedule;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 use App\Http\Controllers\UserContentController;
@@ -14,7 +15,8 @@ use App\Http\Controllers\Admin\ExerciseController;
 use App\Http\Controllers\ProfessionalController;
 use App\Http\Controllers\Admin\PracticeCategoryController;
 use App\Http\Controllers\Admin\PracticeExerciseController;
-
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -41,7 +43,7 @@ Route::middleware(['auth', RoleMiddleware::class . ':user'])->group(function () 
 });
 
 Route::middleware(['auth', RoleMiddleware::class . ':professional'])->group(function () {
-    Route::view('/professional/dashboard', 'professional.dashboard')->name('professional.dashboard');
+    Route::get('/professional/dashboard', [ProfessionalController::class, 'dashboardIndex'])->name('professional.dashboard');
 });
 
 Route::middleware(['auth', RoleMiddleware::class . ':admin'])->group(function () {
@@ -133,3 +135,32 @@ Route::post('/schedule/reserved-dates', [ScheduleController::class, 'fetchReserv
 Route::post('/schedule/fetchReservedDatesForLoggedInUser', [ScheduleController::class, 'fetchReservedDatesForLoggedInUser'])->name('schedule.fetchReservedDatesForLoggedInUser');
 Route::post('/schedules/{schedule}/appointments', [ScheduleController::class, 'storeAppointment'])->name('schedules.appointments.store');
 Route::get('/schedule/getScheduleData/{id}', [ScheduleController::class, 'getScheduleData']);
+
+Route::get('/auth/google', function () {
+    return Socialite::driver('google')
+        ->scopes(['https://www.googleapis.com/auth/calendar'])
+        ->with(['access_type' => 'offline', 'prompt' => 'consent']) // 👈 Forces refresh token
+        ->redirect();
+});
+
+Route::get('/auth/google/callback', function () {
+    $googleUser = Socialite::driver('google')->stateless()->user();
+
+    $user = User::updateOrCreate([
+        'email' => $googleUser->getEmail(),
+    ], [
+        'name' => $googleUser->getName(),
+        'google_access_token' => $googleUser->token,
+    ]);
+
+    // Only update refresh token if it's provided
+    if ($googleUser->refreshToken) {
+        $user->update([
+            'google_refresh_token' => $googleUser->refreshToken,
+        ]);
+    }
+
+    Auth::login($user);
+
+    return redirect('/dashboard')->with('success', 'Google Calendar linked!');
+});
