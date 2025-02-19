@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('contact');
             $table->string('contact_email');
             $table->unsignedBigInteger('schedule_id'); // Foreign key to schedules table
-            $table->string('google_meet_link')->nullable();
+            $table->text('google_meet_link')->nullable();
             $table->timestamps();
 
             // Foreign key references

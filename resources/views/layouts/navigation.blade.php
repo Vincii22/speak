@@ -24,16 +24,7 @@
                     class="hidden lg:flex lg:space-x-6 flex-col lg:flex-row mt-4 lg:mt-0 lg:space-y-0 space-y-2">
                     <a href="{{ route('user.dashboard')}}" href="#home"
                         class="active text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
-                    <a href="#about"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">About</a>
-                    <a href="#catalog"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Catalog</a>
-                    <a href="#courses"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Courses</a>
-                    <a href="#directory"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Directory</a>
-                    <a href="#testimonials"
-                        class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
+
                 </nav>
 
 
@@ -81,19 +72,7 @@
 
         <!-- Responsive Dropdown Menu -->
         <div id="mobile-menu" class="lg:hidden hidden flex-col mt-4 space-y-2">
-            <!-- Navigation Links for Mobile -->
-            <nav class="space-y-2">
-                <a href="#home" class="block text-gray-600 hover:text-gray-800 transition">Home</a>
-                <a href="#about" class="block text-gray-600 hover:text-gray-800 transition">About</a>
-                <a href="#services" class="block text-gray-600 hover:text-gray-800 transition">Catalog</a>
-                <a href="#courses" class="block text-gray-600 hover:text-gray-800 transition">Courses</a>
-                <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Schedule</a>
-                <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Directory</a>
-                <a href="#contact" class="block text-gray-600 hover:text-gray-800 transition">Testimonials</a>
-                <a href="{{route('user.content.index')}}"
-                    class="block text-gray-600 hover:text-gray-800 transition">User Content</a>
 
-            </nav>
 
             <!-- Auth Links for Mobile -->
             <div class="space-y-2 mt-4">

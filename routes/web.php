@@ -6,7 +6,7 @@ use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
-use App\Http\Controllers\UserContentController;
+
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\SetController;
 use App\Http\Controllers\Admin\DayController;
@@ -17,6 +17,8 @@ use App\Http\Controllers\Admin\PracticeCategoryController;
 use App\Http\Controllers\Admin\PracticeExerciseController;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserDashboardController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -32,15 +34,15 @@ Route::get('/dashboard', function () {
         case 'admin':
             return redirect()->route('admin.dashboard');
         default:
-            return redirect()->route('user.dashboard'); // Default to user dashboard
+            return redirect()->action([UserDashboardController::class, 'index']); // Use controller for user dashboard
     }
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+Route::get('/user/dashboard', [UserDashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('user.dashboard');
 
-Route::middleware(['auth', RoleMiddleware::class . ':user'])->group(function () {
-    Route::view('/user/dashboard', 'user.dashboard')->name('user.dashboard');
-});
 
 Route::middleware(['auth', RoleMiddleware::class . ':professional'])->group(function () {
     Route::get('/professional/dashboard', [ProfessionalController::class, 'dashboardIndex'])->name('professional.dashboard');
@@ -57,12 +59,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/content', [UserContentController::class, 'index'])->name('user.content.index');
-    Route::get('/content/{category}', [UserContentController::class, 'showCategory'])->name('user.content.category');
-    Route::post('/user/content/{category}/level/{level}/submit-recording', [UserContentController::class, 'submitRecording'])
-    ->name('user.content.submitRecording');
-});
 
 
 
@@ -164,3 +160,26 @@ Route::get('/auth/google/callback', function () {
 
     return redirect('/dashboard')->with('success', 'Google Calendar linked!');
 });
+Route::post('/auth/google/logout', function () {
+    $user = Auth::user();
+
+    if (!$user->google_access_token) {
+        return redirect()->back()->with('error', 'No Google account linked.');
+    }
+
+    try {
+        // Revoke token from Google
+        $client = new Google_Client();
+        $client->revokeToken($user->google_access_token);
+    } catch (\Exception $e) {
+        Log::error("Failed to revoke Google token: " . $e->getMessage());
+    }
+
+    // Remove tokens from database
+    $user->update([
+        'google_access_token' => null,
+        'google_refresh_token' => null,
+    ]);
+
+    return redirect()->back()->with('success', 'Google account unlinked successfully.');
+})->middleware('auth')->name('google.logout');
