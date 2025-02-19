@@ -13,7 +13,7 @@ use Google_Service_Calendar_Event;
 use Google_Service_Calendar_ConferenceData;
 use Google_Service_Calendar_CreateConferenceRequest;
 use Google_Service_Calendar_ConferenceSolutionKey;
-
+use Illuminate\Support\Facades\Log;
 
 class ScheduleController extends Controller
 {
@@ -195,20 +195,30 @@ private function createGoogleMeetEvent($appointment)
     // If token is expired, refresh it
     if ($client->isAccessTokenExpired()) {
         if (!$user->google_refresh_token) {
+            Log::error("Missing refresh token for user ID: " . $user->id);
             return 'Google token expired. Please re-authenticate.';
         }
+
+        Log::info("Refreshing token for user ID: " . $user->id);
+        Log::info("Stored refresh token: " . $user->google_refresh_token);
 
         $client->fetchAccessTokenWithRefreshToken($user->google_refresh_token);
         $newAccessToken = $client->getAccessToken();
 
-        // Update user token
-        $user->update([
-            'google_access_token' => $newAccessToken['access_token'],
-        ]);
+        Log::info("New access token received for user ID: " . $user->id, $newAccessToken);
+
+        // ✅ Correct way to update user tokens
+        $user->google_access_token = $newAccessToken['access_token'];
+        $user->google_refresh_token = $newAccessToken['refresh_token'] ?? $user->google_refresh_token; // Keep old refresh token if not returned
+        $user->save(); // Save to database
     }
 
-    // Now use the updated token to create a Google Meet event
+    Log::info("Using access token: " . $client->getAccessToken()['access_token']);
+
+    // Initialize Google Calendar service
     $service = new Google_Service_Calendar($client);
+
+    // Create event with Google Meet
     $event = new Google_Service_Calendar_Event([
         'summary' => 'Appointment with ' . $appointment->name,
         'start' => [
@@ -229,14 +239,20 @@ private function createGoogleMeetEvent($appointment)
 
     try {
         $event = $service->events->insert('primary', $event, ['conferenceDataVersion' => 1]);
-        return $event->getHangoutLink() ?? 'No Google Meet link generated.';
+
+        $meetLink = $event->getHangoutLink();
+
+        if (!$meetLink) {
+            Log::error("No Google Meet link generated for appointment ID: " . $appointment->id);
+            return 'No Google Meet link generated.';
+        }
+
+        return $meetLink;
     } catch (\Exception $e) {
+        Log::error("Error creating Google Meet event for user ID: {$user->id}, Error: " . $e->getMessage());
         return 'Error creating Google Meet event: ' . $e->getMessage();
     }
 }
-
-
-
 
 
 

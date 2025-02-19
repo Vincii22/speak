@@ -26,9 +26,18 @@
                         </a>
                     @else
                         <p class="text-green-500">✅ Google account linked!</p>
+
+                        <!-- Sign Out Button -->
+                        <form action="{{ route('google.logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="bg-gray-500 text-white px-4 py-2 rounded-md shadow-md hover:bg-gray-600 mt-2">
+                                Sign Out with Google
+                            </button>
+                        </form>
                     @endif
                 </div>
             </div>
+
 
 
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
