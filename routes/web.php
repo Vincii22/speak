@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SetController;
 use App\Http\Controllers\Admin\DayController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -50,6 +51,14 @@ Route::middleware(['auth', RoleMiddleware::class . ':professional'])->group(func
 
 Route::middleware(['auth', RoleMiddleware::class . ':admin'])->group(function () {
     Route::view('/admin/dashboard', 'admin.dashboard')->name('admin.dashboard');
+    Route::resource('users', UserController::class)->names([
+        'index' => 'admin.users',
+        'create' => 'admin.users.create',
+        'store' => 'admin.users.store',
+        'edit' => 'admin.users.edit',
+        'update' => 'admin.users.update',
+        'destroy' => 'admin.users.destroy',
+    ]);
 });
 // Profile routes
 Route::middleware('auth')->group(function () {
