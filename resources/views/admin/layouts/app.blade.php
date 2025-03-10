@@ -30,7 +30,7 @@
         @endisset
 
         <!-- Page Content -->
-        <main>
+        <main class="mt-24">
             @yield('content') <!-- This will display the content injected from views -->
         </main>
     </div>
