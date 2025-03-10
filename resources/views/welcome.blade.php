@@ -21,7 +21,7 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-    
+
     <div class="bg-gray-50 text-black/50 dark:bg-white dark:text-white/50">
         <header class="bg-white shadow py-2 fixed w-full z-10">
             <div class="container mx-auto px-10">
@@ -324,12 +324,12 @@
                     class="flex flex-col md:flex-row gap-5 md:gap-10 px-4 sm:px-[150px] md:px-[100px] pt-10 pb-5 relative lg:px-24">
                     <div
                         class="w-full md:w-[50%] p-5 items-center bg-[#fff] shadow-xl rounded-lg hover:bg-[#ffded627] transition-all">
-                        <img src="{{url('img/blank.webp')}}" alt="" class="h-[35vh] w-full mb-4 object-cover">
+                        <a href="https://userweb.ucs.louisiana.edu/~ncr3025/roussel/codi531/oralmotor?fbclid=IwZXh0bgNhZW0CMTEAAR2jhCmeGOMVcHPla-avRslk1OIWcTMGoJXP87ae0ZacI-BQlBF2WZG5O_g_aem_31x1f7Ifb3-36P-xx6kNRQ" target="_blank"><img src="{{url('img/blank.webp')}}" alt="" class="h-[35vh] w-full mb-4 object-cover"></a>
                         <a href="" class="text-lg text-black">
                             <i class="fa-solid fa-globe"></i> Philippines
                         </a>
                         <h1 class="text-black text-xl font-semibold pt-7">
-                            ARTICLE HEADLINE; LOREM IPSUM DOLOR
+                            EXERCISES FOR THE TONGUE, LIPS, AND JAW
                         </h1>
                         <h2 class="text-lg text-black">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sit accusamus natus amet
@@ -338,12 +338,12 @@
                     </div>
                     <div
                         class="w-full md:w-[50%] p-5 items-center bg-[#fff] shadow-xl rounded-lg hover:bg-[#ffded627] transition-all">
-                        <img src="{{url('img/blank.webp')}}" alt="" class="h-[35vh] w-full mb-4 object-cover">
+                        <a href="" target="_blank"><img src="{{url('img/blank.webp')}}" alt="" class="h-[35vh] w-full mb-4 object-cover"></a>
                         <a href="" class="text-lg text-black">
                             <i class="fa-solid fa-globe"></i> Philippines
                         </a>
                         <h1 class="text-black text-xl font-semibold pt-7">
-                            ARTICLE HEADLINE; LOREM IPSUM DOLOR
+                            290+ P Words, Phrases, Sentences, and Reading Passages
                         </h1>
                         <h2 class="text-lg text-black">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sit accusamus natus amet
@@ -366,12 +366,12 @@
                 <div class="flex flex-col md:flex-row gap-5 md:gap-10 px-4 md:px-[100px] pt-10 pb-5 relative lg:px-24">
                     <div
                         class="w-full md:w-[50%] p-5 items-center bg-[#fff] shadow-xl rounded-lg hover:bg-[#ffded627] transition-all">
-                        <img src="{{url('img/blank.webp')}}" alt="" class="h-[35vh] w-full mb-4 object-cover">
+                        <a href="https://www.home-speech-home.com/m-words.html?fbclid=IwZXh0bgNhZW0CMTEAAR0C38l99-MsG1CZR3QUZ3fynkpdqYIB-YHOPbzyyMI_0u88zRw8nKvPprY_aem_hJQUDLHUTatDt1NTg4gECw" target="_blank"><img src="{{url('img/m-words.png')}}" alt="" class="h-[35vh] w-full mb-4 object-cover"></a>
                         <a href="" class="text-lg text-black">
                             <i class="fa-solid fa-globe"></i> Philippines
                         </a>
                         <h1 class="text-black text-xl font-semibold pt-7">
-                            ARTICLE HEADLINE; LOREM IPSUM DOLOR
+                            280+ M Words, Phrases, Sentences, and Reading Passages
                         </h1>
                         <h2 class="text-lg text-black">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sit accusamus natus amet
@@ -380,12 +380,12 @@
                     </div>
                     <div
                         class="w-full md:w-[50%] p-5 items-center bg-[#fff] shadow-xl rounded-lg hover:bg-[#ffded627] transition-all">
-                        <img src="{{url('img/blank.webp')}}" alt="" class="h-[35vh] w-full mb-4 object-cover">
+                        <a href="https://www.home-speech-home.com/p-words.html?fbclid=IwZXh0bgNhZW0CMTEAAR3gsi1m9kGXNGa5ptlsB5n2JMKTFxLRidp1iGhkdXVVDRKnk899vcsd2Fw_aem_bHemrSouxwOoMBYgNKHIhg" target="_blank"><img src="{{url('img/p-words.png')}}" alt="" class="h-[35vh] w-full mb-4 object-cover"></a>
                         <a href="" class="text-lg text-black">
                             <i class="fa-solid fa-globe"></i> Philippines
                         </a>
                         <h1 class="text-black text-xl font-semibold pt-7">
-                            ARTICLE HEADLINE; LOREM IPSUM DOLOR
+                            290+ P Words, Phrases, Sentences, and Reading Passages
                         </h1>
                         <h2 class="text-lg text-black">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sit accusamus natus amet
@@ -394,12 +394,12 @@
                     </div>
                     <div
                         class="w-full md:w-[50%] p-5 items-center bg-[#fff] shadow-xl rounded-lg hover:bg-[#ffded627] transition-all">
-                        <img src="{{url('img/blank.webp')}}" alt="" class="h-[35vh] w-full mb-4 object-cover">
+                        <a href="https://www.home-speech-home.com/b-words.html?fbclid=IwZXh0bgNhZW0CMTEAAR1TbBl3RhDLmydgtM4huTHSttAUQSLlWahnRk-HL2kootHu27lgwcNYkUU_aem_lWAxgKdLqo2e8jhubhFjeQ" target="_blank"><img src="{{url('img/b-words.png')}}" alt="" class="h-[35vh] w-full mb-4 object-cover"></a>
                         <a href="" class="text-lg text-black">
                             <i class="fa-solid fa-globe"></i> Philippines
                         </a>
                         <h1 class="text-black text-xl font-semibold pt-7">
-                            ARTICLE HEADLINE; LOREM IPSUM DOLOR
+                            230+ B Words, Phrases, Sentences, and Reading Passages
                         </h1>
                         <h2 class="text-lg text-black">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo sit accusamus natus amet
@@ -607,7 +607,7 @@
                     </div>
                     <div class="text-black px-5 md:px-12">
                         <h1 class="text-lg md:text-xl lg:text-[3vh] font-semibold rounded-xl mt-5 text-center mb-3 ">
-                            Founder
+                            Jacquelyn Uera
                         </h1>
                         <h1 class="text-justify mb-3 lg:text-[2.1vh]">
                             <span class="font-semibold">Credentials:</span> Founder of Our Learning Corner ·
