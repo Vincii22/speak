@@ -1,6 +1,6 @@
 <x-guest-layout>
     <!-- Session Status -->
-     
+
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
@@ -42,7 +42,11 @@
                 {{ __('Log in') }}
             </button>
         </div>
-        <div class="flex items-center justify-center mt-4">
+        <div class="flex items-center justify-between mt-4">
+            <a href="{{ route('password.request') }}" class="italic text-gray-400 text-sm lg:text-[2vh] hover:text-black">
+                Forgot Password?
+            </a>
+
             <a href="{{ route('register') }}" class="italic text-gray-400 text-sm lg:text-[2vh] hover:text-black">
                 Create an account
             </a>
