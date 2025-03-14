@@ -22,8 +22,10 @@
                 <!-- Navigation Links in the Center -->
                 <nav id="navlinks"
                     class="hidden lg:flex lg:space-x-6 flex-col lg:flex-row mt-4 lg:mt-0 lg:space-y-0 space-y-2">
-                    <a href="{{ route('user.dashboard')}}" href="#home"
+                    <a href="{{ route('user.home')}}" href="#home"
                         class="active text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
+                    <a href="{{ route('user.dashboard')}}" href="#dashboard"
+                        class="active text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Dashboard</a>
 
                 </nav>
 
@@ -145,6 +147,8 @@
                 class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Exercises</a>
             <a href="{{ route('user.practices.index')}}"
                 class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Practice</a>
+                <a href="{{ route('testimonials.index')}}"
+                class="text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Testimonials</a>
         </div>
     </header>
 

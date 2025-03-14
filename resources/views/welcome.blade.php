@@ -677,6 +677,7 @@
 
         <!---------------------- Testimonials Section ---------------------->
 
+        @if(isset($testimonials) && $testimonials->count())
         <section id="testimonials" class="section bg-[#fff7f5]">
             <div class="bg-[#FFDED6] w-full flex justify-center items-center gap-5 py-2 px-4">
                 <h1 class="text-[#694F8E] text-[2rem] md:text-[4rem] lg:text-[3rem] font-semibold">TESTIMONIALS</h1>
@@ -684,99 +685,32 @@
             <h2 class="text-lg md:text-2xl lg:text-3xl font-bold text-center text-[#694F8E] mt-8 md:mt-12 italic">
                 How was your experience in SPEAK? Let us know!
             </h2>
-            <!-- Carousel Container -->
+
             <div class="carousel-container relative max-w-5xl mx-auto px-4 md:px-6 py-8 md:py-16 overflow-hidden">
                 <div id="carousel" class="carousel flex space-x-4">
-                    <!-- Testimonial Items -->
-                    <div
-                        class="hover:bg-white transition-all bg-[#ffded62c] p-4 md:p-6 rounded-lg shadow-lg flex-shrink-0 w-[80%] sm:w-[60%] md:w-[40%] lg:w-1/3">
-                        <p class="text-gray-600 italic mb-4">"Overall had a great experience as the website was very
-                            easy to use."</p>
-                        <div class="flex items-center space-x-4 mt-4">
-                            <img src="https://via.placeholder.com/48" alt="Jordan's photo"
-                                class="w-12 h-12 rounded-full">
-                            <div>
-                                <h4 class="text-gray-800 text-lg font-semibold">User001</h4>
-                                <h4 class="text-gray-800 text-[.8rem] font-semibold">October 10, 2024</h4>
-                                <span class="text-gray-500 text-sm">
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                </span>
+                    @foreach ($testimonials as $testimonial)
+                        <div class="hover:bg-white transition-all bg-[#ffded62c] p-4 md:p-6 rounded-lg shadow-lg flex-shrink-0 w-[80%] sm:w-[60%] md:w-[40%] lg:w-1/3">
+                            <p class="text-gray-600 italic mb-4">"{{ $testimonial->review }}"</p>
+                            <div class="flex items-center space-x-4 mt-4">
+                                <img src="{{ $testimonial->user->profile_photo_url ?? 'https://via.placeholder.com/48' }}" alt="{{ $testimonial->user->name }}"
+                                    class="w-12 h-12 rounded-full">
+                                <div>
+                                    <h4 class="text-gray-800 text-lg font-semibold">{{ $testimonial->user->name }}</h4>
+                                    <h4 class="text-gray-800 text-[.8rem] font-semibold">{{ $testimonial->created_at->format('F d, Y') }}</h4>
+                                    <span class="text-gray-500 text-sm">
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <i class="fa-solid fa-star" style="color: {{ $i <= $testimonial->rating ? '#FFD43B' : '#ccc' }};"></i>
+                                        @endfor
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div
-                        class="hover:bg-white transition-all bg-[#ffded62c] p-4 md:p-6 rounded-lg shadow-lg flex-shrink-0 w-[80%] sm:w-[60%] md:w-[40%] lg:w-1/3">
-                        <p class="text-gray-600 italic mb-4">"Overall had a great experience as the website was very
-                            easy to use."</p>
-                        <div class="flex items-center space-x-4 mt-4">
-                            <img src="https://via.placeholder.com/48" alt="Jordan's photo"
-                                class="w-12 h-12 rounded-full">
-                            <div>
-                                <h4 class="text-gray-800 text-lg font-semibold">User001</h4>
-                                <h4 class="text-gray-800 text-[.8rem] font-semibold">October 10, 2024</h4>
-                                <span class="text-gray-500 text-sm">
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="hover:bg-white transition-all bg-[#ffded62c] p-4 md:p-6 rounded-lg shadow-lg flex-shrink-0 w-[80%] sm:w-[60%] md:w-[40%] lg:w-1/3">
-                        <p class="text-gray-600 italic mb-4">"Overall had a great experience as the website was very
-                            easy to use."</p>
-                        <div class="flex items-center space-x-4 mt-4">
-                            <img src="https://via.placeholder.com/48" alt="Jordan's photo"
-                                class="w-12 h-12 rounded-full">
-                            <div>
-                                <h4 class="text-gray-800 text-lg font-semibold">User001</h4>
-                                <h4 class="text-gray-800 text-[.8rem] font-semibold">October 10, 2024</h4>
-                                <span class="text-gray-500 text-sm">
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div
-                        class="hover:bg-white transition-all bg-[#ffded62c] p-4 md:p-6 rounded-lg shadow-lg flex-shrink-0 w-[80%] sm:w-[60%] md:w-[40%] lg:w-1/3">
-                        <p class="text-gray-600 italic mb-4">"Overall had a great experience as the website was very
-                            easy to use."</p>
-                        <div class="flex items-center space-x-4 mt-4">
-                            <img src="https://via.placeholder.com/48" alt="Jordan's photo"
-                                class="w-12 h-12 rounded-full">
-                            <div>
-                                <h4 class="text-gray-800 text-lg font-semibold">User001</h4>
-                                <h4 class="text-gray-800 text-[.8rem] font-semibold">October 10, 2024</h4>
-                                <span class="text-gray-500 text-sm">
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                    <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-
-                <!-- Carousel Controls -->
-                <button id="prev"
-                    class="absolute top-1/2 left-2 md:left-0 transform -translate-y-1/2 bg-[#694F8E] text-white p-2 px-4 rounded-full">❮</button>
-                <button id="next"
-                    class="absolute top-1/2 right-2 md:right-0 transform -translate-y-1/2 bg-[#694F8E] text-white p-2 px-4 rounded-full">❯</button>
             </div>
         </section>
+    @endif
+
 
         <!---------------------- End of Directory Section ---------------------->
 
