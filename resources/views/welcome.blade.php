@@ -427,9 +427,9 @@
                         <div class="flex flex-col justify-center items-center relative">
                             <div
                                 class="bg-[#694F8E] h-[15rem] w-[15rem] md:w-[29vh] md:h-[29vh] rounded-full flex items-center flex-col justify-center">
-                                <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
+                                <img src="{{url('img/teacherKaye.jpg')}}" alt="" class="rounded-full w-full h-full">
                             </div>
-                            <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
+                            <a href="https://www.youtube.com/@TeacherKayeTalks" class="absolute bottom-[-30px]" target="_blank">
                                 <img src="{{url('img/yt.png')}}" class="w-[70px] md:w-[90px]">
                             </a>
                         </div>
@@ -437,50 +437,47 @@
                             <h1 class="text-lg lg:text-[3vh] font-semibold rounded-xl mt-10 text-center mb-3">
                                 TEACHER KAYE TALKS, SLP
                             </h1>
-                            <h2 class="lg:text-[2.1vh] mb-2">Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
-                            <h2 class="lg:text-[2.1vh] mb-2">- Performed evaluation and treatment planning of over 50 patients a month</h2>
-                            <h2 class="lg:text-[2.1vh] mb-2">- Provided direct and indirect speech therapy services to 350 students with
-                                communication disorders.</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">Teacher Kaye Talks © 2020</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- I'm a certified Speech-Language Pathologist (SLP) based in Metro Manila, offering FREE tips for parents and caregivers, to provide better language stimulation for their kids at home. </h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Para sa mga magulang ng batang "hindi nagsasalita," "mahirap intindihin," "hindi nakakasunod sa sa sinasabi," "laging nabibilaukan," atbp., TARA, usap tayo!</h2>
                         </div>
                     </div>
                     <div class="min-h-[20rem] w-[90%] md:w-[20rem] lg:w-[25rem] p-4">
                         <div class="flex flex-col justify-center items-center relative">
                             <div
                                 class="bg-[#694F8E] h-[15rem] w-[15rem] md:w-[29vh] md:h-[29vh] rounded-full flex items-center flex-col justify-center">
-                                <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
+                                <img src="{{url('img/speechTherapyPractice.jpg')}}" alt="" class="rounded-full w-full h-full">
                             </div>
-                            <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
+                            <a href="https://www.youtube.com/@SpeechTherapyPractice" class="absolute bottom-[-30px]" target="_blank">
                                 <img src="{{url('img/yt.png')}}" class="w-[70px] md:w-[90px]">
                             </a>
                         </div>
                         <div class="text-black">
                             <h1 class="text-lg lg:text-[3vh] font-semibold rounded-xl mt-10 text-center mb-3">
-                                TEACHERKAYE TALKS, SLP
+                                Speech Therapy Practice
                             </h1>
-                            <h2 class="lg:text-[2.1vh] mb-2">Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
-                            <h2 class="lg:text-[2.1vh] mb-2">- Performed evaluation and treatment planning of over 50 patients a month</h2>
-                            <h2 class="lg:text-[2.1vh] mb-2">- Provided direct and indirect speech therapy services to 350 students with
-                                communication disorders.</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">I am a Certified Speech-Language Pathologist (CCC-SLP) with extensive work experience in the medical and educational settings.</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">On this channel you will find interventions focused for adult population in the areas of dysphagia, </h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">cognitive-linguistics, speech/language impairments, assistive augmentative communication methods, voice/resonance disorders, and social pragmatics.  </h2>
                         </div>
                     </div>
                     <div class="min-h-[20rem] w-[90%] md:w-[20rem] lg:w-[25rem] p-4">
                         <div class="flex flex-col justify-center items-center relative">
                             <div
                                 class="bg-[#694F8E] h-[15rem] w-[15rem] md:w-[29vh] md:h-[29vh] rounded-full flex items-center flex-col justify-center">
-                                <img src="{{url('img/toga.png')}}" alt="" class="rounded-full w-full h-full">
+                                <img src="{{url('img/speechSecret.jpg')}}" alt="" class="rounded-full w-full h-full">
                             </div>
-                            <a href="https://www.youtube.com/" class="absolute bottom-[-30px]" target="_blank">
+                            <a href="https://www.youtube.com/@SpeechSecrets" class="absolute bottom-[-30px]" target="_blank">
                                 <img src="{{url('img/yt.png')}}" class="w-[70px] md:w-[90px]">
                             </a>
                         </div>
                         <div class="text-black">
                             <h1 class="text-lg lg:text-[3vh] font-semibold rounded-xl mt-10 text-center mb-3">
-                                TEACHERKAYE TALKS, SLP
+                                Speech Secrets
+
                             </h1>
-                            <h2 class="lg:text-[2.1vh] mb-2">Speech-Language Pathologist - Bulan RegionalHealth (2015 - 2016)</h2>
-                            <h2 class="lg:text-[2.1vh] mb-2">- Performed evaluation and treatment planning of over 50 patients a month</h2>
-                            <h2 class="lg:text-[2.1vh] mb-2">- Provided direct and indirect speech therapy services to 350 students with
-                                communication disorders.</h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">I'm Kasondra, a speech therapist in California working with clients who have aphasia, dysarthria, dysphagia, voice and cognitive difficulties from acquired neurologic conditions.  </h2>
+                            <h2 class="lg:text-[2.1vh] mb-2">- Sharing my speech therapy secrets! Home therapy tips, lessons, and exercises for individuals with neurologic injuries and their caregivers. </h2>
                         </div>
                     </div>
                     <!-- Additional Content Creator Divs Here -->
