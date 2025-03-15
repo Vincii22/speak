@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
     use Illuminate\Http\Request;
     use App\Models\Appointment;
     use App\Models\Schedule;
+    use App\Models\Exercise;
     use App\Models\UserActivity;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Log;
@@ -26,12 +27,19 @@ namespace App\Http\Controllers;
             ->with('appointments')
             ->get();
 
-            // Fetch total user exercises and calculate progress
-            $totalExercises = UserActivity::where('user_id', $user->id)->count();
+            // Get all exercises assigned to the user (based on sets)
+            $totalExercises = Exercise::whereHas('category.day.set', function ($query) use ($user) {
+                $query->whereIn('id', UserActivity::where('user_id', $user->id)->pluck('set_id'));
+            })->count();
+
+            // Count only completed exercises
             $completedExercises = UserActivity::where('user_id', $user->id)
                 ->where('marked_as_done', true)
                 ->count();
+
+            // Avoid division by zero
             $progressPercentage = $totalExercises > 0 ? round(($completedExercises / $totalExercises) * 100, 2) : 0;
+
 
             // Fetch summary of all appointments
             $appointmentSummary = Appointment::whereHas('schedule', function ($query) use ($user) {
@@ -54,7 +62,9 @@ namespace App\Http\Controllers;
                 'approvedSchedules',
                 'progressPercentage',
                 'appointmentSummary',
-                'evaluatedExercises'
+                'evaluatedExercises',
+                'totalExercises',
+                'completedExercises',
             ));
         }
     }

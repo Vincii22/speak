@@ -49,7 +49,13 @@
                 <h3 class="text-lg font-bold">Progress</h3>
                 <div class="text-4xl font-bold text-[#694f8e]">{{ $progressPercentage }}%</div>
                 <p class="text-sm text-gray-600">Exercises Completed</p>
+
+                <!-- Display completed exercises vs total exercises -->
+                <p class="text-sm text-gray-600 mt-2">
+                    {{ $completedExercises }} / {{ $totalExercises }} exercises completed
+                </p>
             </div>
+
 
             <!-- Appointment Summary -->
             <div class="bg-white shadow-lg rounded-lg p-5">
