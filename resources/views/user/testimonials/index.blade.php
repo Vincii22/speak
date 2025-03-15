@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="container mx-auto p-6">
+    <div class="container mx-auto p-6 pt-36">
         <h1 class="text-2xl font-bold text-center text-purple-700 mb-6">User Testimonials</h1>
         <form action="{{ route('testimonials.store') }}" method="POST" class="mb-6">
             @csrf
