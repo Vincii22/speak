@@ -76,7 +76,11 @@
             <div class="bg-white shadow-lg rounded-lg p-5 flex flex-col items-center">
                 <h3 class="text-lg font-bold">Evaluated Exercises</h3>
                 <div class="text-4xl font-bold text-[#694f8e]">{{ $evaluatedExercises }}</div>
+                <a href="{{ route('evaluated.exercises') }}" class="mt-2 text-sm text-blue-600 hover:underline">
+                    View Details
+                </a>
             </div>
+
         </div>
     </div>
 </x-app-layout>

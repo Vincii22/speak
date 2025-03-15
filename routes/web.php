@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\PracticeExerciseController;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserDashboardController;
+use App\Http\Controllers\User\EvaluatedExercisesController;
 
 Route::get('/', [TestimonialController::class, 'testimonial']);
 // Shared dashboard route
@@ -42,6 +43,7 @@ Route::get('/user/dashboard', [UserDashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('user.dashboard');
 
+    Route::get('user/evaluated-exercises', [EvaluatedExercisesController::class, 'index'])->name('evaluated.exercises');
 
 Route::middleware(['auth', RoleMiddleware::class . ':professional'])->group(function () {
     Route::get('/professional/dashboard', [ProfessionalController::class, 'dashboardIndex'])->name('professional.dashboard');
