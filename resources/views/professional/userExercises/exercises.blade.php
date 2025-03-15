@@ -5,7 +5,7 @@
             <h1 class="text-4xl font-bold text-center text-purple-600 mb-8">{{ $user->name }}'s Exercises</h1>
 
             <div class="space-y-6">
-                @foreach ($userActivities as $activity)
+                @forelse ($userActivities as $activity)
                     <div class="mb-4">
                         <h2 class="text-2xl font-semibold text-center text-purple-600">
                             <a href="{{ route('professional.exercise.show', $activity->id) }}">
@@ -13,7 +13,9 @@
                             </a>
                         </h2>
                     </div>
-                @endforeach
+                @empty
+                    <p class="text-center text-gray-500">No exercises left to evaluate.</p>
+                @endforelse
             </div>
         </div>
     </div>

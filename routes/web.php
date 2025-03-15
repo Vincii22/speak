@@ -6,7 +6,8 @@ use App\Models\Schedule;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RoleMiddleware;
-
+use App\Http\Controllers\User\TestimonialController;
+use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\SetController;
@@ -20,10 +21,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\UserDashboardController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [TestimonialController::class, 'testimonial']);
 // Shared dashboard route
 Route::get('/dashboard', function () {
     $user = Auth::user();
@@ -65,6 +63,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/user/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
+    Route::post('/user/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
+    Route::get('/user', [HomeController::class, 'index'])->name('user.home');
+
 });
 
 
