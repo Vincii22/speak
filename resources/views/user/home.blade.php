@@ -56,10 +56,7 @@
                         <div class="flex justify-center items-center">
                             <h1
                                 class="absolute bottom-[-25px] bg-[#694F8E] w-[50%] text-center py-3 rounded-[50px] text-2xl">
-                                READY TO START?
-                                <a href="{{route('login')}}"
-                                    class="hover:text-[#FFDED6] hover:underline transition-all focus:outline-none">JOIN
-                                    HERE.</a>
+                                EXPLORE THE LINKS ABOVE TO START
                             </h1>
                         </div>
                     </div>

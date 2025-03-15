@@ -604,7 +604,7 @@
                     </div>
                     <div class="text-black px-5 md:px-12">
                         <h1 class="text-lg md:text-xl lg:text-[3vh] font-semibold rounded-xl mt-5 text-center mb-3 ">
-                            Jacquelyn Uera
+                            Jacquelyn Uera, SLP
                         </h1>
                         <h1 class="text-justify mb-3 lg:text-[2.1vh]">
                             <span class="font-semibold">Credentials:</span> Founder of Our Learning Corner ·

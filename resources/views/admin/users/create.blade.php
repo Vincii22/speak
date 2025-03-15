@@ -3,7 +3,7 @@
 <div class="p-5">
     <h1 class="text-2xl font-bold mb-4">Add New User</h1>
 
-    <form action="{{ route('users.store') }}" method="POST">
+    <form action="{{ route('admin.users.store') }}" method="POST">
         @csrf
 
         <div class="mb-4">

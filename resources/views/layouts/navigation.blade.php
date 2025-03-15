@@ -25,7 +25,7 @@
                     <a href="{{ route('user.home')}}" href="#home"
                         class="active text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Home</a>
                     <a href="{{ route('user.dashboard')}}" href="#dashboard"
-                        class="active text-[#545454] font-semibold uppercase hover:text-gray-800 transition">Dashboard</a>
+                        class="font-semibold uppercase hover:text-gray-800 transition">Dashboard</a>
 
                 </nav>
 

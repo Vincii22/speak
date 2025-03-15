@@ -22,9 +22,12 @@ public function index()
 
 public function showUserExercises($userId)
 {
-    // Fetch the user and their submitted exercises
+    // Fetch the user and their submitted exercises that are NOT evaluated
     $user = User::findOrFail($userId);
-    $userActivities = UserActivity::where('user_id', $userId)->with('exercise')->get();
+    $userActivities = UserActivity::where('user_id', $userId)
+        ->where('marked_as_evaluated', false) // Exclude evaluated exercises
+        ->with('exercise')
+        ->get();
 
     return view('professional.userExercises.exercises', compact('user', 'userActivities'));
 }
@@ -73,15 +76,16 @@ public function dashboardIndex()
 
     // Fetch user activities summary
     $evaluatedUsers = UserActivity::where('marked_as_evaluated', true)
-        ->with('user')
-        ->get()
-        ->groupBy('user_id')
-        ->map(function ($activities) {
-            return [
-                'name' => $activities->first()->user->name,
-                'evaluatedExercises' => $activities->count(),
-            ];
-        });
+    ->with('user')
+    ->get()
+    ->groupBy('user_id')
+    ->map(function ($activities) {
+        return [
+            'name' => $activities->first()->user->name,
+            'total_exercises' => $activities->count(), // Change key to 'total_exercises'
+        ];
+    });
+
 
     $evaluatedUsersCount = $evaluatedUsers->count();
     $pendingEvaluations = UserActivity::where('marked_as_evaluated', false)->count();
